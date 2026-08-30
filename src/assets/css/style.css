@@ -251,6 +251,32 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 
 
 /* === Scrollbar, Chatbot, Animations === */
+#agentWidget{position:fixed;bottom:24px;right:24px;z-index:10000}
+#agentBubble{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(248,152,32,.4);transition:all .3s;position:relative}
+#agentBubble:hover{transform:scale(1.1)}
+.agent-pulse{position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid var(--primary);animation:agentPulse 2s infinite}
+@keyframes agentPulse{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+#agentPanel{position:absolute;bottom:72px;right:0;width:380px;max-height:520px;background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.3);display:none;flex-direction:column;overflow:hidden}
+#agentPanel.open{display:flex}
+#agentHeader{padding:14px 16px;background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+#agentMessages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;max-height:360px;background:var(--bg)}
+.agent-msg{display:flex;gap:10px;align-items:flex-start}
+.agent-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.agent-bubble{background:var(--surface);padding:10px 14px;border-radius:12px;font-size:.9rem;line-height:1.5;max-width:80%;word-wrap:break-word}
+.agent-msg.bot .agent-bubble{border-top-left-radius:4px}
+.agent-msg.user .agent-bubble{background:var(--primary);color:#fff;border-top-right-radius:4px}
+.agent-typing{display:flex;gap:4px;padding:4px 0}
+.agent-typing span{width:8px;height:8px;border-radius:50%;background:var(--text-muted);animation:typing 1.4s infinite ease-in-out}
+.agent-typing span:nth-child(2){animation-delay:.2s}
+.agent-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
+.agent-tag{display:inline-block;background:var(--primary);color:#fff;padding:6px 10px;border-radius:14px;font-size:.78rem;margin:4px 4px 0 0;cursor:pointer;transition:transform .2s}
+.agent-tag:hover{transform:scale(1.05)}
+#agentInput{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;background:var(--card)}
+#agentText{flex:1;background:var(--surface);border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:8px;font-size:.9rem;outline:none}
+#agentText:focus{border-color:var(--primary)}
+#agentInput button{background:var(--primary);color:#fff;border:none;width:40px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+#agentInput button:hover{background:var(--primary-dark)}
 ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--surface);border-radius:4px}::-webkit-scrollbar-thumb:hover{background:var(--primary)}
 .chatbot-fab{position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));border:none;color:#fff;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 20px rgba(248,152,32,.4);z-index:10000;display:flex;align-items:center;justify-content:center;transition:all .3s;animation:fabPulse 2s infinite}
 .chatbot-fab::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--primary);opacity:.4;animation:fabRing 2s ease-out infinite}
