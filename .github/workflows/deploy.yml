@@ -38,6 +38,12 @@ jobs:
           # /javapath-react/ (https://abhinavmaurya12.github.io/javapath-react/)
           VITE_BASE: /javapath-react/
 
+      # SPA fallback: GitHub Pages has no client-side routing, so /java,
+      # /dsa, /practice etc. 404. Copy index.html -> 404.html so any
+      # unmatched path loads the single-page app and React Router handles it.
+      - name: Copy index.html to 404.html
+        run: cp dist/index.html dist/404.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
