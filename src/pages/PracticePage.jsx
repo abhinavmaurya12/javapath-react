@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { practiceData, categoryKeyMap, categoryNameToId, categoryMeta } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import useSidebarSearch from '../hooks/useSidebarSearch'
 
 const CATEGORIES = [
   'basic', 'patterns', 'pattern-assignment', 'number-patterns', 'loops', 'arrays',
@@ -29,11 +30,26 @@ export default function PracticePage() {
     setActiveCat(catId)
     setActiveFile(null)
     navigate('/practice', { state: { category: catId } })
+    const s = document.getElementById('practiceSidebar')
+    if (s) s.classList.remove('open')
+    const b = document.getElementById('practiceSidebarBackdrop')
+    if (b) b.classList.remove('open')
   }
 
   function openFile(fileName) {
     setActiveFile(fileName)
     navigate('/practice', { state: { category: activeCat, file: fileName } })
+    const s = document.getElementById('practiceSidebar')
+    if (s) s.classList.remove('open')
+    const b = document.getElementById('practiceSidebarBackdrop')
+    if (b) b.classList.remove('open')
+  }
+
+  function toggleSidebar() {
+    const s = document.getElementById('practiceSidebar')
+    const b = document.getElementById('practiceSidebarBackdrop')
+    if (s) s.classList.toggle('open')
+    if (b) b.classList.toggle('open')
   }
 
   const catName = categoryKeyMap[activeCat]
@@ -50,6 +66,8 @@ export default function PracticePage() {
     }
   }, [activeCat]) // eslint-disable-line
 
+  useSidebarSearch()
+
   let fileCode = ''
   if (activeFile && cat && cat.files) {
     const fd = cat.files[activeFile]
@@ -61,7 +79,7 @@ export default function PracticePage() {
       <aside className="sidebar" id="practiceSidebar">
         <div className="search-sidebar">
           <i className="fas fa-search"></i>
-          <input type="text" placeholder="Search practice topics..." id="practiceSearchInput" />
+          <input type="text" placeholder="Search practice topics..." id="practiceSearchInput" className="sidebar-search-input" />
         </div>
         <div className="sidebar-section">
           <div className="sidebar-section-title">Practice Code</div>
@@ -77,10 +95,7 @@ export default function PracticePage() {
         </div>
       </aside>
       <main className="main-content" id="practiceMainContent">
-        <button className="sidebar-toggle-btn" onClick={() => {
-          const s = document.getElementById('practiceSidebar')
-          if (s) s.classList.toggle('open')
-        }}><i className="fas fa-bars"></i> Categories</button>
+        <button className="sidebar-toggle-btn" onClick={toggleSidebar}><i className="fas fa-bars"></i> Categories</button>
         <div className="lesson-container" id="practiceContainer">
           {!activeFile ? (
             cat ? (
@@ -125,6 +140,7 @@ export default function PracticePage() {
           )}
         </div>
       </main>
+      <div id="practiceSidebarBackdrop" className="sidebar-backdrop" onClick={toggleSidebar}></div>
     </div>
   )
 }

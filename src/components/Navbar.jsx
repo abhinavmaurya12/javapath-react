@@ -72,7 +72,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.5.9</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.6.2</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); setMenuOpen(!menuOpen); setDropdownOpen(false) }}>
         <i className="fas fa-bars"></i>
@@ -83,19 +83,27 @@ export default function Navbar() {
             {item.label}
           </Link>
         ))}
-        <div className={'nav-dropdown' + (dropdownOpen ? ' open' : '')}>
-          <span
-            style={{ padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
-            onClick={e => { e.stopPropagation(); setDropdownOpen(!dropdownOpen) }}
-          >
-            Frontend <i className="fas fa-chevron-down" style={{ fontSize: '.7rem' }}></i>
-          </span>
-          <div className="dropdown-menu">
-            {FRONTEND_DROPDOWN.map(item => (
-              <Link key={item.to} to={item.to} onClick={closeAll}>{item.label}</Link>
-            ))}
+        {menuOpen ? (
+          FRONTEND_DROPDOWN.map(item => (
+            <Link key={item.to} to={item.to} onClick={closeAll} className={isActive(item.to) ? 'active' : ''}>
+              {item.label}
+            </Link>
+          ))
+        ) : (
+          <div className={'nav-dropdown' + (dropdownOpen ? ' open' : '')}>
+            <span
+              style={{ padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+              onClick={e => { e.stopPropagation(); setDropdownOpen(!dropdownOpen) }}
+            >
+              Frontend <i className="fas fa-chevron-down" style={{ fontSize: '.7rem' }}></i>
+            </span>
+            <div className="dropdown-menu">
+              {FRONTEND_DROPDOWN.map(item => (
+                <Link key={item.to} to={item.to} onClick={closeAll}>{item.label}</Link>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="nav-right">
         <Search />

@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { interviewQuestions } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import useSidebarSearch from '../hooks/useSidebarSearch'
 
 export default function InterviewPage() {
   const [active, setActive] = useState(0)
@@ -25,6 +26,17 @@ export default function InterviewPage() {
     navigate('/interview', { state: { question: id } })
     const q = interviewQuestions[idx]
     if (q) setLast('interview-' + id, q.title)
+    const s = document.getElementById('interviewSidebar')
+    if (s) s.classList.remove('open')
+    const b = document.getElementById('interviewSidebarBackdrop')
+    if (b) b.classList.remove('open')
+  }
+
+  function toggleSidebar() {
+    const s = document.getElementById('interviewSidebar')
+    const b = document.getElementById('interviewSidebarBackdrop')
+    if (s) s.classList.toggle('open')
+    if (b) b.classList.toggle('open')
   }
 
   function markComplete() {
@@ -44,6 +56,8 @@ export default function InterviewPage() {
     }
   }, [active]) // eslint-disable-line
 
+  useSidebarSearch()
+
   const q = interviewQuestions[active]
   const isCompleted = q ? interviewCompleted.includes(q.id) : false
 
@@ -52,7 +66,7 @@ export default function InterviewPage() {
       <aside className="sidebar" id="interviewSidebar">
         <div className="search-sidebar">
           <i className="fas fa-search"></i>
-          <input type="text" placeholder="Search questions..." id="interviewSearchInput" />
+          <input type="text" placeholder="Search questions..." id="interviewSearchInput" className="sidebar-search-input" />
         </div>
         <div className="sidebar-section">
           <div className="sidebar-section-title">Phase 1 — Java Core (51 Q)</div>
@@ -70,10 +84,7 @@ export default function InterviewPage() {
         </div>
       </aside>
       <main className="main-content" id="interviewMainContent">
-        <button className="sidebar-toggle-btn" onClick={() => {
-          const s = document.getElementById('interviewSidebar')
-          if (s) s.classList.toggle('closed')
-        }}><i className="fas fa-bars"></i> Questions</button>
+        <button className="sidebar-toggle-btn" onClick={toggleSidebar}><i className="fas fa-bars"></i> Questions</button>
         <div className="lesson-container" id="interviewContainer">
           {q ? (
             <>

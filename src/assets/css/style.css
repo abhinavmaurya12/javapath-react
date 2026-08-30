@@ -116,6 +116,7 @@ a{text-decoration:none;color:var(--primary)}ul{list-style:none}
 .search-sidebar i{position:absolute;left:20px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:.8rem;pointer-events:none}
 .search-sidebar .no-results{padding:12px;text-align:center;color:var(--text-muted);font-size:.82rem;display:none}
 .sidebar-hidden{display:none!important}
+.sidebar-no-results{padding:12px;text-align:center;color:var(--text-muted);font-size:.82rem;display:none}
 .sidebar-toggle-btn{display:inline-flex;background:var(--surface);color:var(--text);border:1px solid var(--border);padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;align-items:center;gap:6px;margin-bottom:16px;transition:all .2s;width:fit-content}
 .sidebar-toggle-btn:hover{border-color:var(--primary);color:var(--primary);background:rgba(248,152,32,.08);box-shadow:0 0 8px rgba(248,152,32,.1)}
 
@@ -139,10 +140,10 @@ a{text-decoration:none;color:var(--primary)}ul{list-style:none}
   .sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.3)}
   .sidebar.closed{transform:translateX(-100%)}
   .learn-layout>.sidebar.closed+.main-content{margin-left:0;max-width:100%}
+  .sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:899;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .sidebar-backdrop.open{opacity:1;pointer-events:auto}
 }
 .lesson-container{max-width:900px;margin:0 auto}
-.sidebar.closed{transform:translateX(-100%)}
-.learn-layout>.sidebar.closed+.main-content{margin-left:0;max-width:100%}
 
 
 /* === Lesson Content, Concept Boxes, Code Blocks === */
@@ -160,6 +161,14 @@ a{text-decoration:none;color:var(--primary)}ul{list-style:none}
 .code-header{background:var(--surface);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
 [data-theme="dark"] .code-header{color:#8be9fd}
 [data-theme="light"] .code-header{color:#3a5e7c}
+.code-editor-wrap{position:relative;background:var(--code-bg);border-radius:var(--radius);overflow:hidden}
+.code-highlight{background:var(--code-bg);color:#e0e0e0;font-family:'Courier New',Consolas,monospace;font-size:.88rem;line-height:1.6;white-space:pre;word-wrap:normal;tab-size:4;margin:0;padding:16px;outline:none;border:none;border-radius:var(--radius);overflow:auto;cursor:text}
+.code-highlight[contenteditable="true"]:empty:before{content:'Start typing Java code...';color:#555}
+.code-editor{background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:var(--radius);padding:12px 14px;outline:none;resize:none;overflow:auto;font-family:'Courier New',Consolas,monospace;font-size:.88rem;line-height:1.6}
+.tok-kw{color:#ff79c6;font-weight:600}
+.tok-str{color:#f1fa8c}
+.tok-num{color:#50fa7b}
+.tok-cmt{color:#6272a4;font-style:italic}
 .code-block pre{padding:20px;overflow-x:auto;font-family:'Courier New',Consolas,monospace;font-size:.88rem;line-height:1.6;color:#e0e0e0}
 .code-block code{font-family:inherit}
 .code-block .kw{color:#ff79c6}.code-block .str{color:#f1fa8c}.code-block .cmt{color:#fff}.code-block .cls{color:#8be9fd}.code-block .mth{color:#50fa7b}
@@ -389,12 +398,12 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
   .nav-brand{font-size:1.1rem;gap:6px}
   .nav-brand i{font-size:1.1rem}
   .mobile-menu-btn{display:flex;z-index:1001}
-  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;background:var(--card);flex-direction:column;padding:8px 12px;border-bottom:1px solid var(--border);gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:9999;max-height:calc(100vh - 56px);overflow-y:auto}
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;background:var(--card);flex-direction:column;padding:8px 12px;border-bottom:1px solid var(--border);gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:9999;overflow:visible;max-height:none}
 .nav-links.open{display:flex}
 .nav-links.open .nav-dropdown { align-self: center; }
-.nav-links.open .nav-dropdown > a { text-align: center; justify-content: center; }
-.nav-links.open .nav-dropdown .dropdown-menu { display: block; align-items: center; pointer-events: auto; z-index: 10000; }
-.nav-links.open .nav-dropdown .dropdown-menu a { pointer-events: auto; min-height: 48px; display: flex; align-items: center; justify-content: center; }
+  .nav-links.open .nav-dropdown > a { text-align: center; justify-content: center; }
+  .nav-links.open .nav-dropdown .dropdown-menu { display: block; align-items: center; pointer-events: auto; z-index: 10000; position: absolute; left: 50%; transform: translateX(-50%); width: calc(100% - 24px); max-width: 320px; box-shadow: 0 8px 24px rgba(0,0,0,.35); max-height: calc(100vh - 120px); overflow-y: auto }
+  .nav-links.open .nav-dropdown .dropdown-menu a { pointer-events: auto; min-height: 48px; display: flex; align-items: center; justify-content: center; padding: 12px 16px }
 .nav-links a{padding:12px 16px;border-radius:8px;font-size:.95rem;width:100%;display:block;cursor:pointer;pointer-events:auto;position:relative}
   .nav-right{gap:8px}
   .search-box input{width:140px;font-size:.82rem;padding:7px 10px 7px 32px}
@@ -876,7 +885,7 @@ button:focus-visible{box-shadow:0 0 0 3px rgba(248,152,32,.3)}
 .frontend-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
 .frontend-header h1{font-size:1.8rem}
 .frontend-nav{display:flex;justify-content:space-between;margin-top:40px;padding-top:20px;border-top:1px solid var(--border);gap:12px;flex-wrap:wrap}
-.frontend-sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0);z-index:99;opacity:0;transition:opacity .3s ease;pointer-events:none}
+.frontend-sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:99;opacity:0;transition:opacity .3s ease;pointer-events:none}
 .frontend-sidebar-backdrop.open{opacity:1;pointer-events:auto}
 @media(max-width:768px){
   .frontend-sidebar{transform:translateX(-100%);transition:transform .3s ease}

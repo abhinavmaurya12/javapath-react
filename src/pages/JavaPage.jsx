@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { lessons } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import useSidebarSearch from '../hooks/useSidebarSearch'
 
 const SECTIONS = [
   { title: 'Fundamentals', range: [0, 2] },
@@ -27,11 +28,24 @@ export default function JavaPage() {
     checkBadges()
   }, [checkBadges])
 
+  useSidebarSearch()
+
+  function toggleSidebar() {
+    const s = document.getElementById('sidebar')
+    const b = document.getElementById('sidebarBackdrop')
+    if (s) s.classList.toggle('open')
+    if (b) b.classList.toggle('open')
+  }
+
   function showLesson(idx) {
     setActive(idx)
     navigate('/java', { state: { lesson: idx } })
     const l = lessons[idx]
     if (l) setLast(idx, l.title)
+    const s = document.getElementById('sidebar')
+    if (s) s.classList.remove('open')
+    const b = document.getElementById('sidebarBackdrop')
+    if (b) b.classList.remove('open')
   }
 
   function markComplete() {
@@ -59,7 +73,7 @@ export default function JavaPage() {
       <aside className="sidebar" id="sidebar">
         <div className="search-sidebar">
           <i className="fas fa-search"></i>
-          <input type="text" placeholder="Search chapters..." id="learnSearchInput" />
+          <input type="text" placeholder="Search chapters..." id="learnSearchInput" className="sidebar-search-input" />
         </div>
         {SECTIONS.map(sec => (
           <div className="sidebar-section" key={sec.title}>
@@ -80,10 +94,7 @@ export default function JavaPage() {
         ))}
       </aside>
       <main className="main-content" id="mainContent">
-        <button className="sidebar-toggle-btn" onClick={() => {
-          const s = document.getElementById('sidebar')
-          if (s) s.classList.toggle('open')
-        }}><i className="fas fa-bars"></i> Chapters</button>
+        <button className="sidebar-toggle-btn" onClick={toggleSidebar}><i className="fas fa-bars"></i> Chapters</button>
         <div className="lesson-container" id="lessonContainer">
           {lesson ? (
             <>
@@ -109,6 +120,7 @@ export default function JavaPage() {
           )}
         </div>
       </main>
+      <div id="sidebarBackdrop" className="sidebar-backdrop" onClick={toggleSidebar}></div>
     </div>
   )
 }

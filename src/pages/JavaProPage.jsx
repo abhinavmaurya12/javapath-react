@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { javaproData } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import useSidebarSearch from '../hooks/useSidebarSearch'
 
 export default function JavaProPage() {
   const [activeId, setActiveId] = useState(1)
@@ -22,12 +23,25 @@ export default function JavaProPage() {
     navigate('/javapro', { state: { chapter: id } })
     const ch = javaproData.find(c => c.id === id)
     if (ch) setLast('javapro-' + id, ch.title)
+    const s = document.getElementById('javaproSidebar')
+    if (s) s.classList.remove('open')
+    const b = document.getElementById('javaproSidebarBackdrop')
+    if (b) b.classList.remove('open')
+  }
+
+  function toggleSidebar() {
+    const s = document.getElementById('javaproSidebar')
+    const b = document.getElementById('javaproSidebarBackdrop')
+    if (s) s.classList.toggle('open')
+    if (b) b.classList.toggle('open')
   }
 
   useEffect(() => {
     window.__jpShow = (id) => showChapter(id)
     return () => { delete window.__jpShow }
   }, [activeId]) // eslint-disable-line
+
+  useSidebarSearch()
 
   const ch = javaproData.find(c => c.id === activeId)
 
@@ -70,7 +84,7 @@ export default function JavaProPage() {
       <aside className="sidebar" id="javaproSidebar">
         <div className="search-sidebar">
           <i className="fas fa-search"></i>
-          <input type="text" placeholder="Search book chapters..." id="javaproSearchInput" />
+          <input type="text" placeholder="Search book chapters..." id="javaproSearchInput" className="sidebar-search-input" />
         </div>
         <div className="sidebar-section">
           <div className="sidebar-section-title">JavaPro Book (180 Chapters)</div>
@@ -88,10 +102,7 @@ export default function JavaProPage() {
         </div>
       </aside>
       <main className="main-content" id="javaproMainContent">
-        <button className="sidebar-toggle-btn" onClick={() => {
-          const s = document.getElementById('javaproSidebar')
-          if (s) s.classList.toggle('closed')
-        }}><i className="fas fa-bars"></i> Chapters</button>
+        <button className="sidebar-toggle-btn" onClick={toggleSidebar}><i className="fas fa-bars"></i> Chapters</button>
         <div className="lesson-container" id="javaproContainer">
           {ch ? (
             <>
@@ -109,6 +120,7 @@ export default function JavaProPage() {
           }
         </div>
       </main>
+      <div id="javaproSidebarBackdrop" className="sidebar-backdrop" onClick={toggleSidebar}></div>
     </div>
   )
 }

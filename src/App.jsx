@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { ProgressProvider } from './contexts/ProgressContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -17,20 +17,6 @@ import RoadmapPage from './pages/RoadmapPage'
 import FrontendPage from './pages/FrontendPage'
 
 function Layout({ children }) {
-  const location = useLocation()
-  const isTryIt = location.pathname === '/tryit'
-
-  // On tryit page we don't want the navbar/footer overlay
-  if (isTryIt) {
-    return (
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', overflow: 'hidden' }}>
-        <Routes>
-          <Route path="/tryit" element={<TryItPage />} />
-        </Routes>
-      </div>
-    )
-  }
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
@@ -68,7 +54,7 @@ export default function App() {
         <Route path="/projects" element={<Layout><ProjectsPage /></Layout>} />
         <Route path="/interview" element={<Layout><InterviewPage /></Layout>} />
         <Route path="/javapro" element={<Layout><JavaProPage /></Layout>} />
-        <Route path="/tryit" element={<TryItPage />} />
+        <Route path="/tryit" element={<Layout><TryItPage /></Layout>} />
         <Route path="/roadmap" element={<Layout><RoadmapPage /></Layout>} />
         <Route path="/frontend/:track" element={<Layout><FrontendPage /></Layout>} />
       </Routes>

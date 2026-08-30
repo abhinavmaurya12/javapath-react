@@ -1,68 +1,15 @@
-/* === Frontend Track Styles === */
-
-.nav-dropdown {
-  position: relative;
-}
-.nav-dropdown > a {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 8px 0;
-  min-width: 180px;
-  box-shadow: 0 12px 40px rgba(0,0,0,.3);
-  z-index: 1001;
-}
-.nav-dropdown:hover .dropdown-menu {
-  display: block;
-}
-.dropdown-menu a {
-  display: block;
-  padding: 10px 20px;
-  color: var(--text);
-  font-size: .88rem;
-  transition: all .2s;
-  white-space: nowrap;
-}
-.dropdown-menu a:hover {
-  background: var(--surface);
-  color: var(--primary);
-}
-
-.hero-stats {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 32px;
-}
-.hero-stat {
-  text-align: center;
-}
-.stat-num {
-  display: block;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #fff;
-}
-.stat-label {
-  font-size: .85rem;
-  opacity: .8;
-}
-
 .frontend-layout {
   display: flex;
   min-height: calc(100vh - 64px);
 }
+
+/* ===== W3Schools-style vertical sidebar =====
+   Desktop: fixed full-height side nav, hidden by default, slides in on click.
+   Mobile: in-flow, hidden by default, opens on click as a horizontal menu. */
 .frontend-sidebar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   width: 280px;
   background: var(--card);
   border-right: 1px solid var(--border);
@@ -70,46 +17,57 @@
   top: 64px;
   bottom: 0;
   overflow-y: auto;
-  padding: 16px 0;
   z-index: 100;
+  transform: translateX(-100%);
+  transition: transform .3s ease;
+}
+.frontend-sidebar.open {
+  transform: translateX(0);
+}
+.frontend-sidebar li {
+  border-bottom: 1px solid var(--border);
+}
+.frontend-sidebar li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: all .2s;
+}
+.frontend-sidebar li a:hover:not(.active) {
+  background: var(--surface);
+  color: var(--primary);
+}
+.frontend-sidebar li a.active {
+  background: var(--primary);
+  color: #fff;
 }
 .frontend-sidebar .sidebar-section-title {
+  display: block;
   padding: 8px 20px;
   font-size: .75rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
   letter-spacing: 1px;
+  cursor: default;
 }
-.frontend-sidebar .sidebar-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: all .2s;
-  font-size: .88rem;
-  border-left: 3px solid transparent;
-  color: var(--text);
+.frontend-sidebar .sidebar-section-title:hover {
+  background: transparent;
+  color: var(--text-muted);
 }
-.frontend-sidebar .sidebar-item:hover {
-  background: var(--surface);
-  color: var(--primary);
-}
-.frontend-sidebar .sidebar-item.active {
-  background: var(--surface);
-  color: var(--primary);
-  border-left-color: var(--primary);
-  font-weight: 600;
-}
-.frontend-sidebar .sidebar-item i {
-  width: 18px;
-  font-size: .85rem;
-}
+
 .frontend-main {
-  margin-left: 280px;
+  margin-left: 0;
   flex: 1;
   padding: 32px;
+  max-width: 100%;
+  transition: margin-left .3s ease, max-width .3s ease;
+}
+.frontend-sidebar.open + .frontend-main {
+  margin-left: 280px;
   max-width: calc(100% - 280px);
 }
 .frontend-container {
@@ -137,49 +95,92 @@
   flex-wrap: wrap;
 }
 
-@media (max-width: 768px) {
+.frontend-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity .3s ease;
+  pointer-events: none;
+}
+.frontend-sidebar-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.sidebar-toggle-btn {
+  display: inline-flex;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 600;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  width: fit-content;
+}
+
+.sidebar-section {
+  /* clear fix for floated mobile links */
+}
+.sidebar-section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ===== Mobile: W3Schools responsive behavior ===== */
+@media screen and (max-width: 768px) {
   .frontend-sidebar {
-    transform: translateX(-100%);
-    transition: transform .3s ease;
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease, height .3s ease;
   }
   .frontend-sidebar.open {
-    transform: translateX(0);
-  }
-  .frontend-sidebar-backdrop {
-    visibility: hidden;
-    opacity: 0;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 99;
-    transition: opacity .3s ease;
-    pointer-events: none;
-  }
-  .frontend-sidebar-backdrop.open {
-    visibility: visible;
     opacity: 1;
-    pointer-events: auto;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
   }
-  .frontend-sidebar .sidebar-item {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
+  .frontend-sidebar li a {
+    float: left;
+    padding: 12px 16px;
+    width: 50%;
+  }
+  .frontend-sidebar .sidebar-section-title {
+    width: 100%;
+    float: left;
+    padding: 8px 16px;
   }
   .frontend-main {
     margin-left: 0;
     max-width: 100%;
   }
-  .nav-dropdown:hover .dropdown-menu {
-    display: none;
+  .frontend-sidebar.open + .frontend-main {
+    margin-left: 0;
+    max-width: 100%;
   }
-  .nav-dropdown .dropdown-menu {
-    position: static;
-    display: none;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
+}
+
+@media screen and (max-width: 400px) {
+  .frontend-sidebar li a {
+    text-align: center;
+    float: none;
+    width: 100%;
+    padding: 12px;
   }
-  .nav-dropdown.open .dropdown-menu {
-    display: block;
+  .frontend-sidebar .sidebar-section-title {
+    text-align: center;
+    width: 100%;
   }
 }

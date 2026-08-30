@@ -65,30 +65,36 @@ export default function FrontendPage() {
 
   return (
     <div className="frontend-layout">
-      <aside className="frontend-sidebar" id={track + 'Sidebar'} style={{ position: 'fixed', top: 64, bottom: 0, width: 280, background: 'var(--card)', borderRight: '1px solid var(--border)', overflowY: 'auto', padding: '16px 0', zIndex: 100 }}>
+      <aside className="frontend-sidebar" id={track + 'Sidebar'} style={{ overflowY: 'auto' }}>
         <div className="search-sidebar" style={{ position: 'relative', padding: '8px 12px', borderBottom: '1px solid var(--border)', background: 'var(--card)' }}>
           <i className="fas fa-search" style={{ position: 'absolute', left: 20, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }}></i>
-          <input type="text" placeholder={'Search ' + data.title + ' chapters...'} id={track + 'SearchInput'} style={{ width: '100%', padding: '8px 12px 8px 32px', background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text)', borderRadius: 8, fontSize: '.85rem', outline: 'none' }} />
+          <input type="text" placeholder={'Search ' + data.title + ' chapters...'} id={track + 'SearchInput'} className="sidebar-search-input" style={{ width: '100%', padding: '8px 12px 8px 32px', background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text)', borderRadius: 8, fontSize: '.85rem', outline: 'none' }} />
         </div>
-        {Object.keys(sections).map(label => (
-          <div className="sidebar-section" key={label}>
-            <div className="sidebar-section-title">{label}</div>
-            {sections[label].map(i => (
-              <div
-                key={i}
-                className={'sidebar-item' + (active === i ? ' active' : '')}
-                onClick={() => showChapter(i)}
-              >
-                <i className="fas fa-book"></i> Ch{i + 1}: {chapters[i].title}
-              </div>
-            ))}
-          </div>
-        ))}
+        <ul className="sidebar-section" id={track + 'SidebarList'} style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+          {Object.keys(sections).map(label => (
+            <li key={label} style={{ margin: 0 }}>
+              <span className="sidebar-section-title">{label}</span>
+              {sections[label].map(i => (
+                <li key={i} style={{ margin: 0 }}>
+                  <a
+                    href={'#chapter-' + i}
+                    onClick={e => { e.preventDefault(); showChapter(i) }}
+                    className={'sidebar-item' + (active === i ? ' active' : '')}
+                  >
+                    <i className="fas fa-book"></i> Ch{i + 1}: {chapters[i].title}
+                  </a>
+                </li>
+              ))}
+            </li>
+          ))}
+        </ul>
       </aside>
-      <main className="frontend-main" id={'frontendMain-' + track} style={{ marginLeft: 280, flex: 1, padding: 32, maxWidth: 'calc(100% - 280px)' }}>
+      <main className="frontend-main" id={'frontendMain-' + track} style={{ flex: 1, padding: 32 }}>
         <button className="sidebar-toggle-btn" onClick={() => {
           const s = document.getElementById(track + 'Sidebar')
-          if (s) s.classList.toggle('open')
+          const b = document.getElementById('frontendBackdrop-' + track)
+          const open = s && s.classList.toggle('open')
+          if (b) b.classList.toggle('open', !!open)
         }}><i className="fas fa-bars"></i> Chapters</button>
         <div className="frontend-container" id={'frontendContainer-' + track}>
           {chapter ? (

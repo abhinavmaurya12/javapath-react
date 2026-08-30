@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { dsaTopics } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import useSidebarSearch from '../hooks/useSidebarSearch'
 
 const DSA_SECTIONS = [
   { title: '01. Java Basics for DSA', items: ['java-basics'] },
@@ -33,6 +34,8 @@ export default function DSAPage() {
     checkBadges()
   }, [checkBadges])
 
+  useSidebarSearch()
+
   useEffect(() => {
     const st = location.state
     if (st && st.topic) {
@@ -51,7 +54,16 @@ export default function DSAPage() {
     }
     const sidebar = document.getElementById('dsaSidebar')
     if (sidebar) sidebar.classList.remove('open')
+    const backdrop = document.getElementById('dsaSidebarBackdrop')
+    if (backdrop) backdrop.classList.remove('open')
     window.scrollTo(0, 0)
+  }
+
+  function toggleSidebar() {
+    const s = document.getElementById('dsaSidebar')
+    const b = document.getElementById('dsaSidebarBackdrop')
+    if (s) s.classList.toggle('open')
+    if (b) b.classList.toggle('open')
   }
 
   function navigateDSATopic(topicId) {
@@ -94,13 +106,13 @@ export default function DSAPage() {
         <aside className="sidebar" id="dsaSidebar">
           <div className="search-sidebar">
             <i className="fas fa-search"></i>
-            <input type="text" placeholder="Search DSA topics..." id="dsaSearchInput" />
+<input type="text" placeholder="Search DSA topics..." id="dsaSearchInput" className="sidebar-search-input" />
           </div>
           {DSA_SECTIONS.map(sec => (
             <div className="sidebar-section" key={sec.title}>
               <div className="sidebar-section-title">{sec.title}</div>
               {sec.items.map(t => (
-                <div key={t} className="sidebar-item active" onClick={e => showTopic(t, e.currentTarget)}>
+                <div key={t} className="sidebar-item" onClick={e => showTopic(t, e.currentTarget)}>
                   <i className="fas fa-coffee"></i> {dsaTopics[t] ? dsaTopics[t].title : t}
                 </div>
               ))}
@@ -108,10 +120,7 @@ export default function DSAPage() {
           ))}
         </aside>
         <main className="main-content" id="dsaMainContent">
-          <button className="sidebar-toggle-btn" onClick={() => {
-            const s = document.getElementById('dsaSidebar')
-            if (s) s.classList.toggle('closed')
-          }}><i className="fas fa-bars"></i> Topics</button>
+          <button className="sidebar-toggle-btn" onClick={toggleSidebar}><i className="fas fa-bars"></i> Topics</button>
           <div className="lesson-container" id="dsaContainer">
             <div className="lesson-header">
               <h1><i className="fas fa-project-diagram" style={{ color: 'var(--primary)' }}></i> Data Structures & Algorithms</h1>
@@ -136,6 +145,7 @@ export default function DSAPage() {
             </div>
           </div>
         </main>
+        <div id="dsaSidebarBackdrop" className="sidebar-backdrop" onClick={toggleSidebar}></div>
       </div>
     )
   }
@@ -175,7 +185,7 @@ export default function DSAPage() {
       <aside className="sidebar" id="dsaSidebar">
         <div className="search-sidebar">
           <i className="fas fa-search"></i>
-          <input type="text" placeholder="Search DSA topics..." id="dsaSearchInput" />
+          <input type="text" placeholder="Search DSA topics..." id="dsaSearchInput" className="sidebar-search-input" />
         </div>
         {DSA_SECTIONS.map(sec => (
           <div className="sidebar-section" key={sec.title}>
@@ -195,24 +205,22 @@ export default function DSAPage() {
           </div>
         ))}
       </aside>
-      <main className="main-content" id="dsaMainContent">
-        <button className="sidebar-toggle-btn" onClick={() => {
-          const s = document.getElementById('dsaSidebar')
-          if (s) s.classList.toggle('open')
-        }}><i className="fas fa-bars"></i> Topics</button>
-        <div className="lesson-container" id="dsaContainer">
-          {headerHtml}
-          <SafeHTML html={content} />
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32, padding: '16px 0', borderTop: '1px solid var(--border)' }}>
-            {prevKey ? (
-              <button className="btn btn-outline" onClick={() => navigateDSATopic(prevKey)}><i className="fas fa-arrow-left"></i> {dsaTopics[prevKey].title}</button>
-            ) : <div></div>}
-            {nextKey ? (
-              <button className="btn btn-outline" onClick={() => navigateDSATopic(nextKey)}>{dsaTopics[nextKey].title} <i className="fas fa-arrow-right"></i></button>
-            ) : <div></div>}
+<main className="main-content" id="dsaMainContent">
+          <button className="sidebar-toggle-btn" onClick={toggleSidebar}><i className="fas fa-bars"></i> Topics</button>
+          <div className="lesson-container" id="dsaContainer">
+{headerHtml}
+            <SafeHTML html={content} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32, padding: '16px 0', borderTop: '1px solid var(--border)' }}>
+              {prevKey ? (
+                <button className="btn btn-outline" onClick={() => navigateDSATopic(prevKey)}><i className="fas fa-arrow-left"></i> {dsaTopics[prevKey].title}</button>
+              ) : <div></div>}
+              {nextKey ? (
+                <button className="btn btn-outline" onClick={() => navigateDSATopic(nextKey)}>{dsaTopics[nextKey].title} <i className="fas fa-arrow-right"></i></button>
+              ) : <div></div>}
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
-  )
+        </main>
+        <div id="dsaSidebarBackdrop" className="sidebar-backdrop" onClick={toggleSidebar}></div>
+      </div>
+    )
 }
