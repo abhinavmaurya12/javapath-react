@@ -50,4 +50,1058 @@ export default  [
   {id:49, title:"Abstract Classes", content:`<div class="concept-box"><h3>49) Explain about abstract classes in java?</h3><p>For example, if we take a Vehicle class, we cannot provide implementation for it because there may be two-wheelers, four-wheelers, etc. At that moment we make the Vehicle class abstract. Any class which extends Vehicle will provide the important features of abstract methods and concrete methods to provide implementation. It's the responsibility of the subclasses to provide the method implementation. Abstract classes cannot be instantiated.</p><p>Though we cannot instantiate abstract classes, we can create object references. An abstract class can contain either 0 or more abstract methods.</p></div><div class="code-block"><div class="code-header"><span>AbstractClassDemo.java</span></div><pre><code><span class="kw">abstract class</span> <span class="cls">Shape</span> {\n    String color;\n    Shape(String color) { <span class="kw">this</span>.color = color; }\n    <span class="kw">abstract double</span> <span class="mth">area</span>();\n    <span class="kw">void</span> <span class="mth">display</span>() { System.out.<span class="mth">println</span>(color + <span class="str">" area = "</span> + <span class="mth">area</span>()); }\n}\n<span class="kw">class</span> <span class="cls">Circle</span> <span class="kw">extends</span> <span class="cls">Shape</span> {\n    <span class="kw">double</span> r;\n    Circle(String c, <span class="kw">double</span> r) { <span class="kw">super</span>(c); <span class="kw">this</span>.r = r; }\n    <span class="kw">double</span> <span class="mth">area</span>() { <span class="kw">return</span> Math.PI * r * r; }\n}\n<span class="kw">public class</span> <span class="cls">AbstractClassDemo</span> {\n    <span class="kw">public static void</span> <span class="mth">main</span>(String[] args) {\n        Circle c = <span class="kw">new</span> Circle(<span class="str">"Red"</span>, <span class="mth">5</span>);\n        c.<span class="mth">display</span>();\n    }\n}</code></pre></div><div class="output-block">Red area = 78.53981633974483</div>`},
   {id:50, title:"Constructor in Abstract Class", content:`<div class="concept-box"><h3>50) Can we create a constructor in an abstract class?</h3><p>We can create a constructor in an abstract class; it doesn't give any compilation error. But since we cannot instantiate the class, there is no direct use in creating a constructor for an abstract class — it is used when a subclass constructor calls super().</p></div><div class="code-block"><div class="code-header"><span>AbstractConstructorDemo.java</span></div><pre><code><span class="kw">abstract class</span> <span class="cls">Animal</span> {\n    String name;\n    Animal(String name) {\n        <span class="kw">this</span>.name = name;\n        System.out.<span class="mth">println</span>(<span class="str">"Animal constructor: "</span> + name);\n    }\n    <span class="kw">abstract void</span> <span class="mth">sound</span>();\n}\n<span class="kw">class</span> <span class="cls">Dog</span> <span class="kw">extends</span> <span class="cls">Animal</span> {\n    Dog(String name) {\n        <span class="kw">super</span>(name);\n        System.out.<span class="mth">println</span>(<span class="str">"Dog constructor"</span>);\n    }\n    <span class="kw">void</span> <span class="mth">sound</span>() { System.out.<span class="mth">println</span>(<span class="str">"Dog barks"</span>); }\n}\n<span class="kw">public class</span> <span class="cls">AbstractConstructorDemo</span> {\n    <span class="kw">public static void</span> <span class="mth">main</span>(String[] args) {\n        Dog d = <span class="kw">new</span> Dog(<span class="str">"Buddy"</span>);\n        d.<span class="mth">sound</span>();\n    }\n}</code></pre></div><div class="output-block">Animal constructor: Buddy<br>Dog constructor<br>Dog barks</div>`},
   {id:51, title:"Abstract Methods", content:`<div class="concept-box"><h3>51) What are abstract methods in java?</h3><p>An abstract method is a method which doesn't have any body. Abstract methods are declared with the keyword abstract and a semicolon in place of the method body.</p><p><strong>Signature:</strong></p><p>public abstract void &lt;methodName&gt;();</p><p>Ex: public abstract void getDetails();</p><p>It is the responsibility of the subclass to provide implementation for the abstract method defined in the abstract class.</p></div><div class="code-block"><div class="code-header"><span>AbstractMethodDemo.java</span></div><pre><code><span class="kw">abstract class</span> <span class="cls">Vehicle</span> {\n    <span class="kw">abstract void</span> <span class="mth">start</span>();\n    <span class="kw">void</span> <span class="mth">stop</span>() { System.out.<span class="mth">println</span>(<span class="str">"Vehicle stopped"</span>); }\n}\n<span class="kw">class</span> <span class="cls">Car</span> <span class="kw">extends</span> <span class="cls">Vehicle</span> {\n    <span class="kw">void</span> <span class="mth">start</span>() { System.out.<span class="mth">println</span>(<span class="str">"Car starts with key"</span>); }\n}\n<span class="kw">class</span> <span class="cls">Bike</span> <span class="kw">extends</span> <span class="cls">Vehicle</span> {\n    <span class="kw">void</span> <span class="mth">start</span>() { System.out.<span class="mth">println</span>(<span class="str">"Bike starts with kick"</span>); }\n}\n<span class="kw">public class</span> <span class="cls">AbstractMethodDemo</span> {\n    <span class="kw">public static void</span> <span class="mth">main</span>(String[] args) {\n        Vehicle v1 = <span class="kw">new</span> Car();\n        Vehicle v2 = <span class="kw">new</span> Bike();\n        v1.<span class="mth">start</span>();\n        v2.<span class="mth">start</span>();\n        v1.<span class="mth">stop</span>();\n    }\n}</code></pre></div><div class="output-block">Car starts with key<br>Bike starts with kick<br>Vehicle stopped</div>`}
+,
+{id:52, title:"Array Programs", content:`<div class="concept-box"><h3>52) What is an array in java?</h3><p>An <strong>array</strong> is a container object that holds a fixed number of values of the same type. It is created with the <code>new</code> keyword and indexed from 0.</p><p><strong>Key points:</strong></p><ul><li>Array size is fixed at creation time</li><li>Elements are accessed by index (0-based)</li><li>Array of objects vs array of primitives</li><li>Array length is accessed with <code>arr.length</code></li></ul></div><div class="code-block"><div class="code-header"><span>ArrayBasics.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">ArrayBasics</span> {</code></pre></div><div class="output-block">Fixed-size, same-type, zero-indexed container</div>`},
+{id:53, title:"1D vs 2D Array", content:`<div class="concept-box"><h3>53) Difference between one-dimensional and two-dimensional array in java?</h3><p>A <strong>1D array</strong> stores a single list of values (like a row). A <strong>2D array</strong> is an array of arrays — it stores a table of rows and columns.</p><p><strong>Key points:</strong></p><ul><li>1D: <code>int[] arr</code> — single index</li><li>2D: <code>int[][] arr</code> — two indices</li><li>2D arrays can be jagged (different row lengths)</li></ul></div><div class="code-block"><div class="code-header"><span>Array2DDemo.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">Array2DDemo</span> {</code></pre></div><div class="output-block">1D = row; 2D = table of rows and columns</div>`},
+{id:54, title:"Jagged Array", content:`<div class="concept-box"><h3>54) What is a jagged array in java?</h3><p>A <strong>jagged array</strong> is a multidimensional array whose rows can have <strong>different numbers of columns</strong>. Each row is allocated its own length.</p><p><strong>Key points:</strong></p><ul><li>Unlike a rectangular matrix, rows may differ in size</li><li>Declared as <code>int[][] jagged = new int[3][];</code></li><li>Each row is initialized separately</li></ul></div><div class="code-block"><div class="code-header"><span>JaggedDemo.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">JaggedDemo</span> {</code></pre></div><div class="output-block">Rows of different lengths</div>`},
+{id:55, title:"Array Memory", content:`<div class="concept-box"><h3>55) How are arrays stored in memory in java?</h3><p>An array is an <strong>object</strong> in Java, so it lives on the <strong>heap</strong>. The array variable holds a <strong>reference</strong> to the contiguous block of memory; the metadata includes the array type and length.</p><p><strong>Key points:</strong></p><ul><li>Array object is stored on the heap</li><li>The reference is stored on the stack (or as an object field)</li><li>Elements are stored contiguously</li><li><code>arr.length</code> reads the length from the object header</li></ul></div><div class="code-block"><div class="code-header"><span>ArrayMemory.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">ArrayMemory</span> {</code></pre></div><div class="output-block">Heap object with contiguous elements</div>`},
+{id:56, title:"Array vs ArrayList", content:`<div class="concept-box"><h3>56) Difference between array and ArrayList in java?</h3><table><tr><th>Feature</th><th>Array</th><th>ArrayList</th></tr><tr><td>Size</td><td>Fixed</td><td>Dynamic</td></tr><tr><td>Type</td><td>Can hold primitives</td><td>Only objects</td></tr><tr><td>Performance</td><td>Faster</td><td>Slightly slower</td></tr><tr><td>Length</td><td><code>arr.length</code></td><td><code>list.size()</code></td></tr></table></div><div class="code-block"><div class="code-header"><span>ArrayVsList.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">ArrayVsList</span> {</code></pre></div><div class="output-block">Array = fixed/primitives; ArrayList = dynamic/objects</div>`},
+{id:57, title:"Bubble Sort", content:`<div class="concept-box"><h3>57) Explain bubble sort algorithm in java?</h3><p><strong>Bubble sort</strong> repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. The pass is repeated until the list is sorted.</p><p><strong>Key points:</strong></p><ul><li>Time complexity: O(n²) worst and average</li><li>Stable (equal elements keep their order)</li><li>In-place (O(1) extra space)</li></ul></div><div class="code-block"><div class="code-header"><span>BubbleSort.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">BubbleSort</span> {</code></pre></div><div class="output-block">O(n²) in-place stable sort</div>`},
+{id:58, title:"Kadane Algorithm", content:`<div class="concept-box"><h3>58) What is Kadane's algorithm in java?</h3><p>Kadane's algorithm finds the <strong>maximum sum of a contiguous subarray</strong> in a single pass (O(n)). It maintains a running sum and resets it to 0 when it becomes negative.</p><p><strong>Key points:</strong></p><ul><li>Time complexity: O(n)</li><li>Space complexity: O(1)</li><li>Handles negative numbers with a small modification</li></ul></div><div class="code-block"><div class="code-header"><span>Kadane.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">Kadane</span> {</code></pre></div><div class="output-block">O(n) max contiguous subarray sum</div>`},
+{id:59, title:"Two Pointers", content:`<div class="concept-box"><h3>59) What is the two-pointer technique in array problems?</h3><p>The <strong>two-pointer technique</strong> uses two indices that move through the array from opposite ends (or in parallel) to solve problems in linear time without extra space.</p><p><strong>Key points:</strong></p><ul><li>Commonly used for sorted arrays (pair sum, container with most water)</li><li>Opposite directions: one from start, one from end</li><li>Same direction: fast and slow pointers (remove duplicates)</li></ul></div><div class="code-block"><div class="code-header"><span>TwoPointers.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">TwoPointers</span> {</code></pre></div><div class="output-block">Linear scan using two indices</div>`},
+{id:60, title:"Binary Search", content:`<div class="concept-box"><h3>60) What is binary search in java?</h3><p><strong>Binary search</strong> finds the position of a target value in a <strong>sorted</strong> array by repeatedly dividing the search interval in half.</p><p><strong>Key points:</strong></p><ul><li>Time complexity: O(log n)</li><li>Requires the array to be sorted</li><li>Compares target with the middle element</li></ul></div><div class="code-block"><div class="code-header"><span>BinarySearch.java</span></div><pre><code><span class="kw">public class</span> <span class="cls">BinarySearch</span> {</code></pre></div><div class="output-block">O(log n) search on sorted array</div>`},
+{id:61, title:"WAP to find Kth smallest element in an unsorted array", content:`<div class="concept-box"><h3>61) WAP to find Kth smallest element in an unsorted array.</h3><p><p><strong>How it works:</strong></p><ul><li>We sort the array in ascending order.</li><li>The Kth smallest element is at index (K-1) because sorting places</li><li>Example: arr[] = {7,10,4,3,20,15}, K=3</li></ul></p><p><strong>Example:</strong> arr[] = {7,10,4,3,20,15}, K=3</p></div><div class="code-block"><div class="code-header"><span>Q36.java</span></div><pre><code>class Q36
+{
+    // Q36: WAP to find Kth smallest element in an unsorted array.
+    // Explanation:
+    //  - We sort the array in ascending order.
+    //  - The Kth smallest element is at index (K-1) because sorting places
+    //    the smallest at index 0, 2nd smallest at index 1, and so on.
+    //  - Example: arr[] = {7,10,4,3,20,15}, K=3
+    //    Sorted -&gt; {3,4,7,10,15,20}, so 3rd smallest = arr[2] = 7.
+    //    For K=4 -&gt; arr[3] = 10.
+    static int kthSmallest(int arr[], int k)
+    {
+        // Bubble sort the array in place
+        for(int i = 0; i &lt; arr.length - 1; i++)
+        {
+            for(int j = i + 1; j &lt; arr.length; j++)
+            {
+                if(arr[i] &gt; arr[j])
+                {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        return arr[k - 1];
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {7, 10, 4, 3, 20, 15};
+        System.out.println(&quot;K=3 -&gt; &quot; + kthSmallest(arr, 3));  // 7
+        int arr2[] = {7, 10, 4, 3, 20, 15};
+        System.out.println(&quot;K=4 -&gt; &quot; + kthSmallest(arr2, 4)); // 10
+    }
+}</code></pre></div>`},
+{id:62, title:"Sort the array and calculate cumulative frequency of each element", content:`<div class="concept-box"><h3>62) Sort the array and calculate cumulative frequency of each element.</h3><p><p><strong>How it works:</strong></p><ul><li>First sort the array so equal elements group together.</li><li>Walk through the sorted array, count occurrences of each distinct value.</li><li>Keep a running total (cumulative frequency) and print value->cumulative.</li><li>Example: {1,3,2,1,2,4} sorted -> {1,1,2,2,3,4}</li></ul></p><p><strong>Example:</strong> {1,3,2,1,2,4} sorted -> {1,1,2,2,3,4}</p></div><div class="code-block"><div class="code-header"><span>Q37.java</span></div><pre><code>class Q37
+{
+    // Q37: Sort the array and calculate cumulative frequency of each element.
+    // Explanation:
+    //  - First sort the array so equal elements group together.
+    //  - Walk through the sorted array, count occurrences of each distinct value.
+    //  - Keep a running total (cumulative frequency) and print value-&gt;cumulative.
+    //  - Example: {1,3,2,1,2,4} sorted -&gt; {1,1,2,2,3,4}
+    //    1 appears 2 times  -&gt; cumulative = 2    =&gt; 1-&gt;2
+    //    2 appears 2 times  -&gt; cumulative = 4    =&gt; 2-&gt;4
+    //    3 appears 1 time   -&gt; cumulative = 5    =&gt; 3-&gt;5
+    //    4 appears 1 time   -&gt; cumulative = 6    =&gt; 4-&gt;6
+    static void cumulativeFrequency(int arr[])
+    {
+        // Sort in place (bubble sort)
+        for(int i = 0; i &lt; arr.length - 1; i++)
+        {
+            for(int j = i + 1; j &lt; arr.length; j++)
+            {
+                if(arr[i] &gt; arr[j])
+                {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+
+        int cumulative = 0;
+        int i = 0;
+        while(i &lt; arr.length)
+        {
+            int value = arr[i];
+            int count = 0;
+            // Count how many times 'value' repeats consecutively
+            while(i &lt; arr.length &amp;&amp; arr[i] == value)
+            {
+                count++;
+                i++;
+            }
+            cumulative += count;
+            System.out.println(value + &quot;-&gt;&quot; + cumulative);
+        }
+    }
+    public static void main(String args[])
+    {
+        int arr1[] = {1, 3, 2, 1, 2, 4};
+        System.out.println(&quot;Input: {1,3,2,1,2,4}&quot;);
+        cumulativeFrequency(arr1);
+        System.out.println();
+
+        int arr2[] = {1, 2, 1, 2, 1, 2};
+        System.out.println(&quot;Input: {1,2,1,2,1,2}&quot;);
+        cumulativeFrequency(arr2);
+    }
+}</code></pre></div>`},
+{id:63, title:"Find the majority element (appears more than n/2 times)", content:`<div class="concept-box"><h3>63) Find the majority element (appears more than n/2 times).</h3><p><p><strong>How it works:</strong></p><ul><li>Boyer-Moore Majority Vote algorithm: keep a candidate and a counter.</li><li>For each element: if counter == 0 pick it as candidate; else if it</li><li>After one pass the candidate is the majority if one exists.</li><li>We then verify it by counting occurrences (must be > n/2).</li><li>Example: {1,1,2,3,1,5,3,1,1,1} n=10, majority threshold >5.</li></ul></p><p><strong>Example:</strong> {1,1,2,3,1,5,3,1,1,1} n=10, majority threshold >5.</p></div><div class="code-block"><div class="code-header"><span>Q38.java</span></div><pre><code>class Q38
+{
+    // Q38: Find the majority element (appears more than n/2 times).
+    // Explanation:
+    //  - Boyer-Moore Majority Vote algorithm: keep a candidate and a counter.
+    //  - For each element: if counter == 0 pick it as candidate; else if it
+    //    matches candidate increment counter, else decrement.
+    //  - After one pass the candidate is the majority if one exists.
+    //  - We then verify it by counting occurrences (must be &gt; n/2).
+    //  - Example: {1,1,2,3,1,5,3,1,1,1} n=10, majority threshold &gt;5.
+    //    Candidate ends as 1, count = 7 &gt; 5 -&gt; majority = 1.
+    static int majorityElement(int arr[])
+    {
+        int candidate = 0;
+        int count = 0;
+
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(count == 0)
+            {
+                candidate = arr[i];
+                count = 1;
+            }
+            else if(arr[i] == candidate)
+            {
+                count++;
+            }
+            else
+            {
+                count--;
+            }
+        }
+
+        // Verify
+        int freq = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(arr[i] == candidate)
+                freq++;
+        }
+        if(freq &gt; arr.length / 2)
+            return candidate;
+        return -1; // no majority
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {1, 1, 2, 3, 1, 5, 3, 1, 1, 1};
+        System.out.println(&quot;Majority element = &quot; + majorityElement(arr)); // 1
+    }
+}</code></pre></div>`},
+{id:64, title:"Length of the longest consecutive elements sequence (unsorted)", content:`<div class="concept-box"><h3>64) Length of the longest consecutive elements sequence (unsorted).</h3><p><p><strong>How it works:</strong></p><ul><li>Put all numbers into a HashSet for O(1) lookups.</li><li>For each element that is the START of a sequence (i.e. num-1 is not</li><li>Track the maximum length found.</li><li>Example: {49,1,3,200,2,4,70,5} -> longest run is {1,2,3,4,5} -> 5.</li></ul></p><p><strong>Example:</strong> {49,1,3,200,2,4,70,5} -> longest run is {1,2,3,4,5} -> 5.</p></div><div class="code-block"><div class="code-header"><span>Q39.java</span></div><pre><code>import java.util.HashSet;
+
+class Q39
+{
+    // Q39: Length of the longest consecutive elements sequence (unsorted).
+    // Explanation:
+    //  - Put all numbers into a HashSet for O(1) lookups.
+    //  - For each element that is the START of a sequence (i.e. num-1 is not
+    //    in the set), count how long the run of num, num+1, num+2, ... is.
+    //  - Track the maximum length found.
+    //  - Example: {49,1,3,200,2,4,70,5} -&gt; longest run is {1,2,3,4,5} -&gt; 5.
+    static int longestConsecutive(int arr[])
+    {
+        HashSet&lt;Integer&gt; set = new HashSet&lt;&gt;();
+        for(int i = 0; i &lt; arr.length; i++)
+            set.add(arr[i]);
+
+        int maxLen = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            // Only start counting if arr[i]-1 is absent (start of a sequence)
+            if(!set.contains(arr[i] - 1))
+            {
+                int num = arr[i];
+                int len = 1;
+                while(set.contains(num + 1))
+                {
+                    num++;
+                    len++;
+                }
+                if(len &gt; maxLen)
+                    maxLen = len;
+            }
+        }
+        return maxLen;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {49, 1, 3, 200, 2, 4, 70, 5};
+        System.out.println(&quot;Longest consecutive sequence length = &quot; + longestConsecutive(arr)); // 5
+    }
+}</code></pre></div>`},
+{id:65, title:"Max product formed by multiplying three numbers (unsorted, negatives allowed)", content:`<div class="concept-box"><h3>65) Max product formed by multiplying three numbers (unsorted, negatives allowed).</h3><p><p><strong>How it works:</strong></p><ul><li>The maximum product of three numbers is either:</li><li>We find the three largest and two smallest in one linear pass (no sort).</li><li>Example: {2,5,-2,6,-3,8,0,-7,-9,4}</li></ul></p><p><strong>Example:</strong> {2,5,-2,6,-3,8,0,-7,-9,4}</p></div><div class="code-block"><div class="code-header"><span>Q40.java</span></div><pre><code>class Q40
+{
+    // Q40: Max product formed by multiplying three numbers (unsorted, negatives allowed).
+    // Explanation:
+    //  - The maximum product of three numbers is either:
+    //      (a) product of the three largest numbers, OR
+    //      (b) product of the two smallest (most negative) numbers and the largest.
+    //    Case (b) matters because two negatives multiply to a positive that may
+    //    exceed the product of the next largest positive numbers.
+    //  - We find the three largest and two smallest in one linear pass (no sort).
+    //  - Example: {2,5,-2,6,-3,8,0,-7,-9,4}
+    //    three largest: 8,6,5 -&gt; product = 240
+    //    two smallest: -9,-7 and largest 8 -&gt; product = 504  &lt;-- max
+    static long maxProductOfThree(int arr[])
+    {
+        // Initialise extremes
+        int max1 = Integer.MIN_VALUE, max2 = Integer.MIN_VALUE, max3 = Integer.MIN_VALUE;
+        int min1 = Integer.MAX_VALUE, min2 = Integer.MAX_VALUE;
+
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            int x = arr[i];
+
+            // Update three largest
+            if(x &gt; max1)
+            {
+                max3 = max2;
+                max2 = max1;
+                max1 = x;
+            }
+            else if(x &gt; max2)
+            {
+                max3 = max2;
+                max2 = x;
+            }
+            else if(x &gt; max3)
+            {
+                max3 = x;
+            }
+
+            // Update two smallest
+            if(x &lt; min1)
+            {
+                min2 = min1;
+                min1 = x;
+            }
+            else if(x &lt; min2)
+            {
+                min2 = x;
+            }
+        }
+
+        long candidate1 = (long) max1 * max2 * max3;
+        long candidate2 = (long) min1 * min2 * max1;
+        return (candidate1 &gt; candidate2) ? candidate1 : candidate2;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {2, 5, -2, 6, -3, 8, 0, -7, -9, 4};
+        System.out.println(&quot;Max product of three = &quot; + maxProductOfThree(arr)); // 504
+    }
+}</code></pre></div>`},
+{id:66, title:"Find numbers that are NOT repeated; all others appear twice", content:`<div class="concept-box"><h3>66) Find numbers that are NOT repeated; all others appear twice.</h3><p><p><strong>How it works:</strong></p><ul><li>Count frequency of every element.</li><li>Print only those whose frequency is exactly 1.</li><li>Example: {23,34,56,21,21,56,78,23,34} -> only 78 appears once.</li></ul></p><p><strong>Example:</strong> {23,34,56,21,21,56,78,23,34} -> only 78 appears once.</p></div><div class="code-block"><div class="code-header"><span>Q41.java</span></div><pre><code>import java.util.LinkedHashSet;
+import java.util.Set;
+
+class Q41
+{
+    // Q41: Find numbers that are NOT repeated; all others appear twice.
+    // Explanation:
+    //  - Count frequency of every element.
+    //  - Print only those whose frequency is exactly 1.
+    //  - Example: {23,34,56,21,21,56,78,23,34} -&gt; only 78 appears once.
+    static void printNonRepeated(int arr[])
+    {
+        // Frequency map using an auxiliary array of counts (values are small here)
+        int max = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+            if(arr[i] &gt; max) max = arr[i];
+
+        int freq[] = new int[max + 1];
+        for(int i = 0; i &lt; arr.length; i++)
+            freq[arr[i]]++;
+
+        System.out.print(&quot;Non-repeated elements: &quot;);
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(freq[arr[i]] == 1)
+            {
+                System.out.print(arr[i] + &quot; &quot;);
+                freq[arr[i]] = 0; // avoid printing twice
+            }
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {23, 34, 56, 21, 21, 56, 78, 23, 34};
+        printNonRepeated(arr); // 78
+    }
+}</code></pre></div>`},
+{id:67, title:"Sort array1 using array2 as the sorting key", content:`<div class="concept-box"><h3>67) Sort array1 using array2 as the sorting key.</h3><p><p><strong>How it works:</strong></p><ul><li>array2 holds a small set of integer keys (e.g. 0,1,2). We treat each</li><li>Then we output buckets in ascending key order.</li><li>Example: array1={"a",...,"i"}, array2={0,1,1,0,1,2,2,0,1}</li></ul></p><p><strong>Example:</strong> array1={"a",...,"i"}, array2={0,1,1,0,1,2,2,0,1}</p></div><div class="code-block"><div class="code-header"><span>Q42.java</span></div><pre><code>class Q42
+{
+    // Q42: Sort array1 using array2 as the sorting key.
+    // Explanation:
+    //  - array2 holds a small set of integer keys (e.g. 0,1,2). We treat each
+    //    element of array1 as belonging to a bucket given by the matching
+    //    array2 value, preserving the original order inside each bucket.
+    //  - Then we output buckets in ascending key order.
+    //  - Example: array1={&quot;a&quot;,...,&quot;i&quot;}, array2={0,1,1,0,1,2,2,0,1}
+    //    bucket0: a,d,h ; bucket1: b,c,e,i ; bucket2: f,g
+    //    Output: {a,d,h,b,c,e,i,f,g}
+    static String[] sortByKey(String array1[], int array2[])
+    {
+        // Find max key to size the buckets (linked lists preserve insertion order)
+        int maxKey = 0;
+        for(int i = 0; i &lt; array2.length; i++)
+            if(array2[i] &gt; maxKey) maxKey = array2[i];
+
+        // buckets[k] holds a list of strings whose key == k
+        java.util.ArrayList&lt;String&gt; buckets[] = new java.util.ArrayList[maxKey + 1];
+        for(int k = 0; k &lt;= maxKey; k++)
+            buckets[k] = new java.util.ArrayList&lt;&gt;();
+
+        for(int i = 0; i &lt; array1.length; i++)
+            buckets[array2[i]].add(array1[i]);
+
+        String result[] = new String[array1.length];
+        int idx = 0;
+        for(int k = 0; k &lt;= maxKey; k++)
+        {
+            for(int j = 0; j &lt; buckets[k].size(); j++)
+            {
+                result[idx] = buckets[k].get(j);
+                idx++;
+            }
+        }
+        return result;
+    }
+    public static void main(String args[])
+    {
+        String array1[] = {&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;,&quot;f&quot;,&quot;g&quot;,&quot;h&quot;,&quot;i&quot;};
+        int array2[] = {0,1,1,0,1,2,2,0,1};
+        String out1[] = sortByKey(array1, array2);
+        System.out.print(&quot;Output: {&quot;);
+        for(int i = 0; i &lt; out1.length; i++)
+            System.out.print(&quot;\\&quot;&quot; + out1[i] + &quot;\\&quot;&quot; + (i &lt; out1.length-1 ? &quot;,&quot; : &quot;&quot;));
+        System.out.println(&quot;}&quot;);
+
+        String array1b[] = {&quot;g&quot;,&quot;e&quot;,&quot;e&quot;,&quot;k&quot;,&quot;s&quot;,&quot;f&quot;,&quot;o&quot;,&quot;r&quot;,&quot;g&quot;,&quot;e&quot;,&quot;e&quot;,&quot;k&quot;,&quot;s&quot;};
+        int array2b[] = {0,1,1,0,1,2,2,0,1};
+        String out2[] = sortByKey(array1b, array2b);
+        System.out.print(&quot;Output: {&quot;);
+        for(int i = 0; i &lt; out2.length; i++)
+            System.out.print(&quot;\\&quot;&quot; + out2[i] + &quot;\\&quot;&quot; + (i &lt; out2.length-1 ? &quot;,&quot; : &quot;&quot;));
+        System.out.println(&quot;}&quot;);
+    }
+}</code></pre></div>`},
+{id:68, title:"Find the missing number in an array containing 1..100 with one missing", content:`<div class="concept-box"><h3>68) Find the missing number in an array containing 1..100 with one missing.</h3><p><p><strong>How it works:</strong></p><ul><li>Sum of 1..100 = n*(n+1)/2 where n=100.</li><li>Sum the actual array elements.</li><li>missing = expectedSum - actualSum.</li><li>Works in O(n) time and O(1) extra space.</li></ul></p></div><div class="code-block"><div class="code-header"><span>Q43.java</span></div><pre><code>class Q43
+{
+    // Q43: Find the missing number in an array containing 1..100 with one missing.
+    // Explanation:
+    //  - Sum of 1..100 = n*(n+1)/2 where n=100.
+    //  - Sum the actual array elements.
+    //  - missing = expectedSum - actualSum.
+    //  - Works in O(n) time and O(1) extra space.
+    static int findMissing(int arr[])
+    {
+        int n = 100;
+        int expectedSum = n * (n + 1) / 2;
+
+        int actualSum = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+            actualSum += arr[i];
+
+        return expectedSum - actualSum;
+    }
+    public static void main(String args[])
+    {
+        // Build an array 1..100 skipping 42
+        int arr[] = new int[99];
+        int idx = 0;
+        for(int i = 1; i &lt;= 100; i++)
+        {
+            if(i == 42) continue;
+            arr[idx] = i;
+            idx++;
+        }
+        System.out.println(&quot;Missing number = &quot; + findMissing(arr)); // 42
+    }
+}</code></pre></div>`},
+{id:69, title:"Demonstrate jagged arrays (arrays of arrays with different lengths)", content:`<div class="concept-box"><h3>69) Demonstrate jagged arrays (arrays of arrays with different lengths).</h3><p><p><strong>How it works:</strong></p><ul><li>A jagged array is a multidimensional array whose rows can have</li><li>Each row is allocated its own length, unlike a rectangular matrix.</li></ul></p></div><div class="code-block"><div class="code-header"><span>Q44.java</span></div><pre><code>class Q44
+{
+    // Q44: Demonstrate jagged arrays (arrays of arrays with different lengths).
+    // Explanation:
+    //  - A jagged array is a multidimensional array whose rows can have
+    //    different numbers of columns.
+    //  - Each row is allocated its own length, unlike a rectangular matrix.
+    static void printJagged(int jagged[][])
+    {
+        for(int i = 0; i &lt; jagged.length; i++)
+        {
+            for(int j = 0; j &lt; jagged[i].length; j++)
+            {
+                System.out.print(jagged[i][j] + &quot; &quot;);
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String args[])
+    {
+        // Row 0 has 2 elements, row 1 has 4, row 2 has 3 -&gt; jagged shape
+        int jagged[][] = {
+            {1, 2},
+            {3, 4, 5, 6},
+            {7, 8, 9}
+        };
+        System.out.println(&quot;Jagged array (rows of different lengths):&quot;);
+        printJagged(jagged);
+    }
+}</code></pre></div>`},
+{id:70, title:"Find all pairs in an integer array whose sum equals a given number", content:`<div class="concept-box"><h3>70) Find all pairs in an integer array whose sum equals a given number.</h3><p><p><strong>How it works:</strong></p><ul><li>Use a HashSet of seen values.</li><li>For each element x, if (target - x) is already in the set, a pair</li><li>Runs in O(n) time.</li></ul></p></div><div class="code-block"><div class="code-header"><span>Q45.java</span></div><pre><code>import java.util.HashSet;
+
+class Q45
+{
+    // Q45: Find all pairs in an integer array whose sum equals a given number.
+    // Explanation:
+    //  - Use a HashSet of seen values.
+    //  - For each element x, if (target - x) is already in the set, a pair
+    //    (target-x, x) exists. Add x to the set.
+    //  - Runs in O(n) time.
+    static void printPairsWithSum(int arr[], int sum)
+    {
+        HashSet&lt;Integer&gt; seen = new HashSet&lt;&gt;();
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            int complement = sum - arr[i];
+            if(seen.contains(complement))
+            {
+                System.out.println(&quot;Pair: (&quot; + complement + &quot;, &quot; + arr[i] + &quot;)&quot;);
+            }
+            seen.add(arr[i]);
+        }
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {1, 4, 45, 6, 10, 8};
+        int sum = 16;
+        System.out.println(&quot;Pairs with sum &quot; + sum + &quot;:&quot;);
+        printPairsWithSum(arr, sum); // (6,10), (8,8) if duplicates allowed
+    }
+}</code></pre></div>`},
+{id:71, title:"Remove duplicates from an array in place and return new length", content:`<div class="concept-box"><h3>71) Remove duplicates from an array in place and return new length.</h3><p><p><strong>How it works:</strong></p><ul><li>Two-pointer approach: 'j' tracks the position of the next unique element.</li><li>For each element, if it differs from the last kept element, copy it to arr[j].</li><li>After the pass, arr[0..j-1] holds unique elements and j is the new length.</li><li>Works on a sorted array (duplicates are adjacent).</li></ul></p></div><div class="code-block"><div class="code-header"><span>Q46.java</span></div><pre><code>class Q46
+{
+    // Q46: Remove duplicates from an array in place and return new length.
+    // Explanation:
+    //  - Two-pointer approach: 'j' tracks the position of the next unique element.
+    //  - For each element, if it differs from the last kept element, copy it to arr[j].
+    //  - After the pass, arr[0..j-1] holds unique elements and j is the new length.
+    //  - Works on a sorted array (duplicates are adjacent).
+    static int removeDuplicates(int arr[])
+    {
+        if(arr.length == 0) return 0;
+
+        int j = 1; // index of next unique element
+        for(int i = 1; i &lt; arr.length; i++)
+        {
+            if(arr[i] != arr[j - 1])
+            {
+                arr[j] = arr[i];
+                j++;
+            }
+        }
+        return j;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {1, 1, 2, 3, 3, 4, 5, 5, 5, 6};
+        int newLen = removeDuplicates(arr);
+        System.out.print(&quot;Unique array: &quot;);
+        for(int i = 0; i &lt; newLen; i++)
+            System.out.print(arr[i] + &quot; &quot;);
+        System.out.println(&quot;\\nNew length = &quot; + newLen);
+    }
+}</code></pre></div>`},
+{id:72, title:"Every element repeats twice except one — find that element", content:`<div class="concept-box"><h3>72) Every element repeats twice except one — find that element.</h3><p><p><strong>How it works:</strong></p><ul><li>XOR all elements. Bits that appear twice cancel out (x ^ x == 0),</li><li>O(n) time, O(1) space.</li><li>Example: {2,3,4,2,3} -> 2^3^4^2^3 = 4.</li></ul></p><p><strong>Example:</strong> {2,3,4,2,3} -> 2^3^4^2^3 = 4.</p></div><div class="code-block"><div class="code-header"><span>Q47.java</span></div><pre><code>class Q47
+{
+    // Q47: Every element repeats twice except one — find that element.
+    // Explanation:
+    //  - XOR all elements. Bits that appear twice cancel out (x ^ x == 0),
+    //    leaving only the element that appears once (x ^ 0 == x).
+    //  - O(n) time, O(1) space.
+    //  - Example: {2,3,4,2,3} -&gt; 2^3^4^2^3 = 4.
+    static int findSingle(int arr[])
+    {
+        int result = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+            result ^= arr[i];
+        return result;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {2, 3, 4, 2, 3};
+        System.out.println(&quot;The non-repeating element = &quot; + findSingle(arr)); // 4
+    }
+}</code></pre></div>`},
+{id:73, title:"Print all common elements in three sorted arrays", content:`<div class="concept-box"><h3>73) Print all common elements in three sorted arrays.</h3><p><p><strong>How it works:</strong></p><ul><li>Three pointers walk through the three arrays simultaneously.</li><li>If all three values match, print once and advance all.</li><li>Otherwise advance the pointer whose value is smallest.</li><li>Example: {1,5,10,20,40,80}, {6,7,20,80,100}, {3,4,15,20,30,70,80,120}</li></ul></p><p><strong>Example:</strong> {1,5,10,20,40,80}, {6,7,20,80,100}, {3,4,15,20,30,70,80,120}</p></div><div class="code-block"><div class="code-header"><span>Q48.java</span></div><pre><code>class Q48
+{
+    // Q48: Print all common elements in three sorted arrays.
+    // Explanation:
+    //  - Three pointers walk through the three arrays simultaneously.
+    //  - If all three values match, print once and advance all.
+    //  - Otherwise advance the pointer whose value is smallest.
+    //  - Example: {1,5,10,20,40,80}, {6,7,20,80,100}, {3,4,15,20,30,70,80,120}
+    //    Common: 20 and 80.
+    static void printCommon(int a[], int b[], int c[])
+    {
+        int i = 0, j = 0, k = 0;
+        while(i &lt; a.length &amp;&amp; j &lt; b.length &amp;&amp; k &lt; c.length)
+        {
+            if(a[i] == b[j] &amp;&amp; b[j] == c[k])
+            {
+                System.out.println(&quot;Common: &quot; + a[i]);
+                i++; j++; k++;
+            }
+            else if(a[i] &lt; b[j])
+                i++;
+            else if(b[j] &lt; c[k])
+                j++;
+            else
+                k++;
+        }
+    }
+    public static void main(String args[])
+    {
+        int input1[] = {1, 5, 10, 20, 40, 80};
+        int input2[] = {6, 7, 20, 80, 100};
+        int input3[] = {3, 4, 15, 20, 30, 70, 80, 120};
+        System.out.println(&quot;Common elements in three arrays:&quot;);
+        printCommon(input1, input2, input3); // 20, 80
+    }
+}</code></pre></div>`},
+{id:74, title:"First repeating element — the element that occurs more than once and whose index of first ", content:`<div class="concept-box"><h3>74) First repeating element — the element that occurs more than once and</h3><p><p><strong>How it works:</strong></p><ul><li>Record the first index where each value appears.</li><li>Then scan again: any value that appears a second time is a candidate.</li><li>Example: {10,5,3,4,3,5,6}</li></ul></p><p><strong>Example:</strong> {10,5,3,4,3,5,6}</p></div><div class="code-block"><div class="code-header"><span>Q49.java</span></div><pre><code>import java.util.HashMap;
+
+class Q49
+{
+    // Q49: First repeating element — the element that occurs more than once and
+    //      whose index of first occurrence is smallest.
+    // Explanation:
+    //  - Record the first index where each value appears.
+    //  - Then scan again: any value that appears a second time is a candidate.
+    //    Among candidates, pick the one with the smallest first-occurrence index.
+    //  - Example: {10,5,3,4,3,5,6}
+    //    5 first appears at index 1, 3 at index 2 -&gt; answer is 5.
+    static int firstRepeating(int arr[])
+    {
+        HashMap&lt;Integer, Integer&gt; firstIdx = new HashMap&lt;&gt;();
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(!firstIdx.containsKey(arr[i]))
+                firstIdx.put(arr[i], i);
+        }
+
+        int bestIdx = arr.length;
+        int answer = -1;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            // If this value repeats later, it is a repeating element
+            boolean repeats = false;
+            for(int j = i + 1; j &lt; arr.length; j++)
+            {
+                if(arr[j] == arr[i]) { repeats = true; break; }
+            }
+            if(repeats &amp;&amp; firstIdx.get(arr[i]) &lt; bestIdx)
+            {
+                bestIdx = firstIdx.get(arr[i]);
+                answer = arr[i];
+            }
+        }
+        return answer;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {10, 5, 3, 4, 3, 5, 6};
+        System.out.println(&quot;First repeating element = &quot; + firstRepeating(arr)); // 5
+    }
+}</code></pre></div>`},
+{id:75, title:"Smallest positive integer NOT representable as a subset sum", content:`<div class="concept-box"><h3>75) Smallest positive integer NOT representable as a subset sum.</h3><p></p><p><strong>Example:</strong> {1,3,6,10,11,15}</p></div><div class="code-block"><div class="code-header"><span>Q50.java</span></div><pre><code>class Q50
+{
+    // Q50: Smallest positive integer NOT representable as a subset sum.
+    // Explanation (O(n)):
+    //  - Sort the array.
+    //  - Maintain 'smallestUnrepresentable' = 1 initially.
+    //  - For each element x:
+    //      if x &gt; smallestUnrepresentable -&gt; we cannot form it, return it.
+    //      else -&gt; we can form all sums up to (smallestUnrepresentable + x - 1),
+    //              so update smallestUnrepresentable += x.
+    //  - Example: {1,3,6,10,11,15}
+    //    smallest=1; x=1 -&gt; 2; x=3 -&gt; 5; x=6 -&gt; 11; x=10 -&gt; 21;
+    //    x=11 -&gt; 32; x=15 -&gt; 47; return 2 (can't make 2).
+    static int smallestNonRepresentable(int arr[])
+    {
+        // Sort in place (bubble sort)
+        for(int i = 0; i &lt; arr.length - 1; i++)
+        {
+            for(int j = i + 1; j &lt; arr.length; j++)
+            {
+                if(arr[i] &gt; arr[j])
+                {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+
+        int smallest = 1;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(arr[i] &gt; smallest)
+                break;
+            smallest += arr[i];
+        }
+        return smallest;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {1, 3, 6, 10, 11, 15};
+        System.out.println(&quot;Smallest non-representable = &quot; + smallestNonRepresentable(arr)); // 2
+    }
+}</code></pre></div>`},
+{id:76, title:"Rearrange array alternating positive/negative, preserving order", content:`<div class="concept-box"><h3>76) Rearrange array alternating positive/negative, preserving order.</h3><p><p><strong>How it works:</strong></p><ul><li>Collect positives and negatives separately (preserving order).</li><li>Then interleave them: take one negative, one positive, and so on.</li><li>Whatever remains (extra positives or negatives) is appended at the end.</li><li>Example: {1,2,3,-4,-1,4}</li></ul></p><p><strong>Example:</strong> {1,2,3,-4,-1,4}</p></div><div class="code-block"><div class="code-header"><span>Q51.java</span></div><pre><code>class Q51
+{
+    // Q51: Rearrange array alternating positive/negative, preserving order.
+    // Explanation:
+    //  - Collect positives and negatives separately (preserving order).
+    //  - Then interleave them: take one negative, one positive, and so on.
+    //  - Whatever remains (extra positives or negatives) is appended at the end.
+    //  - Example: {1,2,3,-4,-1,4}
+    //    negatives: {-4,-1}, positives: {1,2,3,4}
+    //    interleaved: {-4,1,-1,2,3,4}
+    static int[] rearrangeAlternating(int arr[])
+    {
+        java.util.ArrayList&lt;Integer&gt; neg = new java.util.ArrayList&lt;&gt;();
+        java.util.ArrayList&lt;Integer&gt; pos = new java.util.ArrayList&lt;&gt;();
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(arr[i] &lt; 0) neg.add(arr[i]);
+            else pos.add(arr[i]);
+        }
+
+        int result[] = new int[arr.length];
+        int i = 0, j = 0, k = 0;
+        boolean turnNeg = true; // start with negative
+        while(i &lt; neg.size() &amp;&amp; j &lt; pos.size())
+        {
+            if(turnNeg) result[k++] = neg.get(i++);
+            else result[k++] = pos.get(j++);
+            turnNeg = !turnNeg;
+        }
+        // Append remaining negatives
+        while(i &lt; neg.size()) result[k++] = neg.get(i++);
+        // Append remaining positives
+        while(j &lt; pos.size()) result[k++] = pos.get(j++);
+        return result;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {1, 2, 3, -4, -1, 4};
+        int out[] = rearrangeAlternating(arr);
+        System.out.print(&quot;Output: {&quot;);
+        for(int i = 0; i &lt; out.length; i++)
+            System.out.print(out[i] + (i &lt; out.length-1 ? &quot;,&quot; : &quot;&quot;));
+        System.out.println(&quot;}&quot;);
+
+        int arr2[] = {-5, -2, 5, 2, 4, 7, 1, 8, 0, -8};
+        int out2[] = rearrangeAlternating(arr2);
+        System.out.print(&quot;Output: {&quot;);
+        for(int i = 0; i &lt; out2.length; i++)
+            System.out.print(out2[i] + (i &lt; out2.length-1 ? &quot;,&quot; : &quot;&quot;));
+        System.out.println(&quot;}&quot;);
+    }
+}</code></pre></div>`},
+{id:77, title:"Check if any subarray has sum equal to zero", content:`<div class="concept-box"><h3>77) Check if any subarray has sum equal to zero.</h3><p><p><strong>How it works:</strong></p><ul><li>Maintain a running prefix sum. If the same prefix sum appears twice,</li><li>Store prefix sums in a HashSet; first repeat means a zero-sum subarray.</li><li>Example: {4,2,-3,1,6} -> prefix sums: 4,6,3,4,10 -> 4 repeats</li></ul></p><p><strong>Example:</strong> {4,2,-3,1,6} -> prefix sums: 4,6,3,4,10 -> 4 repeats</p></div><div class="code-block"><div class="code-header"><span>Q52.java</span></div><pre><code>import java.util.HashSet;
+
+class Q52
+{
+    // Q52: Check if any subarray has sum equal to zero.
+    // Explanation:
+    //  - Maintain a running prefix sum. If the same prefix sum appears twice,
+    //    the subarray between those two indices sums to zero (prefix[j] - prefix[i] == 0).
+    //  - Store prefix sums in a HashSet; first repeat means a zero-sum subarray.
+    //  - Example: {4,2,-3,1,6} -&gt; prefix sums: 4,6,3,4,10 -&gt; 4 repeats
+    //    =&gt; subarray from index 1..2 ({2,-3,1}) sums to 0.
+    static boolean hasZeroSumSubarray(int arr[])
+    {
+        HashSet&lt;Integer&gt; set = new HashSet&lt;&gt;();
+        int sum = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            sum += arr[i];
+            if(arr[i] == 0 || set.contains(sum) || sum == 0)
+                return true;
+            set.add(sum);
+        }
+        return false;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {4, 2, -3, 1, 6};
+        System.out.println(&quot;Zero-sum subarray exists? &quot; + hasZeroSumSubarray(arr)); // true
+    }
+}</code></pre></div>`},
+{id:78, title:"Remove duplicates IN PLACE from a sorted array; return new length", content:`<div class="concept-box"><h3>78) Remove duplicates IN PLACE from a sorted array; return new length.</h3><p><p><strong>How it works:</strong></p><ul><li>Since the array is sorted, duplicates are adjacent.</li><li>Use a write pointer 'j': copy arr[i] to arr[j] only when it differs</li><li>Example: [1,1,2] -> arr becomes [1,2,...], return 2.</li></ul></p><p><strong>Example:</strong> [1,1,2] -> arr becomes [1,2,...], return 2.</p></div><div class="code-block"><div class="code-header"><span>Q53.java</span></div><pre><code>class Q53
+{
+    // Q53: Remove duplicates IN PLACE from a sorted array; return new length.
+    // Explanation:
+    //  - Since the array is sorted, duplicates are adjacent.
+    //  - Use a write pointer 'j': copy arr[i] to arr[j] only when it differs
+    //    from the last kept element. j is the new length.
+    //  - Example: [1,1,2] -&gt; arr becomes [1,2,...], return 2.
+    static int removeDuplicatesInPlace(int arr[])
+    {
+        if(arr.length == 0) return 0;
+        int j = 1;
+        for(int i = 1; i &lt; arr.length; i++)
+        {
+            if(arr[i] != arr[i - 1])
+            {
+                arr[j] = arr[i];
+                j++;
+            }
+        }
+        return j;
+    }
+    public static void main(String args[])
+    {
+        int A[] = {1, 1, 2};
+        int len = removeDuplicatesInPlace(A);
+        System.out.println(&quot;New length = &quot; + len); // 2
+        System.out.print(&quot;A = &quot;);
+        for(int i = 0; i &lt; len; i++)
+            System.out.print(A[i] + &quot; &quot;);
+        System.out.println();
+    }
+}</code></pre></div>`},
+{id:79, title:"Remove all instances of a value IN PLACE; return new length", content:`<div class="concept-box"><h3>79) Remove all instances of a value IN PLACE; return new length.</h3><p><p><strong>How it works:</strong></p><ul><li>Write pointer 'j' copies only elements != val. j is the new length.</li><li>Order of remaining elements is preserved (stable).</li><li>Elements beyond the new length can be anything.</li></ul></p></div><div class="code-block"><div class="code-header"><span>Q54.java</span></div><pre><code>class Q54
+{
+    // Q54: Remove all instances of a value IN PLACE; return new length.
+    // Explanation:
+    //  - Write pointer 'j' copies only elements != val. j is the new length.
+    //  - Order of remaining elements is preserved (stable).
+    //  - Elements beyond the new length can be anything.
+    static int removeElement(int arr[], int val)
+    {
+        int j = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(arr[i] != val)
+            {
+                arr[j] = arr[i];
+                j++;
+            }
+        }
+        return j;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {3, 2, 2, 3};
+        int val = 3;
+        int len = removeElement(arr, val);
+        System.out.println(&quot;New length after removing &quot; + val + &quot; = &quot; + len); // 2
+        System.out.print(&quot;Remaining: &quot;);
+        for(int i = 0; i &lt; len; i++)
+            System.out.print(arr[i] + &quot; &quot;);
+        System.out.println();
+    }
+}</code></pre></div>`},
+{id:80, title:"Maximum sum of a contiguous subarray (Kadane's algorithm)", content:`<div class="concept-box"><h3>80) Maximum sum of a contiguous subarray (Kadane's algorithm).</h3><p><p><strong>How it works:</strong></p><ul><li>Walk through the array keeping a running sum (current).</li><li>If current becomes negative, reset it to 0 (a negative prefix only</li><li>Track the maximum current sum seen.</li><li>Example: {-2,1,-3,4,-1,2,1,-5,4} -> max sum = 6 (subarray [4,-1,2,1]).</li></ul></p><p><strong>Example:</strong> {-2,1,-3,4,-1,2,1,-5,4} -> max sum = 6 (subarray [4,-1,2,1]).</p></div><div class="code-block"><div class="code-header"><span>Q55.java</span></div><pre><code>class Q55
+{
+    // Q55: Maximum sum of a contiguous subarray (Kadane's algorithm).
+    // Explanation:
+    //  - Walk through the array keeping a running sum (current).
+    //  - If current becomes negative, reset it to 0 (a negative prefix only
+    //    reduces the sum of any following subarray).
+    //  - Track the maximum current sum seen.
+    //  - Example: {-2,1,-3,4,-1,2,1,-5,4} -&gt; max sum = 6 (subarray [4,-1,2,1]).
+    static int maxSubArraySum(int arr[])
+    {
+        int max = Integer.MIN_VALUE;
+        int current = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            current += arr[i];
+            if(current &gt; max)
+                max = current;
+            if(current &lt; 0)
+                current = 0;
+        }
+        return max;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        System.out.println(&quot;Maximum subarray sum = &quot; + maxSubArraySum(arr)); // 6
+    }
+}</code></pre></div>`},
+{id:81, title:"Maximum product of a contiguous subarray", content:`<div class="concept-box"><h3>81) Maximum product of a contiguous subarray.</h3><p><p><strong>How it works:</strong></p><ul><li>Keep track of max and min product ending at the current position.</li><li>A negative number can flip the sign, turning a min product into a</li><li>Example: {2,3,-2,4} -> max product = 6 (subarray [2,3]).</li></ul></p><p><strong>Example:</strong> {2,3,-2,4} -> max product = 6 (subarray [2,3]).</p></div><div class="code-block"><div class="code-header"><span>Q56.java</span></div><pre><code>class Q56
+{
+    // Q56: Maximum product of a contiguous subarray.
+    // Explanation:
+    //  - Keep track of max and min product ending at the current position.
+    //  - A negative number can flip the sign, turning a min product into a
+    //    max product, so we must track both.
+    //  - Example: {2,3,-2,4} -&gt; max product = 6 (subarray [2,3]).
+    static int maxSubArrayProduct(int arr[])
+    {
+        int max = arr[0];
+        int min = arr[0];
+        int result = arr[0];
+
+        for(int i = 1; i &lt; arr.length; i++)
+        {
+            int temp = min;
+            min = Math.min(arr[i], Math.min(max * arr[i], min * arr[i]));
+            max = Math.max(arr[i], Math.max(max * arr[i], temp * arr[i]));
+            if(max &gt; result)
+                result = max;
+        }
+        return result;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {2, 3, -2, 4};
+        System.out.println(&quot;Maximum subarray product = &quot; + maxSubArrayProduct(arr)); // 6
+    }
+}</code></pre></div>`},
+{id:82, title:"Length of longest consecutive sequence in an unsorted array", content:`<div class="concept-box"><h3>82) Length of longest consecutive sequence in an unsorted array.</h3><p><p><strong>How it works:</strong></p><ul><li>Put all numbers in a HashSet for O(1) membership tests.</li><li>For each value that starts a sequence (value-1 absent), count the</li><li>Track the maximum run length.</li><li>Example: {100,4,200,1,3,2} -> longest run {1,2,3,4} -> 4.</li></ul></p><p><strong>Example:</strong> {100,4,200,1,3,2} -> longest run {1,2,3,4} -> 4.</p></div><div class="code-block"><div class="code-header"><span>Q57.java</span></div><pre><code>import java.util.HashSet;
+
+class Q57
+{
+    // Q57: Length of longest consecutive sequence in an unsorted array.
+    // Explanation:
+    //  - Put all numbers in a HashSet for O(1) membership tests.
+    //  - For each value that starts a sequence (value-1 absent), count the
+    //    run of value, value+1, value+2, ...
+    //  - Track the maximum run length.
+    //  - Example: {100,4,200,1,3,2} -&gt; longest run {1,2,3,4} -&gt; 4.
+    static int longestConsecutive(int arr[])
+    {
+        HashSet&lt;Integer&gt; set = new HashSet&lt;&gt;();
+        for(int i = 0; i &lt; arr.length; i++)
+            set.add(arr[i]);
+
+        int maxLen = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+        {
+            if(!set.contains(arr[i] - 1))
+            {
+                int num = arr[i];
+                int len = 1;
+                while(set.contains(num + 1))
+                {
+                    num++;
+                    len++;
+                }
+                if(len &gt; maxLen)
+                    maxLen = len;
+            }
+        }
+        return maxLen;
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {100, 4, 200, 1, 3, 2};
+        System.out.println(&quot;Longest consecutive sequence length = &quot; + longestConsecutive(arr)); // 4
+    }
+}</code></pre></div>`},
+{id:83, title:"Find all elements that appear more than n/k times", content:`<div class="concept-box"><h3>83) Find all elements that appear more than n/k times.</h3><p><p><strong>How it works:</strong></p><ul><li>Count frequency of every element using a HashMap.</li><li>Threshold = n/k. Print every element whose count exceeds it.</li><li>Example: {3,1,2,2,1,2,3,3}, n=8, k=4 -> threshold = 2.</li></ul></p><p><strong>Example:</strong> {3,1,2,2,1,2,3,3}, n=8, k=4 -> threshold = 2.</p></div><div class="code-block"><div class="code-header"><span>Q58.java</span></div><pre><code>import java.util.HashMap;
+import java.util.Map;
+
+class Q58
+{
+    // Q58: Find all elements that appear more than n/k times.
+    // Explanation:
+    //  - Count frequency of every element using a HashMap.
+    //  - Threshold = n/k. Print every element whose count exceeds it.
+    //  - Example: {3,1,2,2,1,2,3,3}, n=8, k=4 -&gt; threshold = 2.
+    //    Counts: 3-&gt;4, 1-&gt;2, 2-&gt;3. Elements appearing more than 2 times: 2, 3.
+    static void moreThanNk(int arr[], int k)
+    {
+        int n = arr.length;
+        int threshold = n / k;
+        Map&lt;Integer, Integer&gt; freq = new HashMap&lt;&gt;();
+        for(int i = 0; i &lt; n; i++)
+        {
+            freq.put(arr[i], freq.getOrDefault(arr[i], 0) + 1);
+        }
+
+        System.out.print(&quot;Elements appearing more than &quot; + threshold + &quot; times: &quot;);
+        for(Map.Entry&lt;Integer, Integer&gt; e : freq.entrySet())
+        {
+            if(e.getValue() &gt; threshold)
+                System.out.print(e.getKey() + &quot; &quot;);
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {3, 1, 2, 2, 1, 2, 3, 3};
+        int k = 4;
+        moreThanNk(arr, k); // 2 3
+    }
+}</code></pre></div>`},
+{id:84, title:"Reverse an array IN PLACE", content:`<div class="concept-box"><h3>84) Reverse an array IN PLACE.</h3><p><p><strong>How it works:</strong></p><ul><li>Swap the first and last elements, then move inward until the middle.</li><li>O(n) time, O(1) extra space (no second array).</li></ul></p></div><div class="code-block"><div class="code-header"><span>Q59.java</span></div><pre><code>class Q59
+{
+    // Q59: Reverse an array IN PLACE.
+    // Explanation:
+    //  - Swap the first and last elements, then move inward until the middle.
+    //  - O(n) time, O(1) extra space (no second array).
+    static void reverseInPlace(int arr[])
+    {
+        int start = 0, end = arr.length - 1;
+        while(start &lt; end)
+        {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+    public static void main(String args[])
+    {
+        int arr[] = {10, 20, 30, 40, 50, 60};
+        reverseInPlace(arr);
+        System.out.print(&quot;Reversed: &quot;);
+        for(int i = 0; i &lt; arr.length; i++)
+            System.out.print(arr[i] + &quot; &quot;);
+        System.out.println();
+    }
+}</code></pre></div>`},
+{id:85, title:"Minimum steps from (1,1) to (N,M) moving (x, x+y) or (x+y, y)", content:`<div class="concept-box"><h3>85) Minimum steps from (1,1) to (N,M) moving (x, x+y) or (x+y, y).</h3><p><p><strong>How it works:</strong></p><ul><li>Work backwards from (N,M): while N>1 and M>1, the larger coordinate</li><li>When one coordinate reaches 1, the remaining steps equal the other</li><li>If a coordinate never reduces to 1 it is unreachable -> return -1.</li><li>Example: N=4, M=7 -> (4,7)->(4,3)->(1,3)->(1,2)->(1,1): 4 steps.</li></ul></p><p><strong>Example:</strong> N=4, M=7 -> (4,7)->(4,3)->(1,3)->(1,2)->(1,1): 4 steps.</p></div><div class="code-block"><div class="code-header"><span>Q60.java</span></div><pre><code>class Q60
+{
+    // Q60: Minimum steps from (1,1) to (N,M) moving (x, x+y) or (x+y, y).
+    // Explanation:
+    //  - Work backwards from (N,M): while N&gt;1 and M&gt;1, the larger coordinate
+    //    must have been reached by adding the smaller one, so subtract.
+    //  - When one coordinate reaches 1, the remaining steps equal the other
+    //    coordinate minus 1 (each step adds the fixed 1).
+    //  - If a coordinate never reduces to 1 it is unreachable -&gt; return -1.
+    //  - Example: N=4, M=7 -&gt; (4,7)-&gt;(4,3)-&gt;(1,3)-&gt;(1,2)-&gt;(1,1): 4 steps.
+    static int minSteps(int N, int M)
+    {
+        int steps = 0;
+        while(N &gt; 1 &amp;&amp; M &gt; 1)
+        {
+            if(N &gt; M)
+                N -= M;
+            else
+                M -= N;
+            steps++;
+        }
+
+        if(N == 1 &amp;&amp; M &gt;= 1)
+            return steps + (M - 1);
+        if(M == 1 &amp;&amp; N &gt;= 1)
+            return steps + (N - 1);
+        return -1;
+    }
+    public static void main(String args[])
+    {
+        int N = 4, M = 7;
+        System.out.println(&quot;Minimum steps from (1,1) to (&quot; + N + &quot;,&quot; + M + &quot;) = &quot; + minSteps(N, M));
+    }
+}</code></pre></div>`},
+{id:86, title:"Print a 2D matrix in spiral (clockwise) order", content:`<div class="concept-box"><h3>86) Print a 2D matrix in spiral (clockwise) order.</h3><p><p><strong>How it works:</strong></p><ul><li>Maintain four boundaries: top, bottom, left, right.</li><li>Print top row (left->right), then right column (top->bottom),</li><li>Shrink the boundaries inward and repeat until all elements printed.</li><li>Example: {{10,20,30},{40,50,60},{70,80,90}}</li></ul></p><p><strong>Example:</strong> {{10,20,30},{40,50,60},{70,80,90}}</p></div><div class="code-block"><div class="code-header"><span>Q61.java</span></div><pre><code>class Q61
+{
+    // Q61: Print a 2D matrix in spiral (clockwise) order.
+    // Explanation:
+    //  - Maintain four boundaries: top, bottom, left, right.
+    //  - Print top row (left-&gt;right), then right column (top-&gt;bottom),
+    //    then bottom row (right-&gt;left), then left column (bottom-&gt;top).
+    //  - Shrink the boundaries inward and repeat until all elements printed.
+    //  - Example: {{10,20,30},{40,50,60},{70,80,90}}
+    //    Output: 10 20 30 60 90 80 70 40 50.
+    static void printSpiral(int matrix[][])
+    {
+        int top = 0, bottom = matrix.length - 1;
+        int left = 0, right = matrix[0].length - 1;
+
+        while(top &lt;= bottom &amp;&amp; left &lt;= right)
+        {
+            // Top row
+            for(int j = left; j &lt;= right; j++)
+                System.out.print(matrix[top][j] + &quot; &quot;);
+            top++;
+
+            // Right column
+            for(int i = top; i &lt;= bottom; i++)
+                System.out.print(matrix[i][right] + &quot; &quot;);
+            right--;
+
+            // Bottom row
+            if(top &lt;= bottom)
+            {
+                for(int j = right; j &gt;= left; j--)
+                    System.out.print(matrix[bottom][j] + &quot; &quot;);
+                bottom--;
+            }
+
+            // Left column
+            if(left &lt;= right)
+            {
+                for(int i = bottom; i &gt;= top; i--)
+                    System.out.print(matrix[i][left] + &quot; &quot;);
+                left++;
+            }
+        }
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        int arr[][] = {
+            {10, 20, 30},
+            {40, 50, 60},
+            {70, 80, 90}
+        };
+        System.out.print(&quot;Spiral: &quot;);
+        printSpiral(arr); // 10 20 30 60 90 80 70 40 50
+    }
+}</code></pre></div>`},
+{id:87, title:"Find the single repeated element in an array of 101 numbers containing 1..100 with one val", content:`<div class="concept-box"><h3>87) Find the single repeated element in an array of 101 numbers</h3><p></p><p><strong>Example:</strong> array holds 1..100 with one value duplicated -> that value.</p></div><div class="code-block"><div class="code-header"><span>Q62.java</span></div><pre><code>class Q62
+{
+    // Q62: Find the single repeated element in an array of 101 numbers
+    //       containing 1..100 with one value repeated.
+    // Explanation (single loop):
+    //  - Sum of 1..100 = 100*101/2 = 5050.
+    //  - Subtract the actual array sum from 5050; the difference is the
+    //    repeated element (since it contributes one extra time).
+    //  - One pass computes the sum, giving O(n) time and O(1) space.
+    //  - Example: array holds 1..100 with one value duplicated -&gt; that value.
+    static int findRepeated(int arr[])
+    {
+        int sumOf100 = 100 * 101 / 2; // 5050
+        int total = 0;
+        for(int i = 0; i &lt; arr.length; i++)
+            total += arr[i];
+        return total - sumOf100;
+    }
+    public static void main(String args[])
+    {
+        // Build an array of 1..100 and repeat 42 once more (101 elements)
+        int arr[] = new int[101];
+        int idx = 0;
+        for(int i = 1; i &lt;= 100; i++)
+            arr[idx++] = i;
+        arr[idx] = 42; // the repeated element
+
+        System.out.println(&quot;Repeated element = &quot; + findRepeated(arr)); // 42
+    }
+}</code></pre></div>`},
 ];

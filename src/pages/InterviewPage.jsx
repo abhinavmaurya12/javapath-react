@@ -69,9 +69,23 @@ export default function InterviewPage() {
           <input type="text" placeholder="Search questions..." id="interviewSearchInput" className="sidebar-search-input" />
         </div>
         <div className="sidebar-section">
-          <div className="sidebar-section-title">Phase 1 — Java Core (51 Q)</div>
+          <div className="sidebar-section-title">Phase 1 — Java Core ({interviewQuestions.filter(q => q.id <= 51).length} Q)</div>
           <div id="interviewSidebarList">
-            {interviewQuestions.map(qq => (
+            {interviewQuestions.filter(q => q.id <= 51).map(qq => (
+              <div
+                key={qq.id}
+                className={'sidebar-item' + (active === qq.id - 1 ? ' active' : '')}
+                onClick={() => showQuestion(qq.id)}
+              >
+                <i className="fas fa-comments"></i> Q{qq.id}: {qq.title}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="sidebar-section">
+          <div className="sidebar-section-title">Phase 2 — Array Core ({interviewQuestions.filter(q => q.id > 51).length} Q)</div>
+          <div id="interviewSidebarListPhase2">
+            {interviewQuestions.filter(q => q.id > 51).map(qq => (
               <div
                 key={qq.id}
                 className={'sidebar-item' + (active === qq.id - 1 ? ' active' : '')}

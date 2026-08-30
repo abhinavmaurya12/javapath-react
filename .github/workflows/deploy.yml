@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  pull_request:
+    branches: [main]
 
 permissions:
   contents: read
@@ -20,45 +21,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
-
+          node-version: '20'
+          cache: 'npm'
       - name: Install dependencies
         run: npm ci
-
-      - name: Build
+      - name: Build for GitHub Pages
         run: npm run build
         env:
-          # Vite base must match where GitHub Pages will serve the app.
-          # This repo is served from its root, so the app lives at
-          # /javapath-react/ (https://abhinavmaurya12.github.io/javapath-react/)
-          VITE_BASE: /javapath-react/
-
-      # SPA fallback: GitHub Pages has no client-side routing, so /java,
-      # /dsa, /practice etc. 404. Copy index.html -> 404.html so any
-      # unmatched path loads the single-page app and React Router handles it.
-      - name: Copy index.html to 404.html
-        run: cp dist/index.html dist/404.html
-
+          VITE_BASE: '/javapath-react/'
       - name: Setup Pages
         uses: actions/configure-pages@v4
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v3
