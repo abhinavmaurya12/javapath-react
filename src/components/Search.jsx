@@ -22,7 +22,7 @@ export default function Search() {
   const inputRef = useRef(null)
   const navigate = useNavigate()
 
-const performSearch = useCallback((q) => {
+  const performSearch = useCallback((q) => {
     if (!q || q.length < 2) { setResults([]); return }
     const ql = q.toLowerCase()
     const seen = {}
@@ -151,7 +151,6 @@ const performSearch = useCallback((q) => {
         type="text"
         id="searchInput"
         placeholder="Search... (Ctrl+K)"
-        autocomplete="off"
         value={query}
         onChange={e => { setQuery(e.target.value); setShow(true); setSelected(-1) }}
         onFocus={() => setShow(true)}

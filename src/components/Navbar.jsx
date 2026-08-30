@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import Search from './Search'
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },
@@ -97,11 +98,7 @@ export default function Navbar() {
         </div>
       </div>
       <div className="nav-right">
-        <div className="search-box" style={{ position: 'relative' }}>
-          <i className="fas fa-search" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', fontSize: '.85rem', pointerEvents: 'none' }}></i>
-          <input type="text" id="searchInput" placeholder="Search... (Ctrl+K)" autocomplete="off" />
-          <div id="searchResults" className="search-results" style={{ display: 'none' }}></div>
-        </div>
+        <Search />
         <button className="theme-btn" onClick={toggleTheme} title={theme.charAt(0).toUpperCase() + theme.slice(1) + ' Mode'}>
           <i className={'fas ' + (theme === 'dark' ? 'fa-moon' : 'fa-sun')}></i>
         </button>
