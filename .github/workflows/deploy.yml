@@ -32,6 +32,11 @@ jobs:
         run: npm run build
         env:
           VITE_BASE: '/javapath-react/'
+      # GitHub Pages needs a 404.html fallback so client-side routes (e.g. /java)
+      # load the SPA bundle instead of erroring out. Vite's build wipes dist/,
+      # so regenerate it from the freshly built index.html.
+      - name: Create SPA 404 fallback
+        run: cp dist/index.html dist/404.html
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
