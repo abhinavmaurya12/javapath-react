@@ -199,17 +199,15 @@ Planned improvements may include:
 
 * 🔐 User authentication
 * 📊 Learning progress tracking
-* 🏆 Achievements and badges
+* 🏆 Achievements and badges (Advance mode)
 * 🧪 Interactive coding playground
 * 📝 Online quizzes
 * 💯 Practice score system
 * 🔖 Bookmark lessons
-* 🌙 Dark mode
-* 🔍 Advanced search
 * 📈 Personalized learning dashboard
 * 🏅 Leaderboard
 * 🎥 Video-based lessons
-* 🤖 AI-powered coding assistance
+* 🤖 AI-powered coding assistance (Advance mode)
 
 ## 🤝 Contributing
 
