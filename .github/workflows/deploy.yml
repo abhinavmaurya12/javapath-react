@@ -34,8 +34,9 @@ jobs:
         run: npm run build
         env:
           # Vite base must match where GitHub Pages will serve the app.
-          # Repo is served at /<repo-name>/, so the app lives at /javapath-react/javapathapp/
-          VITE_BASE: /javapath-react/javapathapp/
+          # This repo is served from its root, so the app lives at
+          # /javapath-react/ (https://abhinavmaurya12.github.io/javapath-react/)
+          VITE_BASE: /javapath-react/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
