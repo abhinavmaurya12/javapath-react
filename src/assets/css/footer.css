@@ -1,0 +1,7 @@
+/* === Footer === */
+.footer{background:var(--card);border-top:1px solid var(--border);padding:48px 20px 24px}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;max-width:1200px;margin:0 auto}
+.footer h4{color:var(--primary);margin-bottom:16px}
+.footer a{display:block;color:var(--text-muted);font-size:.88rem;margin-bottom:8px;transition:color .2s}
+.footer a:hover{color:var(--primary)}
+.footer-bottom{text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:.85rem}

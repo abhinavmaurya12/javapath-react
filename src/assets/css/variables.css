@@ -1,0 +1,10 @@
+/* === Variables & Reset === */
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--primary:#f89820;--primary-dark:#d17f11;--secondary:#5382a1;--secondary-dark:#3a5e7c;--dark-bg:#1a1a2e;--dark-card:#16213e;--dark-surface:#0f3460;--light-bg:#f5f7fa;--light-card:#ffffff;--light-surface:#e8ecf1;--radius:12px;--shadow:0 4px 15px rgba(0,0,0,0.1);--font:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+[data-theme="dark"]{--bg:var(--dark-bg);--card:var(--dark-card);--surface:var(--dark-surface);--text:#e0e0e0;--text-muted:#aaa;--border:rgba(255,255,255,0.08);--code-bg:#0d1b2a}
+[data-theme="light"]{--bg:var(--light-bg);--card:var(--light-card);--surface:var(--light-surface);--text:#1a1a2e;--text-muted:#555;--border:rgba(0,0,0,0.1);--code-bg:#1e1e2e}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+a{text-decoration:none;color:var(--primary)}ul{list-style:none}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}

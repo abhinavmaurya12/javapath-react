@@ -1,0 +1,106 @@
+/* === Responsive === */
+@media(max-width:768px){
+/* Update Cycle Mobile */
+.update-cycle{padding:40px 16px}
+.cycle-heading{font-size:1.5rem}
+.cycle-timeline{gap:6px}
+.cycle-day{min-width:0;flex:0 0 calc(33.33% - 4px)}
+.day-card{padding:12px 10px;min-width:0}
+.day-label{font-size:.65rem}
+.day-task{font-size:.75rem}
+
+  .navbar{padding:0 12px;height:56px;overflow:visible}
+  .nav-brand{font-size:1.1rem;gap:6px}
+  .nav-brand i{font-size:1.1rem}
+  .mobile-menu-btn{display:flex;z-index:1001}
+  .nav-links{display:none;position:fixed;top:56px;left:0;right:0;background:var(--card);flex-direction:column;padding:8px 12px;border-bottom:1px solid var(--border);gap:4px;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:9999;max-height:calc(100vh - 56px);overflow-y:auto}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 16px;border-radius:8px;font-size:.95rem;width:100%;display:block;cursor:pointer;pointer-events:auto;position:relative}
+  .nav-right{gap:8px}
+  .search-box input{width:140px;font-size:.82rem;padding:7px 10px 7px 32px}
+  .search-box input:focus{width:180px}
+  .search-results{position:fixed;top:56px;left:8px;right:8px;max-height:60vh;z-index:10002}
+  .theme-btn{width:34px;height:34px;font-size:.9rem}
+  .page{padding-top:56px}
+  .hero{padding:60px 16px 50px}
+  .hero h1{font-size:1.6rem;line-height:1.3}
+  .hero p{font-size:.95rem;margin-bottom:24px}
+  .hero-btns{flex-direction:column;align-items:center;gap:12px}
+  .hero-btns .btn{width:100%;max-width:280px;justify-content:center;padding:12px 20px}
+  .hero-code{max-width:100%;font-size:.78rem;padding:16px}
+  .section{padding:50px 16px}
+  .section-title h2{font-size:1.4rem}
+  .section-title p{font-size:.9rem}
+  .cards-grid,.practice-grid,.project-grid,.interview-grid{grid-template-columns:1fr;gap:16px}
+  .card,.practice-card,.project-card,.interview-card{padding:20px}
+  .card-icon{width:44px;height:44px;font-size:1.1rem;border-radius:10px;margin-bottom:12px}
+  .card h3{font-size:1rem}
+  .card p{font-size:.85rem}
+  .roadmap{padding-left:0}
+  .roadmap::before{left:20px}
+  .roadmap-dot{width:40px;height:40px;font-size:.85rem;border-width:2px}
+  .roadmap-step{gap:14px;padding:12px 0}
+  .roadmap-info h3{font-size:.9rem}
+  .roadmap-info p{font-size:.8rem}
+  .footer{padding:36px 16px 20px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-bottom{font-size:.8rem}
+  .learn-layout{flex-direction:column}
+  .sidebar{width:100%;position:fixed;top:56px;bottom:0;transform:translateX(-100%);z-index:900;padding:8px 0;overflow-y:auto;background:var(--card)}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.3)}
+  .sidebar-item{padding:10px 16px;font-size:.88rem}
+  .sidebar-section-title{padding:6px 16px;font-size:.7rem}
+  .search-sidebar{padding:6px 10px}
+  .search-sidebar input{font-size:.82rem;padding:7px 10px 7px 28px}
+  
+  
+  .main-content{margin-left:0;max-width:100%;padding:16px}
+  .sidebar-toggle-btn{display:flex}
+  .lesson-header{flex-direction:column;align-items:flex-start}
+  .lesson-header h1{font-size:1.3rem}
+  .lesson-nav{flex-direction:column;gap:10px}
+  .lesson-nav .btn{width:100%;justify-content:center}
+  .concept-box{padding:18px;margin-bottom:16px}
+  .concept-box h3{font-size:1.05rem;margin-bottom:8px}
+  .concept-box p,.concept-box li{font-size:.9rem;line-height:1.6}
+  .concept-box table{font-size:.8rem;display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .concept-box th,.concept-box td{padding:8px 10px;white-space:nowrap}
+  .code-block{margin:12px 0 16px;overflow:hidden}
+  .code-block pre{padding:14px;font-size:.78rem;line-height:1.5;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .code-header{padding:6px 12px;font-size:.75rem}
+  .copy-btn{padding:3px 8px;font-size:.7rem}
+  .output-block{padding:12px 14px;font-size:.82rem;overflow-x:auto}
+  .alert-box{padding:12px 14px;font-size:.85rem;margin:12px 0}
+  .lesson-container{max-width:100%;overflow-x:hidden}
+  .concept-box pre{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .quick-reference{grid-template-columns:1fr;gap:10px}
+  .quick-ref-item{padding:12px;font-size:.82rem}
+  .practice-section{padding:18px}
+  .practice-section h3{font-size:1rem}
+  .practice-section ol li{padding:10px 12px 10px 40px;font-size:.85rem;margin-bottom:8px}
+  .practice-section ol li::before{width:22px;height:22px;font-size:.7rem;left:10px;top:10px}
+  .playground{grid-template-columns:1fr;height:auto;margin-top:56px}
+  .playground-pane{border-right:none;border-bottom:1px solid var(--border)}
+  .code-editor{min-height:200px;font-size:.8rem;padding:12px}
+  .output-area{min-height:160px;font-size:.8rem;padding:12px}
+  .run-btn{padding:7px 16px;font-size:.8rem}
+  .clear-btn{padding:7px 14px;font-size:.8rem}
+  .sample-btn{font-size:.72rem;padding:3px 8px}
+  .chatbot-panel{right:8px;left:8px;bottom:80px;width:auto;height:calc(100vh - 120px);max-height:520px;border-radius:12px}
+  .chatbot-fab{display:none!important}
+  .chat-msg{max-width:92%}
+  .chat-msg-bubble pre{font-size:.72rem;padding:8px}
+  .chat-suggestion-btn{font-size:.72rem;padding:4px 10px}
+  .ai-nav-btn{display:flex;width:34px;height:34px;font-size:.9rem}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.4rem}
+  .hero p{font-size:.88rem}
+  .hero-code{font-size:.72rem;padding:12px}
+  .footer-grid{grid-template-columns:1fr}
+  .interview-card{padding:16px}
+  .interview-card li{font-size:.82rem}
+  .concept-box{padding:14px}
+  .concept-box table{font-size:.75rem}
+  .concept-box th,.concept-box td{padding:6px 8px}
+}
