@@ -7,7 +7,7 @@ import react from '@vitejs/plugin-react'
 // https://abhinavmaurya12.github.io/javapath-react/
 // Overridable via VITE_BASE env var (see .github/workflows/deploy.yml).
 export default defineConfig({
-  base: process.env.VITE_BASE || '/javapath/javapathapp/',
+  base: process.env.VITE_BASE || '/javapath-react/',
   plugins: [react()],
   build: {
     outDir: 'dist',
