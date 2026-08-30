@@ -82,7 +82,7 @@ export default function JavaPage() {
       <main className="main-content" id="mainContent">
         <button className="sidebar-toggle-btn" onClick={() => {
           const s = document.getElementById('sidebar')
-          if (s) s.classList.toggle('closed')
+          if (s) s.classList.toggle('open')
         }}><i className="fas fa-bars"></i> Chapters</button>
         <div className="lesson-container" id="lessonContainer">
           {lesson ? (

@@ -125,6 +125,21 @@ a{text-decoration:none;color:var(--primary)}ul{list-style:none}
 
 
 .main-content{margin-left:300px;flex:1;padding:32px;max-width:calc(100% - 300px);transition:margin-left .3s ease}
+@media(max-width:900px){
+  .main-content{margin-left:0;max-width:none;padding:24px 16px}
+  .main-content.closed{margin-left:0}
+  .sidebar{width:260px}
+  .sidebar.closed{transform:translateX(-100%)}
+  .learn-layout>.sidebar.closed+.main-content{margin-left:0;max-width:100%}
+}
+@media(max-width:768px){
+  .main-content{margin-left:0;max-width:100%}
+  .main-content.closed{margin-left:0}
+  .sidebar{width:100%;position:fixed;top:56px;bottom:0;transform:translateX(-100%);z-index:900;padding:8px 0;overflow-y:auto;background:var(--card)}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.3)}
+  .sidebar.closed{transform:translateX(-100%)}
+  .learn-layout>.sidebar.closed+.main-content{margin-left:0;max-width:100%}
+}
 .lesson-container{max-width:900px;margin:0 auto}
 .sidebar.closed{transform:translateX(-100%)}
 .learn-layout>.sidebar.closed+.main-content{margin-left:0;max-width:100%}
@@ -141,7 +156,7 @@ a{text-decoration:none;color:var(--primary)}ul{list-style:none}
 .concept-box table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9rem}
 .concept-box th,.concept-box td{padding:10px 14px;border:1px solid var(--border);text-align:left}
 .concept-box th{background:var(--surface);font-weight:600;color:var(--primary)}
-.code-block{background:var(--code-bg);border-radius:var(--radius);overflow:hidden;margin:16px 0 20px;border:1px solid var(--border);position:relative}
+.code-block{background:var(--code-bg);border-radius:var(--radius);overflow-x:auto;margin:16px 0 20px;border:1px solid var(--border);position:relative;-webkit-overflow-scrolling:touch}
 .code-header{background:var(--surface);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
 [data-theme="dark"] .code-header{color:#8be9fd}
 [data-theme="light"] .code-header{color:#3a5e7c}
@@ -878,12 +893,6 @@ button:focus-visible{box-shadow:0 0 0 3px rgba(248,152,32,.3)}
 .day-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 20px;min-width:110px;backdrop-filter:blur(8px);transition:all .3s}
 .day-label{display:block;font-size:.75rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
 .day-task{display:block;font-size:.85rem;color:#fff;font-weight:500}
-
-/* === Extras unique === */
-.sidebar-toggle-btn{display:flex;background:var(--primary);color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;align-items:center;gap:6px;margin-bottom:16px;width:fit-content}
-
-/* === Layout unique === */
-.main-content{margin-left:300px;flex:1;padding:32px;max-width:calc(100% - 300px)}
 
 /* === Responsive unique === */
 .cycle-timeline{gap:6px}

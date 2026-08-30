@@ -79,7 +79,7 @@ export default function PracticePage() {
       <main className="main-content" id="practiceMainContent">
         <button className="sidebar-toggle-btn" onClick={() => {
           const s = document.getElementById('practiceSidebar')
-          if (s) s.classList.toggle('closed')
+          if (s) s.classList.toggle('open')
         }}><i className="fas fa-bars"></i> Categories</button>
         <div className="lesson-container" id="practiceContainer">
           {!activeFile ? (
@@ -115,7 +115,7 @@ export default function PracticePage() {
                   <span className="java-file">{activeFile}</span>
                   <span>Java</span>
                 </div>
-                <pre data-code={fileCode}><code dangerouslySetInnerHTML={{ __html: fileCode }} /></pre>
+                <pre style={{ overflowX: 'auto', whiteSpace: 'pre', wordWrap: 'normal', maxWidth: '100%' }} data-code={fileCode}><code dangerouslySetInnerHTML={{ __html: fileCode }} /></pre>
               </div>
               <div className="lesson-nav">
                 <button className="btn btn-outline" onClick={() => setActiveFile(null)}><i className="fas fa-arrow-left"></i> Back to Files</button>

@@ -198,7 +198,7 @@ export default function DSAPage() {
       <main className="main-content" id="dsaMainContent">
         <button className="sidebar-toggle-btn" onClick={() => {
           const s = document.getElementById('dsaSidebar')
-          if (s) s.classList.toggle('closed')
+          if (s) s.classList.toggle('open')
         }}><i className="fas fa-bars"></i> Topics</button>
         <div className="lesson-container" id="dsaContainer">
           {headerHtml}
