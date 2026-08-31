@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import javaChatbotKnowledge from '../data/chatbotKnowledge'
 
 // Lightweight keyword-based chatbot (mirrors chatbot-agent.js + chatbot-data.js logic)
-export default function Chatbot() {
+
+// Inner component — only mounted on the home page, so all its hooks always run
+// the same number of times. Splitting it out avoids the "Rendered fewer hooks
+// than expected" crash that happened when Chatbot returned null mid-tree.
+function ChatbotInner() {
   const kb = javaChatbotKnowledge.keywords || javaChatbotKnowledge
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState([
@@ -82,7 +87,7 @@ export default function Chatbot() {
             <i className="fas fa-robot" style={{ fontSize: '1.3rem', color: 'var(--primary)' }}></i>
             <div>
               <div style={{ fontWeight: 700, fontSize: '.95rem' }}>JavaNest Assistant</div>
-              <div style={{ fontSize: '.75rem', color: '#4caf50' }}>Online — Ask me anything</div>
+              <div style={{ fontSize: '.75rem', color: 'var(--primary)' }}>Online — Ask me anything</div>
             </div>
           </div>
           <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text)', fontSize: '1.1rem', cursor: 'pointer', padding: 4 }}><i className="fas fa-times"></i></button>
@@ -124,4 +129,14 @@ export default function Chatbot() {
       </div>
     </div>
   )
+}
+
+// Wrapper: only mount the assistant on the home page. Because ChatbotInner's
+// hooks always run the same number of times, this never triggers the
+// "Rendered fewer hooks than expected" React error.
+export default function Chatbot() {
+  const location = useLocation()
+  const isHome = location.pathname === '/' || location.pathname === ''
+  if (!isHome) return null
+  return <ChatbotInner />
 }

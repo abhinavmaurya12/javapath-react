@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { interviewQuestions } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import VoiceReader from '../components/VoiceReader'
 import useSidebarSearch from '../hooks/useSidebarSearch'
 
 export default function InterviewPage() {
@@ -142,6 +143,7 @@ export default function InterviewPage() {
                   <button className="btn btn-primary" onClick={markComplete}><i className="fas fa-check"></i> Mark Complete</button>
                 )}
               </div>
+              <VoiceReader text={q.title + '. ' + q.content} title={'Q' + q.id + ': ' + q.title} />
               <SafeHTML html={q.content} />
             </>
           ) : (

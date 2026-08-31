@@ -31,11 +31,26 @@ export default function ProgressDashboard() {
     const idx = lastLesson.idx
     if (typeof idx === 'number') {
       navigate('/java', { state: { lesson: idx } })
-    } else if (typeof idx === 'string' && idx.startsWith('dsa-')) {
-      navigate('/dsa', { state: { topic: idx.replace('dsa-', '') } })
-    } else if (typeof idx === 'string' && idx.startsWith('frontend-')) {
-      const parts = idx.split('-')
-      navigate('/frontend/' + parts[1], { state: { chapter: parseInt(parts[2]) } })
+    } else if (typeof idx === 'string') {
+      if (idx.startsWith('dsa-')) {
+        navigate('/dsa', { state: { topic: idx.replace('dsa-', '') } })
+      } else if (idx.startsWith('interview-')) {
+        navigate('/interview', { state: { question: parseInt(idx.replace('interview-', '')) } })
+      } else if (idx.startsWith('javapro-')) {
+        navigate('/javapro', { state: { chapter: parseInt(idx.replace('javapro-', '')) } })
+      } else {
+        // Frontend tracks are stored as "<track>-<chapterIdx>", e.g. "html-5", "javascript-7"
+        const tracks = ['html', 'css', 'javascript', 'react']
+        for (const t of tracks) {
+          if (idx.startsWith(t + '-')) {
+            const num = parseInt(idx.slice(t.length + 1))
+            if (!isNaN(num)) {
+              navigate('/frontend/' + t, { state: { chapter: num } })
+            }
+            break
+          }
+        }
+      }
     }
   }
 

@@ -18,12 +18,54 @@
       var t = localStorage.getItem('theme');
       if (t !== 'dark' && t !== 'light') t = 'light';
       document.documentElement.setAttribute('data-theme', t);
+      // Paint the html element with the saved theme *before* anything renders so
+      // a refresh never flashes the wrong (white in light mode / black in dark
+      // mode) color. document.body is null while this script runs in <head>, so
+      // we paint <html> (which exists) and let the splash loader cover <body>.
+      var bg = t === 'dark' ? '#0d1117' : '#f5f7fa';
+      var txt = t === 'dark' ? '#e6edf3' : '#1a1a2e';
+      document.documentElement.style.background = bg;
+      document.documentElement.style.color = txt;
+      // Also paint <body> once it exists (the splash loader covers it anyway).
+      document.addEventListener('DOMContentLoaded', function () {
+        if (document.body) {
+          document.body.style.background = bg;
+          document.body.style.color = txt;
+        }
+      });
     })();
   </script>
-  <script type="module" crossorigin src="/javapath-react/assets/index-DdCIX7yB.js"></script>
-  <link rel="stylesheet" crossorigin href="/javapath-react/assets/index-yQWHu6W3.css">
+  <style>
+    /* Themed splash shown while the app bundle loads/mounts. */
+    #app { min-height: 100vh; }
+    .app-loader {
+      position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 14px; z-index: 9999;
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    .app-loader .spinner {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 4px solid rgba(248,152,32,.25);
+      border-top-color: #f89820;
+      animation: app-spin 0.8s linear infinite;
+    }
+    @keyframes app-spin { to { transform: rotate(360deg); } }
+    .app-loader .label { font-size: .9rem; font-weight: 700; letter-spacing: .6px; color: #1a1a2e; }
+    [data-theme="light"] .app-loader { background: #f5f7fa; }
+    [data-theme="light"] .app-loader .label { color: #1a1a2e; }
+    [data-theme="dark"] .app-loader { background: #0d1117; }
+    [data-theme="dark"] .app-loader .label { color: #e6edf3; }
+    [data-theme="dark"] .app-loader .spinner { border-color: rgba(248,152,32,.25); border-top-color: #f89820; }
+  </style>
+  <script type="module" crossorigin src="/javapath-react/assets/index-N1czLm-p.js"></script>
+  <link rel="stylesheet" crossorigin href="/javapath-react/assets/index-CtZWNLEU.css">
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <div class="app-loader" id="appLoader">
+      <div class="spinner"></div>
+      <div class="label">JavaNest</div>
+    </div>
+  </div>
 </body>
 </html>

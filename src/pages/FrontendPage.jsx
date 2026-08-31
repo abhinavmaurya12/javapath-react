@@ -3,6 +3,7 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { frontendTracks } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import VoiceReader from '../components/VoiceReader'
 
 const CHAPTER_COUNTS = { html: 6, css: 8, javascript: 10, react: 8 }
 
@@ -108,6 +109,7 @@ export default function FrontendPage() {
                 <h1>Ch{active + 1}: {chapter.title}</h1>
                 <span className={'badge ' + (chapter.difficultyClass || 'beginner')}>{chapter.difficulty || 'Beginner'}</span>
               </div>
+              <VoiceReader text={chapter.content} title={'Ch' + (active + 1) + ': ' + chapter.title} />
               <SafeHTML html={chapter.content} />
               <div className="frontend-nav" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 40, paddingTop: 20, borderTop: '1px solid var(--border)', gap: 12, flexWrap: 'wrap' }}>
                 {active > 0 ? (

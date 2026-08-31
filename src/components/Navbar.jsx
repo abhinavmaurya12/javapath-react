@@ -21,6 +21,27 @@ const FRONTEND_DROPDOWN = [
   { label: 'React', to: '/frontend/react' },
 ]
 
+// index.html paints <html>/<body> inline so a refresh never flashes the wrong
+// theme before the CSS variables load. Those inline styles must be re-applied
+// on every theme switch, otherwise the stale background/color overrides the
+// CSS variables and the page keeps the old theme until the next reload.
+const THEME_PAINT = {
+  dark: { bg: '#0d1117', text: '#e6edf3' },
+  light: { bg: '#f5f7fa', text: '#1a1a2e' },
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme)
+  localStorage.setItem('theme', theme)
+  const paint = THEME_PAINT[theme] || THEME_PAINT.light
+  document.documentElement.style.background = paint.bg
+  document.documentElement.style.color = paint.text
+  if (document.body) {
+    document.body.style.background = paint.bg
+    document.body.style.color = paint.text
+  }
+}
+
 export default function Navbar() {
   const [theme, setTheme] = useState(() => {
     const t = localStorage.getItem('theme')
@@ -31,8 +52,7 @@ export default function Navbar() {
   const location = useLocation()
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-    localStorage.setItem('theme', theme)
+    applyTheme(theme)
   }, [theme])
 
   function toggleTheme() {
@@ -72,7 +92,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.7.8</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.7.9</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); setMenuOpen(!menuOpen); setDropdownOpen(false) }}>
         <i className="fas fa-bars"></i>

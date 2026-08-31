@@ -29,7 +29,7 @@ export default function TryItPage() {
       )}
       {/* Mobile iframe — separate instance sized for the smaller viewport */}
       {isMobile && (
-        <div style={{ position: 'fixed', top: 56, left: 0, right: 0,  margin: '-35px',bottom: 44, overflow: 'auto' }}>
+        <div style={{ position: 'fixed', top: 56, left: 0, right: 0,  margin: '-30px',bottom: 44, overflow: 'auto' }}>
           <iframe
             id="tryItFrameMobile"
             src="https://onecompiler.com/java?embed=true"
@@ -61,7 +61,7 @@ export default function TryItPage() {
         }}
       >
         <i className="fas fa-keyboard" style={{ color: 'var(--primary)' }}></i> For run{' '}
-        <button className="hint-btn" style={{padding:'10px', fontWeight: 'bold', color: 'darkblue', fontSize:'20px'}}>
+        <button className="hint-btn" style={{padding:'10px', fontWeight: 'bold', color: 'var(--primary)', fontSize:'20px'}}>
           <span>Ctrl</span>+<span>Enter</span>
         </button>
       </div>

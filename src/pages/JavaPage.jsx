@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { lessons } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import VoiceReader from '../components/VoiceReader'
 import useSidebarSearch from '../hooks/useSidebarSearch'
 
 const SECTIONS = [
@@ -102,6 +103,7 @@ export default function JavaPage() {
                 <h1>Chapter {active + 1}: {lesson.title}</h1>
                 <span className={'badge ' + lesson.badgeClass}>{lesson.difficulty}</span>
               </div>
+              <VoiceReader text={lesson.content} title={'Chapter ' + (active + 1) + ': ' + lesson.title} />
               <SafeHTML html={lesson.content} />
               <div className="lesson-nav" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 40, paddingTop: 20, borderTop: '1px solid var(--border)', gap: 12, flexWrap: 'wrap' }}>
                 {active > 0 ? (

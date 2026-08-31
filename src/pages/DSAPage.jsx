@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import { dsaTopics } from '../data'
 import SafeHTML from '../components/SafeHTML'
+import VoiceReader from '../components/VoiceReader'
 import useSidebarSearch from '../hooks/useSidebarSearch'
 
 const DSA_SECTIONS = [
@@ -209,6 +210,7 @@ export default function DSAPage() {
           <button className="sidebar-toggle-btn" onClick={toggleSidebar}><i className="fas fa-bars"></i> Topics</button>
           <div className="lesson-container" id="dsaContainer">
 {headerHtml}
+            <VoiceReader text={content} title={topic.title} />
             <SafeHTML html={content} />
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 32, padding: '16px 0', borderTop: '1px solid var(--border)' }}>
               {prevKey ? (

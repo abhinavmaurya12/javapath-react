@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
@@ -10,10 +10,23 @@ import './assets/css/style.css'
 // or no route matches and the app renders as a blank page.
 const BASE = import.meta.env.BASE_URL || '/javapath/javapathapp/'
 
+// Wrapper that removes the themed splash screen only *after* React has
+// committed its first render. Removing it before render() leaves #app empty
+// for a moment, which flashes white (light mode) / black (dark mode).
+function AppShell({ children }) {
+  useEffect(() => {
+    const loader = document.getElementById('appLoader')
+    if (loader) loader.remove()
+  }, [])
+  return children
+}
+
 ReactDOM.createRoot(document.getElementById('app')).render(
   <React.StrictMode>
     <BrowserRouter basename={BASE}>
-      <App />
+      <AppShell>
+        <App />
+      </AppShell>
     </BrowserRouter>
   </React.StrictMode>
 )
