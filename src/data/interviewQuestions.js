@@ -1104,4 +1104,686 @@ class Q58
         System.out.println(&quot;Repeated element = &quot; + findRepeated(arr)); // 42
     }
 }</code></pre></div>`},
+{ id:88, title:"Find maximum element in an array", content:`<div class="concept-box"><h3>1) Find maximum element in an array.</h3><p><strong>How it works?</strong></p><ul><li>Traverse array from start to end, keep updating max so far.</li><li>Time complexity O(n), space O(1).</li></ul></p><div class="code-block"><div class="code-header"><span>Q63.java</span></div><pre><code>class Q63
+{
+    static int max(int x[])
+    {
+        int m = x[0];
+        for(int i=1; i&lt;x.length; i++)
+            if(x[i] &gt; m)
+                m = x[i];
+        return m;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {2, 5, 1, 9, 3};
+        System.out.println("Maximum = " + max(x)); // 9
+    }
+}</code></pre></div>`},
+{ id:89, title:"Find minimum element in an array", content:`<div class="concept-box"><h3>2) Find minimum element in an array.</h3><p><strong>How it works?</strong></p><ul><li>Traverse array and keep track of smallest value seen.</li><li>Time complexity O(n), space O(1).</li></ul></p><div class="code-block"><div class="code-header"><span>Q64.java</span></div><pre><code>class Q64
+{
+    static int min(int x[])
+    {
+        int m = x[0];
+        for(int i=1; i&lt;x.length; i++)
+            if(x[i] &lt; m)
+                m = x[i];
+        return m;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {2, 5, 1, 9, 3};
+        System.out.println("Minimum = " + min(x)); // 1
+    }
+}</code></pre></div>`},
+{ id:90, title:"Find maximum element in a 2D matrix", content:`<div class="concept-box"><h3>3) Find maximum element in a 2D matrix.</h3><p><strong>How it works?</strong></p><ul><li>Nested loops walk through every row and column.</li><li>Update a running maximum whenever a larger value is found.</li></ul></p><div class="code-block"><div class="code-header"><span>Q65.java</span></div><pre><code>class Q65
+{
+    static int max1(int x[][])
+    {
+        int m = x[0][0];
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=0; j&lt;x[i].length; j++)
+                if(x[i][j] &gt; m)
+                    m = x[i][j];
+        return m;
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{2,5,1},{9,3,7}};
+        System.out.println("Maximum in matrix = " + max1(x)); // 9
+    }
+}</code></pre></div>`},
+{ id:91, title:"Find minimum element in a 2D matrix", content:`<div class="concept-box"><h3>4) Find minimum element in a 2D matrix.</h3><p><strong>How it works?</strong></p><ul><li>Nested loops walk through every row and column.</li><li>Update a running minimum whenever a smaller value is found.</li></ul></p><div class="code-block"><div class="code-header"><span>Q66.java</span></div><pre><code>class Q66
+{
+    static int min1(int x[][])
+    {
+        int m = x[0][0];
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=0; j&lt;x[i].length; j++)
+                if(x[i][j] &lt; m)
+                    m = x[i][j];
+        return m;
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{2,5,1},{9,3,7}};
+        System.out.println("Minimum in matrix = " + min1(x)); // 1
+    }
+}</code></pre></div>`},
+{ id:92, title:"Sort an array in ascending order (selection sort)", content:`<div class="concept-box"><h3>5) Sort an array in ascending order (selection sort).</h3><p><strong>How it works?</strong></p><ul><li>Repeatedly find the minimum of the remaining part and swap it to the front.</li><li>Time complexity O(n^2), space O(1) in place.</li></ul></p><div class="code-block"><div class="code-header"><span>Q67.java</span></div><pre><code>class Q67
+{
+    static void sort(int x[])
+    {
+        for(int i=0; i&lt;x.length-1; i++)
+        {
+            int minIdx = i;
+            for(int j=i+1; j&lt;x.length; j++)
+                if(x[j] &lt; x[minIdx])
+                    minIdx = j;
+            int temp = x[i];
+            x[i] = x[minIdx];
+            x[minIdx] = temp;
+        }
+    }
+    public static void main(String args[])
+    {
+        int x[] = {25, 10, 45, 95, 62};
+        sort(x);
+        System.out.print("Ascending: ");
+        for(int i=0; i&lt;x.length; i++)
+            System.out.print(x[i] + " ");
+        System.out.println();
+    }
+}</code></pre></div>`},{ id:93, title:"Sort an array in descending order (selection sort)", content:`<div class="concept-box"><h3>6) Sort an array in descending order (selection sort).</h3><p><strong>How it works?</strong></p><ul><li>Repeatedly find the maximum of the remaining part and swap it to the front.</li><li>Time complexity O(n^2), space O(1) in place.</li></ul></p><div class="code-block"><div class="code-header"><span>Q68.java</span></div><pre><code>class Q68
+{
+    static void sort1(int x[])
+    {
+        for(int i=0; i&lt;x.length-1; i++)
+        {
+            int maxIdx = i;
+            for(int j=i+1; j&lt;x.length; j++)
+                if(x[j] &gt; x[maxIdx])
+                    maxIdx = j;
+            int temp = x[i];
+            x[i] = x[maxIdx];
+            x[maxIdx] = temp;
+        }
+    }
+    public static void main(String args[])
+    {
+        int x[] = {25, 10, 45, 95, 62};
+        sort1(x);
+        System.out.print("Descending: ");
+        for(int i=0; i&lt;x.length; i++)
+            System.out.print(x[i] + " ");
+        System.out.println();
+    }
+}</code></pre></div>`},
+{ id:94, title:"Merge two sorted arrays into one sorted array", content:`<div class="concept-box"><h3>7) Merge two sorted arrays into one sorted array.</h3><p><strong>How it works?</strong></p><ul><li>Use two pointers to walk through both arrays simultaneously.</li><li>Smaller of the two current elements is placed into the merged array.</li><li>Remaining elements from either array are appended at the end.</li></ul></p><div class="code-block"><div class="code-header"><span>Q69.java</span></div><pre><code>class Q69
+{
+    static int[] mergesort(int x[], int y[])
+    {
+        int result[] = new int[x.length + y.length];
+        int i = 0, j = 0, k = 0;
+        while(i &lt; x.length &amp;&amp; j &lt; y.length)
+        {
+            if(x[i] &lt;= y[j])
+                result[k++] = x[i++];
+            else
+                result[k++] = y[j++];
+        }
+        while(i &lt; x.length) result[k++] = x[i++];
+        while(j &lt; y.length) result[k++] = y[j++];
+        return result;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {1, 3, 5};
+        int y[] = {2, 4, 6};
+        int out[] = mergesort(x, y);
+        System.out.print("Merged: ");
+        for(int v : out) System.out.print(v + " ");
+        System.out.println();
+    }
+}</code></pre></div>`},
+{ id:95, title:"Print union of two arrays (distinct values)", content:`<div class="concept-box"><h3>8) Print union of two arrays (distinct values).</h3><p><strong>How it works?</strong></p><ul><li>Collect every element from both arrays into a Set.</li><li>A Set automatically removes duplicates, giving the union.</li><li>Example: {1,2,3} union {3,4,5} -&gt; {1,2,3,4,5}.</li></ul></p><div class="code-block"><div class="code-header"><span>Q70.java</span></div><pre><code>import java.util.LinkedHashSet;
+import java.util.Set;
+
+class Q70
+{
+    static void union(int x[], int y[])
+    {
+        Set&lt;Integer&gt; set = new LinkedHashSet&lt;&gt;();
+        for(int v : x) set.add(v);
+        for(int v : y) set.add(v);
+        System.out.print("Union: ");
+        for(int v : set) System.out.print(v + " ");
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        int x[] = {1, 2, 3};
+        int y[] = {3, 4, 5};
+        union(x, y); // 1 2 3 4 5
+    }
+}</code></pre></div>`},
+{ id:96, title:"Add two matrices element-wise", content:`<div class="concept-box"><h3>9) Add two matrices element-wise.</h3><p><strong>How it works?</strong></p><ul><li>Both matrices must have the same dimensions.</li><li>For each (i,j) cell, result[i][j] = x[i][j] + y[i][j].</li></ul></p><div class="code-block"><div class="code-header"><span>Q71.java</span></div><pre><code>class Q71
+{
+    static void matrixadd(int x[][], int y[][])
+    {
+        int rows = x.length, cols = x[0].length;
+        int result[][] = new int[rows][cols];
+        for(int i=0; i&lt;rows; i++)
+            for(int j=0; j&lt;cols; j++)
+                result[i][j] = x[i][j] + y[i][j];
+
+        System.out.println("Matrix Addition:");
+        for(int i=0; i&lt;rows; i++)
+        {
+            for(int j=0; j&lt;cols; j++)
+                System.out.print(result[i][j] + " ");
+            System.out.println();
+        }
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6}};
+        int y[][] = {{6,5,4},{3,2,1}};
+        matrixadd(x, y); // {{7,7,7},{7,7,7}}
+    }
+}</code></pre></div>`},{ id:97, title:"Transpose of a matrix", content:`<div class="concept-box"><h3>10) Transpose of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Swap rows with columns: trans[i][j] = original[j][i].</li><li>The resulting matrix has dimensions cols x rows.</li></ul></p><div class="code-block"><div class="code-header"><span>Q72.java</span></div><pre><code>class Q72
+{
+    static void matrixtranspose(int x[][])
+    {
+        int rows = x.length, cols = x[0].length;
+        int t[][] = new int[cols][rows];
+        for(int i=0; i&lt;rows; i++)
+            for(int j=0; j&lt;cols; j++)
+                t[j][i] = x[i][j];
+
+        System.out.println("Transpose:");
+        for(int i=0; i&lt;cols; i++)
+        {
+            for(int j=0; j&lt;rows; j++)
+                System.out.print(t[i][j] + " ");
+            System.out.println();
+        }
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6}};
+        matrixtranspose(x); // {{1,4},{2,5},{3,6}}
+    }
+}</code></pre></div>`},
+{ id:98, title:"Multiply two matrices", content:`<div class="concept-box"><h3>11) Multiply two matrices.</h3><p><strong>How it works?</strong></p><ul><li>For result[i][j] = sum over k of x[i][k] * y[k][j].</li><li>Inner dimension of first must equal rows of second.</li></ul></p><div class="code-block"><div class="code-header"><span>Q73.java</span></div><pre><code>class Q73
+{
+    static void matrixmult(int x[][], int y[][])
+    {
+        int r1 = x.length, c1 = x[0].length;
+        int r2 = y.length, c2 = y[0].length;
+        if(c1 != r2)
+        {
+            System.out.println("Cannot multiply: incompatible dimensions");
+            return;
+        }
+        int result[][] = new int[r1][c2];
+        for(int i=0; i&lt;r1; i++)
+            for(int j=0; j&lt;c2; j++)
+                for(int k=0; k&lt;c1; k++)
+                    result[i][j] += x[i][k] * y[k][j];
+
+        System.out.println("Matrix Multiplication:");
+        for(int i=0; i&lt;r1; i++)
+        {
+            for(int j=0; j&lt;c2; j++)
+                System.out.print(result[i][j] + " ");
+            System.out.println();
+        }
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6}};
+        int y[][] = {{1,2},{3,4},{5,6}};
+        matrixmult(x, y); // {{22,28},{49,64}}
+    }
+}</code></pre></div>`},
+{ id:99, title:"Sum of all elements in a matrix", content:`<div class="concept-box"><h3>12) Sum of all elements in a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Nested loops add every cell value to a running total.</li><li>Time complexity O(rows * cols).</li></ul></p><div class="code-block"><div class="code-header"><span>Q74.java</span></div><pre><code>class Q74
+{
+    static void matrixsum(int x[][])
+    {
+        int sum = 0;
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=0; j&lt;x[i].length; j++)
+                sum += x[i][j];
+        System.out.println("Sum of all elements = " + sum);
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6}};
+        matrixsum(x); // 21
+    }
+}</code></pre></div>`},
+{ id:100, title:"Sum of the upper triangular part of a matrix", content:`<div class="concept-box"><h3>13) Sum of the upper triangular part of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Upper triangle contains cells where column index &gt;= row index.</li><li>Nested loop adds those cells and prints the total.</li></ul></p><div class="code-block"><div class="code-header"><span>Q75.java</span></div><pre><code>class Q75
+{
+    static void triangleAsum(int x[][])
+    {
+        int sum = 0;
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=i; j&lt;x[i].length; j++)
+                sum += x[i][j];
+        System.out.println("Upper triangle sum = " + sum);
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        triangleAsum(x); // 1+2+3+5+6+9 = 26
+    }
+}</code></pre></div>`},{ id:101, title:"Maximum element in the upper triangular part of a matrix", content:`<div class="concept-box"><h3>14) Maximum element in the upper triangular part of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Upper triangle contains cells where column index &gt;= row index.</li><li>Track the maximum among those cells.</li></ul></p><div class="code-block"><div class="code-header"><span>Q76.java</span></div><pre><code>class Q76
+{
+    static void triangleAmax(int x[][])
+    {
+        int max = x[0][0];
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=i; j&lt;x[i].length; j++)
+                if(x[i][j] &gt; max)
+                    max = x[i][j];
+        System.out.println("Upper triangle max = " + max);
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        triangleAmax(x); // 9
+    }
+}</code></pre></div>`},
+{ id:102, title:"Minimum element in the upper triangular part of a matrix", content:`<div class="concept-box"><h3>15) Minimum element in the upper triangular part of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Upper triangle contains cells where column index &gt;= row index.</li><li>Track the minimum among those cells.</li></ul></p><div class="code-block"><div class="code-header"><span>Q77.java</span></div><pre><code>class Q77
+{
+    static void triangleAmin(int x[][])
+    {
+        int min = x[0][0];
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=i; j&lt;x[i].length; j++)
+                if(x[i][j] &lt; min)
+                    min = x[i][j];
+        System.out.println("Upper triangle min = " + min);
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        triangleAmin(x); // 1
+    }
+}</code></pre></div>`},
+{ id:103, title:"Sum of the lower triangular part of a matrix", content:`<div class="concept-box"><h3>16) Sum of the lower triangular part of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Lower triangle contains cells where column index &lt;= row index.</li><li>Nested loop adds those cells and prints the total.</li></ul></p><div class="code-block"><div class="code-header"><span>Q78.java</span></div><pre><code>class Q78
+{
+    static void triangleBsum(int x[][])
+    {
+        int sum = 0;
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=0; j&lt;=i; j++)
+                sum += x[i][j];
+        System.out.println("Lower triangle sum = " + sum);
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        triangleBsum(x); // 1+4+5+7+8+9 = 34
+    }
+}</code></pre></div>`},
+{ id:104, title:"Maximum element in the lower triangular part of a matrix", content:`<div class="concept-box"><h3>17) Maximum element in the lower triangular part of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Lower triangle contains cells where column index &lt;= row index.</li><li>Track the maximum among those cells.</li></ul></p><div class="code-block"><div class="code-header"><span>Q79.java</span></div><pre><code>class Q79
+{
+    static void triangleBmax(int x[][])
+    {
+        int max = x[0][0];
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=0; j&lt;=i; j++)
+                if(x[i][j] &gt; max)
+                    max = x[i][j];
+        System.out.println("Lower triangle max = " + max);
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        triangleBmax(x); // 9
+    }
+}</code></pre></div>`},
+{ id:105, title:"Minimum element in the lower triangular part of a matrix", content:`<div class="concept-box"><h3>18) Minimum element in the lower triangular part of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>Lower triangle contains cells where column index &lt;= row index.</li><li>Track the minimum among those cells.</li></ul></p><div class="code-block"><div class="code-header"><span>Q80.java</span></div><pre><code>class Q80
+{
+    static void triangleBmin(int x[][])
+    {
+        int min = x[0][0];
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=0; j&lt;=i; j++)
+                if(x[i][j] &lt; min)
+                    min = x[i][j];
+        System.out.println("Lower triangle min = " + min);
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        triangleBmin(x); // 1
+    }
+}</code></pre></div>`},
+{ id:106, title:"Right shift array elements by one position", content:`<div class="concept-box"><h3>19) Right shift array elements by one position.</h3><p><strong>How it works?</strong></p><ul><li>Save the last element, then move every element one position to the right.</li><li>Place the saved last element at index 0.</li></ul></p><div class="code-block"><div class="code-header"><span>Q81.java</span></div><pre><code>class Q81
+{
+    static void shift(int x[])
+    {
+        int last = x[x.length - 1];
+        for(int i = x.length - 1; i &gt; 0; i--)
+            x[i] = x[i - 1];
+        x[0] = last;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {1, 2, 3, 4, 5};
+        shift(x);
+        System.out.print("After right shift: ");
+        for(int v : x) System.out.print(v + " ");
+        System.out.println(); // 5 1 2 3 4
+    }
+}</code></pre></div>`},
+{ id:107, title:"Frequency count of each element in an array", content:`<div class="concept-box"><h3>20) Frequency count of each element in an array.</h3><p><strong>How it works?</strong></p><ul><li>Count occurrences of each distinct value and print value -&gt; count.</li><li>Use a HashMap to store counts in a single pass.</li></ul></p><div class="code-block"><div class="code-header"><span>Q82.java</span></div><pre><code>import java.util.HashMap;
+import java.util.Map;
+
+class Q82
+{
+    static void frequencycount(int x[])
+    {
+        Map&lt;Integer, Integer&gt; freq = new HashMap&lt;&gt;();
+        for(int v : x)
+            freq.put(v, freq.getOrDefault(v, 0) + 1);
+
+        for(Map.Entry&lt;Integer, Integer&gt; e : freq.entrySet())
+            System.out.println(e.getKey() + " -&gt; " + e.getValue());
+    }
+    public static void main(String args[])
+    {
+        int x[] = {1, 2, 2, 3, 1, 4, 2};
+        frequencycount(x);
+        // 1-&gt;2, 2-&gt;3, 3-&gt;1, 4-&gt;1
+    }
+}</code></pre></div>`},
+{ id:108, title:"First non-repeating element in an array", content:`<div class="concept-box"><h3>21) First non-repeating element in an array.</h3><p><strong>How it works?</strong></p><ul><li>Count frequency of every element.</li><li>Walk the array again and return the first element whose count is 1.</li></ul></p><div class="code-block"><div class="code-header"><span>Q83.java</span></div><pre><code>import java.util.HashMap;
+import java.util.Map;
+
+class Q83
+{
+    static void firstnonrepeatingelement(int x[])
+    {
+        Map&lt;Integer, Integer&gt; freq = new HashMap&lt;&gt;();
+        for(int v : x)
+            freq.put(v, freq.getOrDefault(v, 0) + 1);
+
+        for(int v : x)
+        {
+            if(freq.get(v) == 1)
+            {
+                System.out.println("First non-repeating element = " + v);
+                return;
+            }
+        }
+        System.out.println("No non-repeating element found");
+    }
+    public static void main(String args[])
+    {
+        int x[] = {10, 5, 3, 4, 3, 5, 6};
+        firstnonrepeatingelement(x); // 10
+    }
+}</code></pre></div>`},
+{ id:109, title:"Convert binary array to decimal number", content:`<div class="concept-box"><h3>22) Convert binary array to decimal number.</h3><p><strong>How it works?</strong></p><ul><li>Each element is a binary digit (0 or 1).</li><li>Decimal = sum of digit * 2^position from the right.</li></ul></p><div class="code-block"><div class="code-header"><span>Q84.java</span></div><pre><code>class Q84
+{
+    static int binarytodecimal(int x[])
+    {
+        int decimal = 0;
+        int power = 1;
+        for(int i = x.length - 1; i &gt;= 0; i--)
+        {
+            decimal += x[i] * power;
+            power *= 2;
+        }
+        return decimal;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {1, 0, 1, 1}; // binary 1011
+        System.out.println("Decimal value = " + binarytodecimal(x)); // 11
+    }
+}</code></pre></div>`},{ id:110, title:"Find the maximum element in any single row of a matrix", content:`<div class="concept-box"><h3>23) Find the maximum element in any single row of a matrix.</h3><p><strong>How it works?</strong></p><ul><li>For a chosen row, scan its columns and keep the largest value.</li><li>Repeat for every row and print each row maximum.</li></ul></p><div class="code-block"><div class="code-header"><span>Q85.java</span></div><pre><code>class Q85
+{
+    static void maxinonerow(int x[][])
+    {
+        for(int i=0; i&lt;x.length; i++)
+        {
+            int max = x[i][0];
+            for(int j=1; j&lt;x[i].length; j++)
+                if(x[i][j] &gt; max)
+                    max = x[i][j];
+            System.out.println("Row " + i + " max = " + max);
+        }
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        maxinonerow(x);
+        // Row 0 max = 3, Row 1 max = 6, Row 2 max = 9
+    }
+}</code></pre></div>`},
+{ id:111, title:"Print each word stored in an array of strings", content:`<div class="concept-box"><h3>24) Print each word stored in an array of strings.</h3><p><strong>How it works?</strong></p><ul><li>Each array slot holds one word (String).</li><li>A simple loop prints every element on its own line.</li></ul></p><div class="code-block"><div class="code-header"><span>Q86.java</span></div><pre><code>class Q86
+{
+    static void printword(int x[])
+    {
+        for(int i=0; i&lt;x.length; i++)
+            System.out.println("Element at index " + i + " = " + x[i]);
+    }
+    public static void main(String args[])
+    {
+        int x[] = {10, 20, 30, 40};
+        printword(x);
+    }
+}</code></pre></div>`},
+{ id:112, title:"Print matrix elements diagonal-wise (main and anti)", content:`<div class="concept-box"><h3>25) Print matrix elements diagonal-wise (main and anti).</h3><p><strong>How it works?</strong></p><ul><li>Print the main diagonal where row == column.</li><li>Print the anti diagonal where row + column == n-1.</li></ul></p><div class="code-block"><div class="code-header"><span>Q87.java</span></div><pre><code>class Q87
+{
+    static void printdigonalwise(int x[][])
+    {
+        int n = x.length;
+        System.out.println("Main diagonal:");
+        for(int i=0; i&lt;n; i++)
+            System.out.print(x[i][i] + " ");
+        System.out.println();
+        System.out.println("Anti diagonal:");
+        for(int i=0; i&lt;n; i++)
+            System.out.print(x[i][n-1-i] + " ");
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        printdigonalwise(x); // main: 1 5 9 ; anti: 3 5 7
+    }
+}</code></pre></div>`},
+{ id:113, title:"Print matrix elements in diagonal sequence form", content:`<div class="concept-box"><h3>26) Print matrix elements in diagonal sequence form.</h3><p><strong>How it works?</strong></p><ul><li>First print the main diagonal, then the anti diagonal, one after another.</li><li>Helpful for inspecting both diagonals in a single output stream.</li></ul></p><div class="code-block"><div class="code-header"><span>Q88.java</span></div><pre><code>class Q88
+{
+    static void sequencediagonalwise(int x[][])
+    {
+        int n = x.length;
+        System.out.print("Main then anti diagonal: ");
+        for(int i=0; i&lt;n; i++)
+            System.out.print(x[i][i] + " ");
+        for(int i=0; i&lt;n; i++)
+            System.out.print(x[i][n-1-i] + " ");
+        System.out.println();
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {{1,2,3},{4,5,6},{7,8,9}};
+        sequencediagonalwise(x); // 1 5 9 3 5 7
+    }
+}</code></pre></div>`},{ id:114, title:"Apply an if/else criteria element-wise over an array", content:`<div class="concept-box"><h3>27) Apply an if/else criteria element-wise over an array.</h3><p><strong>How it works?</strong></p><ul><li>Test each element against a predicate using if/else.</li><li>Here we classify each number as even or odd.</li></ul></p><div class="code-block"><div class="code-header"><span>Q89.java</span></div><pre><code>class Q89
+{
+    static void ICMcriteriaelsewise(int x[])
+    {
+        for(int i=0; i&lt;x.length; i++)
+        {
+            if(x[i] % 2 == 0)
+                System.out.println(x[i] + " : even");
+            else
+                System.out.println(x[i] + " : odd");
+        }
+    }
+    public static void main(String args[])
+    {
+        int x[] = {2, 4, 7, 9, 11};
+        ICMcriteriaelsewise(x);
+    }
+}</code></pre></div>`},
+{ id:115, title:"Find HCF (GCD) of all array elements using if/else", content:`<div class="concept-box"><h3>28) Find HCF (GCD) of all array elements using if/else.</h3><p><strong>How it works?</strong></p><ul><li>Start with the first element as the running HCF.</li><li>Repeatedly apply Euclid's algorithm (a % b) with the next element.</li></ul></p><div class="code-block"><div class="code-header"><span>Q90.java</span></div><pre><code>class Q90
+{
+    static int gcd(int a, int b)
+    {
+        while(b != 0)
+        {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+    static void HCF(int x[])
+    {
+        int result = x[0];
+        for(int i=1; i&lt;x.length; i++)
+            result = gcd(result, x[i]);
+        System.out.println("HCF (GCD) of array = " + result);
+    }
+    public static void main(String args[])
+    {
+        int x[] = {24, 36, 60, 96};
+        HCF(x); // 12
+    }
+}</code></pre></div>`},
+{ id:116, title:"Find the first 3-digit number in an array", content:`<div class="concept-box"><h3>29) Find the first 3-digit number in an array.</h3><p><strong>How it works?</strong></p><ul><li>A 3-digit number satisfies 100 &lt;= value &lt;= 999.</li><li>Scan the array and return the first element matching that range.</li></ul></p><div class="code-block"><div class="code-header"><span>Q91.java</span></div><pre><code>class Q91
+{
+    static int find3digit(int x[])
+    {
+        for(int i=0; i&lt;x.length; i++)
+        {
+            if(x[i] &gt;= 100 &amp;&amp; x[i] &lt;= 999)
+                return x[i];
+        }
+        return -1;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {9, 99, 100, 5, 999, 1000};
+        int r = find3digit(x);
+        System.out.println(r == -1 ? "No 3-digit number" : ("First 3-digit number = " + r));
+    }
+}</code></pre></div>`},
+{ id:117, title:"Find the median of an array", content:`<div class="concept-box"><h3>30) Find the median of an array.</h3><p><strong>How it works?</strong></p><ul><li>Sort the array first.</li><li>If length is odd, median is the middle element.</li><li>If even, median is the average of the two middle elements.</li></ul></p><div class="code-block"><div class="code-header"><span>Q92.java</span></div><pre><code>class Q92
+{
+    static float findmedian(int x[])
+    {
+        // Sort ascending (bubble sort)
+        for(int i=0; i&lt;x.length-1; i++)
+            for(int j=i+1; j&lt;x.length; j++)
+                if(x[i] &gt; x[j])
+                {
+                    int t = x[i]; x[i] = x[j]; x[j] = t;
+                }
+
+        int n = x.length;
+        if(n % 2 == 1)
+            return x[n/2];
+        else
+            return (x[n/2 - 1] + x[n/2]) / 2f;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {5, 2, 8, 1, 9};
+        System.out.println("Median = " + findmedian(x)); // 5
+    }
+}</code></pre></div>`},
+{ id:118, title:"Find the largest value in an array without sorting", content:`<div class="concept-box"><h3>31) Find the largest value in an array without sorting.</h3><p><strong>How it works?</strong></p><ul><li>A single pass keeps a running maximum, starting from the first element.</li><li>O(n) time, O(1) extra space — no sorting needed.</li></ul></p><div class="code-block"><div class="code-header"><span>Q93.java</span></div><pre><code>class Q93
+{
+    static float findlargestvalueinarray(int x[])
+    {
+        float max = x[0];
+        for(int i=1; i&lt;x.length; i++)
+            if(x[i] &gt; max)
+                max = x[i];
+        return max;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {12, 45, 23, 89, 34, 67};
+        System.out.println("Largest value (without sorting) = " + findlargestvalueinarray(x)); // 89
+    }
+}</code></pre></div>`},{ id:119, title:"Find the mode (most frequent value) of an array", content:`<div class="concept-box"><h3>32) Find the mode (most frequent value) of an array.</h3><p><strong>How it works?</strong></p><ul><li>Count occurrences of each value using a HashMap.</li><li>Track the value with the highest count; that is the mode.</li></ul></p><div class="code-block"><div class="code-header"><span>Q94.java</span></div><pre><code>import java.util.HashMap;
+import java.util.Map;
+
+class Q94
+{
+    static float findmode(int x[])
+    {
+        Map&lt;Integer, Integer&gt; freq = new HashMap&lt;&gt;();
+        for(int v : x)
+            freq.put(v, freq.getOrDefault(v, 0) + 1);
+
+        int mode = x[0], maxCount = 0;
+        for(Map.Entry&lt;Integer, Integer&gt; e : freq.entrySet())
+        {
+            if(e.getValue() &gt; maxCount)
+            {
+                maxCount = e.getValue();
+                mode = e.getKey();
+            }
+        }
+        return mode;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {2, 3, 2, 4, 5, 2, 3};
+        System.out.println("Mode = " + findmode(x)); // 2
+    }
+}</code></pre></div>`},
+{ id:120, title:"Find the mean (average) of array elements", content:`<div class="concept-box"><h3>33) Find the mean (average) of array elements.</h3><p><strong>How it works?</strong></p><ul><li>Sum all elements, then divide by the number of elements.</li><li>Use float division to preserve fractional results.</li></ul></p><div class="code-block"><div class="code-header"><span>Q95.java</span></div><pre><code>class Q95
+{
+    static float findmean(int x[])
+    {
+        int sum = 0;
+        for(int v : x)
+            sum += v;
+        return (float) sum / x.length;
+    }
+    public static void main(String args[])
+    {
+        int x[] = {2, 4, 6, 8, 10};
+        System.out.println("Mean = " + findmean(x)); // 6.0
+    }
+}</code></pre></div>`},
+{ id:121, title:"Make every element of a 5x5 matrix zero", content:`<div class="concept-box"><h3>34) Make every element of a 5x5 matrix zero.</h3><p><strong>How it works?</strong></p><ul><li>Nested loops walk through every cell of the 5x5 matrix.</li><li>Each cell is assigned the value 0.</li></ul></p><div class="code-block"><div class="code-header"><span>Q96.java</span></div><pre><code>class Q96
+{
+    static void makeallelementzero(int x[][])
+    {
+        for(int i=0; i&lt;x.length; i++)
+            for(int j=0; j&lt;x[i].length; j++)
+                x[i][j] = 0;
+    }
+    public static void main(String args[])
+    {
+        int x[][] = {
+            {1,2,3,4,5},
+            {6,7,8,9,10},
+            {11,12,13,14,15},
+            {16,17,18,19,20},
+            {21,22,23,24,25}
+        };
+        makeallelementzero(x);
+        System.out.println("Matrix after setting all elements to zero:");
+        for(int i=0; i&lt;x.length; i++)
+        {
+            for(int j=0; j&lt;x[i].length; j++)
+                System.out.print(x[i][j] + " ");
+            System.out.println();
+        }
+    }
+}</code></pre></div>`},
 ];

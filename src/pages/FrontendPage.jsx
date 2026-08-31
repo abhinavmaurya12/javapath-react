@@ -32,6 +32,11 @@ export default function FrontendPage() {
     navigate('/frontend/' + track, { state: { chapter: idx } })
     const ch = chapters[idx]
     if (ch) setLast(track + '-' + idx, ch.title)
+    // Close the mobile sidebar after selecting a chapter
+    const s = document.getElementById(track + 'Sidebar')
+    const b = document.getElementById('frontendBackdrop-' + track)
+    if (s) s.classList.remove('open')
+    if (b) b.classList.remove('open')
   }
 
   function markComplete() {

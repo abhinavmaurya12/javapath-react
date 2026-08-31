@@ -112,7 +112,7 @@ export default function TryItPage() {
             onInput={onInput}
             onKeyDown={onKeyDown}
             spellCheck={false}
-            style={{ height: 'calc(100% - 44px)', margin: 0, padding: 16, overflow: 'auto' }}
+            style={{ height: 'calc(100% - 44px)', margin: 0, padding: 16, overflow: 'auto', whiteSpace: 'pre', wordBreak: 'normal' }}
           />
         </div>
         <div className="playground-pane">
@@ -136,9 +136,9 @@ export default function TryItPage() {
           </div>
           <div
             className="output-area"
-            style={{ height: 'calc(100% - 44px)', color: error ? '#e74c3c' : '#27ae60' }}
+            style={{ height: 'calc(100% - 44px)' }}
           >
-            {running ? 'Running Java...' : (output || error || 'Output will appear here...')}
+            {running ? (<span style={{ color: 'var(--primary)' }}>Running Java...</span>) : (output || error || (<span style={{ color: 'var(--code-text)', fontStyle: 'italic' }}>Output will appear here...</span>))}
           </div>
         </div>
       </div>

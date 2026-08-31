@@ -42,12 +42,12 @@ export default function CodeBlock({ code, header = '', language = 'Java', classN
           <span>{language}</span>
         </div>
       )}
-      <div style={{ position: 'relative' }}>
-        <pre style={{ margin: 0 }}><code dangerouslySetInnerHTML={{ __html: code || '' }} /></pre>
+      <div style={{ position: 'relative', maxHeight: 600, overflowY: 'auto', overflowX: 'auto' }}>
+        <pre style={{ margin: 0, whiteSpace: 'pre', wordBreak: 'normal' }}><code dangerouslySetInnerHTML={{ __html: code || '' }} /></pre>
         <button
           className={'copy-btn' + (copied ? ' copied' : '')}
           onClick={copy}
-          style={{ position: 'absolute', top: 8, right: 8 }}
+          style={{ position: 'sticky', top: 8, right: 8, float: 'right', margin: '8px 0 0 0' }}
         >
           <i className={'fas ' + (copied ? 'fa-check' : 'fa-copy')}></i> {copied ? 'Copied!' : 'Copy'}
         </button>

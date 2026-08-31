@@ -8,6 +8,12 @@ import WhyJavaNest from '../components/WhyJavaNest'
 import JavaRoadmapVisual from '../components/JavaRoadmapVisual'
 
 const WHATS_NEW = [
+  { date: 'August 31, 2026', title: 'Bug Fixes & Polish', items: [
+    'Fixed Java compiler editor text color — code is now visible in both light and dark themes',
+    'Frontend (HTML/CSS/JS/React) sidebar now closes automatically after selecting a chapter on mobile',
+    'Improved overall page rendering and theme consistency',
+    'New Array Core Interview Questions — Phase 2 (70 questions) added'
+  ]},
   { date: 'August 29, 2026', title: 'Frontend Developer Tracks Added!', items: [
     'New HTML track with 6 chapters (tags, forms, semantic HTML, accessibility)',
     'New CSS track with 8 chapters (selectors, flexbox, grid, animations, responsive)',
