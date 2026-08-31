@@ -29,7 +29,7 @@ export default function TryItPage() {
       )}
       {/* Mobile iframe — separate instance sized for the smaller viewport */}
       {isMobile && (
-        <div style={{ position: 'fixed', top: 56, left: 0, right: 0,  margin: '-38px',bottom: 44, overflow: 'auto' }}>
+        <div style={{ position: 'fixed', top: 56, left: 0, right: 0,  margin: '-35px',bottom: 44, overflow: 'auto' }}>
           <iframe
             id="tryItFrameMobile"
             src="https://onecompiler.com/java?embed=true"
