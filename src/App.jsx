@@ -16,14 +16,14 @@ import TryItPage from './pages/TryItPage'
 import RoadmapPage from './pages/RoadmapPage'
 import FrontendPage from './pages/FrontendPage'
 
-function Layout({ children }) {
+function Layout({ children, hideFooter = false }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
       <main style={{ flex: 1, paddingTop: 64 }}>
         {children}
       </main>
-      <Footer />
+      {!hideFooter && <Footer />}
       <Chatbot />
     </div>
   )
@@ -47,16 +47,16 @@ export default function App() {
     <ProgressProvider>
       <Routes>
         <Route path="/" element={<Layout><HomePage /></Layout>} />
-        <Route path="/java" element={<Layout><JavaPage /></Layout>} />
-        <Route path="/dsa" element={<Layout><DSAPage /></Layout>} />
-        <Route path="/practice" element={<Layout><PracticePage /></Layout>} />
-        <Route path="/practice-landing" element={<Layout><PracticeLandingPage /></Layout>} />
-        <Route path="/projects" element={<Layout><ProjectsPage /></Layout>} />
-        <Route path="/interview" element={<Layout><InterviewPage /></Layout>} />
-        <Route path="/javapro" element={<Layout><JavaProPage /></Layout>} />
-        <Route path="/tryit" element={<Layout><TryItPage /></Layout>} />
-        <Route path="/roadmap" element={<Layout><RoadmapPage /></Layout>} />
-        <Route path="/frontend/:track" element={<Layout><FrontendPage /></Layout>} />
+        <Route path="/java" element={<Layout hideFooter><JavaPage /></Layout>} />
+        <Route path="/dsa" element={<Layout hideFooter><DSAPage /></Layout>} />
+        <Route path="/practice" element={<Layout hideFooter><PracticePage /></Layout>} />
+        <Route path="/practice-landing" element={<Layout hideFooter><PracticeLandingPage /></Layout>} />
+        <Route path="/projects" element={<Layout hideFooter><ProjectsPage /></Layout>} />
+        <Route path="/interview" element={<Layout hideFooter><InterviewPage /></Layout>} />
+        <Route path="/javapro" element={<Layout hideFooter><JavaProPage /></Layout>} />
+        <Route path="/tryit" element={<Layout hideFooter><TryItPage /></Layout>} />
+        <Route path="/roadmap" element={<Layout hideFooter><RoadmapPage /></Layout>} />
+        <Route path="/frontend/:track" element={<Layout hideFooter><FrontendPage /></Layout>} />
       </Routes>
     </ProgressProvider>
   )

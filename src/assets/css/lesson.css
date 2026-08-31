@@ -13,9 +13,10 @@
 .code-header{background:var(--surface);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
 [data-theme="dark"] .code-header{color:#8be9fd}
 [data-theme="light"] .code-header{color:#3a5e7c}
-.code-block pre{padding:20px;overflow-x:auto;font-family:'Courier New',Consolas,monospace;font-size:.88rem;line-height:1.6;color:#e0e0e0}
+.code-block pre{padding:20px;overflow-x:auto;font-family:'Courier New',Consolas,monospace;font-size:.88rem;line-height:1.6;color:var(--code-text)}
 .code-block code{font-family:inherit}
-.code-block .kw{color:#ff79c6}.code-block .str{color:#f1fa8c}.code-block .cmt{color:#fff}.code-block .cls{color:#8be9fd}.code-block .mth{color:#50fa7b}
+[data-theme="dark"] .code-block .kw{color:#a626a4}[data-theme="dark"] .code-block .str{color:#b57810}[data-theme="dark"] .code-block .cmt{color:#6a737d}[data-theme="dark"] .code-block .cls{color:#1a7f37}[data-theme="dark"] .code-block .mth{color:#1a7f37}
+[data-theme="light"] .code-block .kw{color:#a626a4}[data-theme="light"] .code-block .str{color:#b57810}[data-theme="light"] .code-block .cmt{color:#6a737d}[data-theme="light"] .code-block .cls{color:#1a7f37}[data-theme="light"] .code-block .mth{color:#1a7f37}
 .copy-btn{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:.75rem;display:inline-flex;align-items:center;gap:5px;transition:all .2s;flex-shrink:0}
 .copy-btn:hover{border-color:var(--primary);color:var(--primary)}
 .copy-btn.copied{background:#27ae60;color:#fff;border-color:#27ae60}
@@ -25,5 +26,5 @@
 .alert-box::before{content:'💡 ';font-size:1rem}
 .quick-reference{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:16px 0}
 .quick-ref-item{background:var(--surface);border-radius:8px;padding:16px;font-size:.88rem}
-.quick-ref-item code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.82rem;color:#e0e0e0}
-code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85rem;color:#e0e0e0}
+.quick-ref-item code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--code-text)}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85rem;color:var(--code-text)}
