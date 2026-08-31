@@ -16,7 +16,7 @@ export default function TryItPage() {
     <div id="page-tryit" style={{ position: 'fixed', inset: 0, background: 'var(--bg)', overflow: 'hidden' }}>
       {/* Desktop iframe */}
       {!isMobile && (
-        <div style={{ position: 'fixed', top: 64, left: 0, right: 0, bottom: 44, overflow: 'auto' }}>
+        <div style={{ position: 'fixed', top: 64, left: 0, margin: '-38px', right: 0, bottom: 44, overflow: 'auto' }}>
           <iframe
             id="tryItFrame"
             src="https://onecompiler.com/java?embed=true"
@@ -44,10 +44,11 @@ export default function TryItPage() {
         style={{
           position: 'fixed',
           bottom: 0,
+          padding: '30px',
           left: 0,
           width: '100%',
           padding: '6px 16px',
-          fontSize: '.78rem',
+          fontSize: '30px',
           color: 'var(--text-muted)',
           display: 'flex',
           alignItems: 'center',
@@ -60,7 +61,7 @@ export default function TryItPage() {
         }}
       >
         <i className="fas fa-keyboard" style={{ color: 'var(--primary)' }}></i> For run{' '}
-        <button className="hint-btn">
+        <button className="hint-btn" style={{padding:'10px', fontWeight: 'bold', color: 'darkblue', fontSize:'20px'}}>
           <span>Ctrl</span>+<span>Enter</span>
         </button>
       </div>
