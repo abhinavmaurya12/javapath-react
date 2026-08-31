@@ -1,6 +1,3 @@
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 class Q41
 {
     // Q41: Find numbers that are NOT repeated; all others appear twice.

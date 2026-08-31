@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class Q42
 {
     // Q42: Sort array1 using array2 as the sorting key.
@@ -17,20 +20,20 @@ class Q42
             if(array2[i] > maxKey) maxKey = array2[i];
 
         // buckets[k] holds a list of strings whose key == k
-        java.util.ArrayList<String> buckets[] = new java.util.ArrayList[maxKey + 1];
+        List<List<String>> buckets = new ArrayList<>(maxKey + 1);
         for(int k = 0; k <= maxKey; k++)
-            buckets[k] = new java.util.ArrayList<>();
+            buckets.add(new ArrayList<>());
 
         for(int i = 0; i < array1.length; i++)
-            buckets[array2[i]].add(array1[i]);
+            buckets.get(array2[i]).add(array1[i]);
 
         String result[] = new String[array1.length];
         int idx = 0;
         for(int k = 0; k <= maxKey; k++)
         {
-            for(int j = 0; j < buckets[k].size(); j++)
+            for(int j = 0; j < buckets.get(k).size(); j++)
             {
-                result[idx] = buckets[k].get(j);
+                result[idx] = buckets.get(k).get(j);
                 idx++;
             }
         }
@@ -47,7 +50,7 @@ class Q42
         System.out.println("}");
 
         String array1b[] = {"g","e","e","k","s","f","o","r","g","e","e","k","s"};
-        int array2b[] = {0,1,1,0,1,2,2,0,1};
+        int array2b[] = {0,1,1,0,1,2,2,0,1,0,1,1,0};
         String out2[] = sortByKey(array1b, array2b);
         System.out.print("Output: {");
         for(int i = 0; i < out2.length; i++)
