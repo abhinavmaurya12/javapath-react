@@ -55,7 +55,7 @@ export default function VoiceReader({ text, title }) {
   const synth = typeof window !== 'undefined' ? window.speechSynthesis : null
   const [playing, setPlaying] = useState(false)
   const [paused, setPaused] = useState(false)
-  const [rate, setRate] = useState(1)
+  const [rate, setRate] = useState(0.9)
   const [voices, setVoices] = useState([])
   const [voiceURI, setVoiceURI] = useState('')
   const [open, setOpen] = useState(false)
@@ -64,6 +64,10 @@ export default function VoiceReader({ text, title }) {
   const currentChunkRef = useRef(-1)
   const chunksRef = useRef([])
   const stoppedRef = useRef(false)
+  const pausedRef = useRef(false)
+  // Pending inter-chunk timer, so pause/restart can cancel it and avoid two
+  // speakNext() calls racing each other into duplicate chunks.
+  const pendingTimerRef = useRef(null)
   const panelRef = useRef(null)
   // Increments on every start/restart/cancel so stale utterance callbacks
   // (from a cancelled chunk) can't advance the queue out of order.
@@ -113,8 +117,9 @@ export default function VoiceReader({ text, title }) {
 
   // Restart the current chunk when rate changes while playing.
   useEffect(() => {
-    if (!playing || paused) return
+    if (!playing || pausedRef.current) return
     if (!synth) return
+    if (pendingTimerRef.current) { clearTimeout(pendingTimerRef.current); pendingTimerRef.current = null }
     sessionRef.current++ // invalidate any in-flight chunk callbacks
     synth.cancel()
     // Rewind to the chunk currently being spoken so it replays with new settings.
@@ -125,6 +130,9 @@ export default function VoiceReader({ text, title }) {
   function speakNext() {
     const mySession = ++sessionRef.current
     if (stoppedRef.current) return
+    if (pendingTimerRef.current) { clearTimeout(pendingTimerRef.current); pendingTimerRef.current = null }
+    pausedRef.current = false
+    setPaused(false)
     const chunks = chunksRef.current
     if (chunkIndexRef.current >= chunks.length) {
       if (mySession !== sessionRef.current) return
@@ -141,7 +149,10 @@ export default function VoiceReader({ text, title }) {
     const u = buildUtterance(chunk)
     u.onend = () => {
       if (stoppedRef.current || mySession !== sessionRef.current) return
-      setTimeout(() => speakNext(), 120)
+      pendingTimerRef.current = setTimeout(() => {
+        pendingTimerRef.current = null
+        speakNext()
+      }, 120)
     }
     u.onerror = () => {
       if (stoppedRef.current || mySession !== sessionRef.current) return
@@ -155,7 +166,9 @@ export default function VoiceReader({ text, title }) {
     if (!synth || !text) return
     sessionRef.current++
     synth.cancel()
+    if (pendingTimerRef.current) { clearTimeout(pendingTimerRef.current); pendingTimerRef.current = null }
     stoppedRef.current = false
+    pausedRef.current = false
     const plain = stripHtml(text)
     if (!plain) return
     chunksRef.current = chunkText(plain)
@@ -170,8 +183,32 @@ export default function VoiceReader({ text, title }) {
   function togglePause() {
     if (!synth) return
     if (playing) {
-      if (paused) { synth.resume(); setPaused(false); setOpen(false) }
-      else { synth.pause(); setPaused(true) }
+      if (pausedRef.current) {
+        // Resume is unreliable (Chrome can leave an utterance stuck paused
+        // after resume() with no callback to detect it), so we never rely on
+        // it. Cancel and replay the current chunk from its start — this is
+        // deterministic and can't hang. If we were paused in the inter-chunk
+        // gap (no chunk was speaking), just advance the queue.
+        if (pendingTimerRef.current) { clearTimeout(pendingTimerRef.current); pendingTimerRef.current = null }
+        const wasSpeaking = synth.speaking
+        pausedRef.current = false
+        setPaused(false)
+        setOpen(false)
+        sessionRef.current++
+        synth.cancel()
+        if (wasSpeaking && currentChunkRef.current >= 0) {
+          // Paused mid-chunk: replay it from the start.
+          chunkIndexRef.current = currentChunkRef.current
+        }
+        // else: paused in the gap before any chunk — chunkIndexRef already
+        // points at the next chunk, so just speakNext().
+        setTimeout(() => speakNext(), 100)
+      } else {
+        if (pendingTimerRef.current) { clearTimeout(pendingTimerRef.current); pendingTimerRef.current = null }
+        synth.pause()
+        pausedRef.current = true
+        setPaused(true)
+      }
     } else {
       speak()
       setOpen(false)
@@ -180,7 +217,9 @@ export default function VoiceReader({ text, title }) {
 
   function stop() {
     if (!synth) return
+    if (pendingTimerRef.current) { clearTimeout(pendingTimerRef.current); pendingTimerRef.current = null }
     stoppedRef.current = true
+    pausedRef.current = false
     synth.cancel()
     setPlaying(false)
     setPaused(false)
@@ -243,15 +282,6 @@ export default function VoiceReader({ text, title }) {
           </div>
 
           <div className="voice-reader__row">
-            <div className="voice-reader__group">
-              <label className="voice-reader__group-label">Voice</label>
-              <select className="voice-reader__select" value={voiceURI} onChange={e => setVoiceURI(e.target.value)}>
-                <option value="">Google Hindi (default)</option>
-                {voices.map(v => (
-                  <option key={v.voiceURI} value={v.voiceURI}>{v.name} ({v.lang})</option>
-                ))}
-              </select>
-            </div>
             <div className="voice-reader__group">
               <label className="voice-reader__group-label">Speed <span className="voice-reader__group-val">{rate.toFixed(1)}x</span></label>
               <input type="range" min="0.5" max="2" step="0.1" value={rate} onChange={e => setRate(parseFloat(e.target.value))} className="voice-reader__range" />

@@ -44,15 +44,14 @@ export default function DSAPage() {
     }
   }, []) // eslint-disable-line
 
-  function showTopic(topicId, el) {
+  function showTopic(topicId) {
     setActiveTopic(topicId)
     navigate('/dsa', { state: { topic: topicId } })
     const t = dsaTopics[topicId]
     if (t) setLast('dsa-' + topicId, t.title)
-    if (el) {
-      document.querySelectorAll('#dsaSidebar .sidebar-item').forEach(i => i.classList.remove('active'))
-      el.classList.add('active')
-    }
+    document.querySelectorAll('#dsaSidebar .sidebar-item').forEach(i => i.classList.remove('active'))
+    const item = document.querySelector('#dsaSidebar .sidebar-item[data-topic="' + topicId + '"]')
+    if (item) item.classList.add('active')
     const sidebar = document.getElementById('dsaSidebar')
     if (sidebar) sidebar.classList.remove('open')
     const backdrop = document.getElementById('dsaSidebarBackdrop')
@@ -68,9 +67,7 @@ export default function DSAPage() {
   }
 
   function navigateDSATopic(topicId) {
-    const idx = topicKeys.indexOf(topicId)
-    const next = idx < topicKeys.length - 1 ? topicKeys[idx + 1] : null
-    if (next) showTopic(next, document.querySelector('#dsaSidebar .sidebar-item[onclick*="' + next + '"]'))
+    showTopic(topicId)
   }
 
   function markComplete() {
@@ -85,7 +82,7 @@ export default function DSAPage() {
 
   // Wire global handlers for inline onclick in SafeHTML
   useEffect(() => {
-    window.__dsaShow = (el, id) => showTopic(id, el)
+    window.__dsaShow = (id) => showTopic(id)
     window.__dsaMark = (id) => markDSAComplete(id)
     window.__dsaNavigate = (id) => navigateDSATopic(id)
     return () => {
@@ -112,8 +109,8 @@ export default function DSAPage() {
           {DSA_SECTIONS.map(sec => (
             <div className="sidebar-section" key={sec.title}>
               <div className="sidebar-section-title">{sec.title}</div>
-              {sec.items.map(t => (
-                <div key={t} className="sidebar-item" onClick={e => showTopic(t, e.currentTarget)}>
+{sec.items.map(t => (
+                <div key={t} className="sidebar-item" data-topic={t} onClick={() => showTopic(t)}>
                   <i className="fas fa-coffee"></i> {dsaTopics[t] ? dsaTopics[t].title : t}
                 </div>
               ))}
@@ -136,7 +133,7 @@ export default function DSAPage() {
                 const t = dsaTopics[key]
                 if (!t) return null
                 return (
-                  <div key={key} className="card" style={{ cursor: 'pointer' }} onClick={() => showTopic(key, null)}>
+                  <div key={key} className="card" style={{ cursor: 'pointer' }} onClick={() => showTopic(key)}>
                     <div className="card-icon orange"><i className={'fas ' + (t.icon || 'fa-book')}></i></div>
                     <h3>{t.title}</h3>
                     <p>{t.title}</p>
@@ -197,7 +194,8 @@ export default function DSAPage() {
                 <div
                   key={t}
                   className={'sidebar-item' + (activeTopic === t ? ' active' : '')}
-                  onClick={e => showTopic(t, e.currentTarget)}
+                  data-topic={t}
+                  onClick={() => showTopic(t)}
                 >
                   <i className={'fas ' + (tt ? tt.icon : 'fas fa-coffee')}></i> {tt ? tt.title : t}
                 </div>

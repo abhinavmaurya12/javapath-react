@@ -8,6 +8,13 @@ import WhyJavaNest from '../components/WhyJavaNest'
 import JavaRoadmapVisual from '../components/JavaRoadmapVisual'
 
 const WHATS_NEW = [
+  { date: 'September 1, 2026', title: 'Voice Reader, Dark/Light Fixes & More', items: [
+    'Voice reader (read-aloud) now available for all Java, DSA, HTML, CSS, JavaScript and React chapters',
+    'Fixed dark/light mode text color bugs on the 10-Day Update Cycle and Fresh Content section',
+    'Added a slow-internet loader so content loads smoothly even on weak connections',
+    'Fixed compiler iframe bugs in the Try It editor',
+    'Next update soon… with more features'
+  ]},
   { date: 'August 31, 2026', title: 'Bug Fixes & Polish', items: [
     'Fixed Java compiler editor text color — code is now visible in both light and dark themes',
     'Frontend (HTML/CSS/JS/React) sidebar now closes automatically after selecting a chapter on mobile',

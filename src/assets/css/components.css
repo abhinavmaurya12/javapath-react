@@ -28,18 +28,18 @@
 @keyframes floatOrb{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
 .update-cycle-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
 .cycle-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(248,152,32,.15);border:1px solid rgba(248,152,32,.3);color:var(--primary);padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:20px;animation:fadeSlideDown .6s ease-out}
-.cycle-heading{font-size:2rem;color:#fff;margin-bottom:12px;animation:fadeSlideDown .8s ease-out}
+.cycle-heading{font-size:2rem;color:var(--text);margin-bottom:12px;animation:fadeSlideDown .8s ease-out}
 .cycle-highlight{color:var(--primary);position:relative}
 .cycle-highlight::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:3px;background:var(--primary);border-radius:2px;animation:underlineGrow .8s ease-out .4s both}
 @keyframes underlineGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.cycle-sub{color:rgba(255,255,255,.7);font-size:1rem;margin-bottom:40px;max-width:550px;margin-left:auto;margin-right:auto;animation:fadeSlideDown 1s ease-out}
+.cycle-sub{color:var(--text-muted);font-size:1rem;margin-bottom:40px;max-width:550px;margin-left:auto;margin-right:auto;animation:fadeSlideDown 1s ease-out}
 .cycle-timeline{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
 .cycle-day{display:flex;flex-direction:column;align-items:center;gap:0;animation:popIn .5s ease-out calc(var(--delay) * .12s) both}
 .day-dot{width:14px;height:14px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px rgba(248,152,32,.5);position:relative;z-index:2;animation:pulse 2s ease-in-out infinite;animation-delay:calc(var(--delay) * .3s)}
-.day-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 20px;min-width:110px;backdrop-filter:blur(8px);transition:all .3s}
+.day-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;min-width:110px;backdrop-filter:blur(8px);transition:all .3s}
 .day-card:hover{background:rgba(248,152,32,.12);border-color:rgba(248,152,32,.3);transform:translateY(-4px)}
 .day-label{display:block;font-size:.75rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.day-task{display:block;font-size:.85rem;color:#fff;font-weight:500}
+.day-task{display:block;font-size:.85rem;color:var(--text);font-weight:500}
 @keyframes fadeSlideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{from{opacity:0;transform:scale(.5) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 12px rgba(248,152,32,.4)}50%{box-shadow:0 0 24px rgba(248,152,32,.8)}}

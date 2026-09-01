@@ -968,15 +968,6 @@ button:focus-visible{box-shadow:0 0 0 3px rgba(248,152,32,.3)}
   .frontend-sidebar .sidebar-item{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 }
 
-/* === Update Cycle variants (unique) === */
-.update-cycle{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:60px 24px;text-align:center;position:relative;overflow:hidden}
-.update-cycle-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
-.cycle-timeline{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
-.cycle-day{display:flex;flex-direction:column;align-items:center;gap:0;animation:popIn .5s ease-out calc(var(--delay) * .12s) both}
-.day-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 20px;min-width:110px;backdrop-filter:blur(8px);transition:all .3s}
-.day-label{display:block;font-size:.75rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.day-task{display:block;font-size:.85rem;color:#fff;font-weight:500}
-
 /* === Responsive unique === */
 .cycle-timeline{gap:6px}
 .cycle-day{min-width:0;flex:0 0 calc(33.33% - 4px)}
