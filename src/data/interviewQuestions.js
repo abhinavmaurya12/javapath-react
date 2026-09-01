@@ -1786,4 +1786,1142 @@ class Q94
         }
     }
 }</code></pre></div>`},
+  {id:122, title:"Problem: 1", content:`<div class="concept-box"><h3>122) Pattern Assignment: Bfly_prac.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>Bfly_prac.java</span></div><pre><code>class Bfly_prac
+{
+public static void main(String args[])
+{
+int i,j, n=7;
+for(i=1; i<=n; i++){
+	for(j=1; j<=i; j++){
+		System.out.print("*");
+	}
+	for(j=1; j<=2*(n-i); j++){
+		System.out.print(" ");
+	}
+	for(j=1; j<=i; j++){
+		System.out.print("*");
+	}
+	System.out.println();
+}
+
+for(i=n; i>=1; i--){
+	for(j=1; j<=i; j++){
+		System.out.print("*");
+	}
+	for(j=1; j<=2*(n-i); j++){
+		 System.out.print(" ");
+	}
+	 for(j=1; j<=i; j++){
+		 System.out.print("*");
+	}
+	 System.out.println();
+}
+
+
+		
+
+
+
+}
+
+
+
+}</code></pre></div><div class="output-block">*            *
+<br>**          **
+<br>***        ***
+<br>****      ****
+<br>*****    *****
+<br>******  ******
+<br>**************
+<br></div>`},
+  {id:123, title:"Problem: 2", content:`<div class="concept-box"><h3>123) Pattern Assignment: P1222.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P1222.java</span></div><pre><code>class P1222
+{
+public static void main(String args[])
+{
+
+int[] arr= {0,1,1,2,3,3,1,4,4,5};
+int count =0;
+for(int i=0;i<5; i++){
+
+
+	for(int j=0;j<arr[count]; j++){
+	System.out.print(" ");
+	}
+	count++;
+	   for(int j=0;j<arr[count]; j++){
+	System.out.print("*");
+	}
+	count++;
+System.out.println();
+	
+
+}
+}
+}</code></pre></div><div class="output-block">*
+<br> **
+<br>   ***
+<br> ****
+<br>    *****
+<br></div>`},
+  {id:124, title:"Problem: 3", content:`<div class="concept-box"><h3>124) Pattern Assignment: P18.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P18.java</span></div><pre><code>public class P18 {
+    public static void main(String[] args) {
+
+        for (int i = 1; i <= 5; i++) {
+
+            for (char ch = 'E'; ch >= 'A'; ch--) {
+                System.out.print(ch);
+            }
+
+            System.out.println();
+        }
+    }
+}</code></pre></div><div class="output-block">EDCBA
+<br>EDCBA
+<br>EDCBA
+<br>EDCBA
+<br>EDCBA
+<br></div>`},
+  {id:125, title:"Problem: 4", content:`<div class="concept-box"><h3>125) Pattern Assignment: P19.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P19.java</span></div><pre><code>public class P19 {
+    public static void main(String[] args) {
+
+        char ch = 'A';
+
+        for (int i = 1; i <= 5; i++) {
+
+            for (int j = 1; j <= 5; j++) {
+                System.out.print(ch);
+                ch++;
+            }
+
+            System.out.println();
+        }
+    }
+}</code></pre></div><div class="output-block">ABCDE
+<br>FGHIJ
+<br>KLMNO
+<br>PQRST
+<br>UVWXY
+<br></div>`},
+  {id:126, title:"Problem: 5", content:`<div class="concept-box"><h3>126) Pattern Assignment: P20.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P20.java</span></div><pre><code>public class P20 {
+    public static void main(String[] args) {
+
+        for (int i = 1; i <= 5; i++) {
+
+            if (i % 2 == 1) {
+                // Odd row -> *****
+                for (int j = 1; j <= 5; j++) {
+                    System.out.print("*");
+                }
+            } else {
+                // Even row -> ABCDE
+                for (char ch = 'A'; ch <= 'E'; ch++) {
+                    System.out.print(ch);
+                }
+            }
+
+            System.out.println();
+        }
+    }
+}</code></pre></div><div class="output-block">*****
+<br>ABCDE
+<br>*****
+<br>ABCDE
+<br>*****
+<br></div>`},
+  {id:127, title:"Problem: 6", content:`<div class="concept-box"><h3>127) Pattern Assignment: P21.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P21.java</span></div><pre><code>class P21
+{
+public static void main(String args [])
+{
+int i,j;
+char ch;
+for(i=1; i<5; i++){
+	if(i%2!=0)
+		ch='A';
+	else
+		ch='a';
+ for(j=1; j<5; j++){
+    System.out.print(ch);
+	ch++;
+  }
+  System.out.println();
+  }
+  }
+}</code></pre></div><div class="output-block">ABCD
+<br>abcd
+<br>ABCD
+<br>abcd
+<br></div>`},
+  {id:128, title:"Problem: 7", content:`<div class="concept-box"><h3>128) Pattern Assignment: P22.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P22.java</span></div><pre><code>class P22
+{
+public static void main(String args[])
+{
+int i,j,k;
+char ch;
+for(i=1; i<=5; i++){
+   k=1;
+   ch='A';
+   for(j=1; j<=5; j++){
+    if(i%2==0){
+		System.out.print(ch);
+	ch++;
+	}
+	else
+	{
+		System.out.print(k);
+	k++;
+	}
+	}
+	System.out.println();
+	}
+	}
+	}
+
+</code></pre></div><div class="output-block">12345
+<br>ABCDE
+<br>12345
+<br>ABCDE
+<br>12345
+<br></div>`},
+  {id:129, title:"Problem: 8", content:`<div class="concept-box"><h3>129) Pattern Assignment: P22_1.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P22_1.java</span></div><pre><code>class P22_1
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+ for(j=0; j<i; j++){
+  System.out.print(i);
+  }
+  System.out.println();
+  }
+
+}
+}</code></pre></div><div class="output-block">1
+<br>22
+<br>333
+<br>4444
+<br>55555
+<br></div>`},
+  {id:130, title:"Problem: 9", content:`<div class="concept-box"><h3>130) Pattern Assignment: P23.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P23.java</span></div><pre><code>class P23
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ for(j=0; j<=5-i; j++){
+  System.out.print(i);
+  }
+  System.out.println();
+  }
+
+
+}
+}
+
+// 5
+// 44
+// 333
+// 2222
+// 11111
+</code></pre></div><div class="output-block">5
+<br>44
+<br>333
+<br>2222
+<br>11111
+<br></div>`},
+  {id:131, title:"Problem: 10", content:`<div class="concept-box"><h3>131) Pattern Assignment: P24.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P24.java</span></div><pre><code>class P24
+{
+public static void main(String args[])
+{
+int i,j,n=1;
+for(i=1; i<=5; i++){
+ n=i;
+ for(j=0; j<i; j++){
+   System.out.print(n);
+   n++;
+  }
+  System.out.println();
+  
+  }
+
+}
+}</code></pre></div><div class="output-block">1
+<br>23
+<br>345
+<br>4567
+<br>56789
+<br></div>`},
+  {id:132, title:"Problem: 11", content:`<div class="concept-box"><h3>132) Pattern Assignment: P25.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P25.java</span></div><pre><code>class P25
+{
+public static void main(String args[])
+{
+   int i, j, n;
+        for(i=1; i<=5; i++)
+        {
+            n = 2*i - 1;
+            for(j=1; j<=i; j++)
+            {
+                System.out.print(n);
+                n--;
+            }
+            System.out.println();
+        }
+}
+}</code></pre></div><div class="output-block">1
+<br>32
+<br>543
+<br>7654
+<br>98765
+<br></div>`},
+  {id:133, title:"Problem: 12", content:`<div class="concept-box"><h3>133) Pattern Assignment: P26.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P26.java</span></div><pre><code>class P26
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+ for(j=1; j<=i; j++){
+  System.out.print(j);
+  }
+  System.out.println();
+  }
+
+
+}
+}</code></pre></div><div class="output-block">1
+<br>12
+<br>123
+<br>1234
+<br>12345
+<br></div>`},
+  {id:134, title:"Problem: 13", content:`<div class="concept-box"><h3>134) Pattern Assignment: P27.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P27.java</span></div><pre><code>class P27
+{
+public static void main(String args[])
+{
+int i,j,n=0;
+for(i=1; i<=5; i++){
+  n=i;
+ for(j=1; j<=i; j++){
+  System.out.print(n);
+  n--;
+ }
+ System.out.println();
+ }
+
+
+
+}
+}</code></pre></div><div class="output-block">1
+<br>21
+<br>321
+<br>4321
+<br>54321
+<br></div>`},
+  {id:135, title:"Problem: 14", content:`<div class="concept-box"><h3>135) Pattern Assignment: P28.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P28.java</span></div><pre><code>class P28
+{
+public static void main(String args[])
+{
+int i,j,n=1;
+for(i=1; i<=5; i++){
+
+ for(j=1; j<=i; j++){
+  System.out.print(n);
+  n++;
+}
+System.out.println();
+}
+
+
+}
+}</code></pre></div><div class="output-block">1
+<br>23
+<br>456
+<br>78910
+<br>1112131415
+<br></div>`},
+  {id:136, title:"Problem: 15", content:`<div class="concept-box"><h3>136) Pattern Assignment: P29.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P29.java</span></div><pre><code>class P29
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+	char ch='A';
+ for(j=1; j<=i; j++){
+  System.out.print(ch);
+  ch++;
+  }
+  System.out.println();
+  }
+
+}
+}</code></pre></div><div class="output-block">A
+<br>AB
+<br>ABC
+<br>ABCD
+<br>ABCDE
+<br></div>`},
+  {id:137, title:"Problem: 16", content:`<div class="concept-box"><h3>137) Pattern Assignment: P30.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P30.java</span></div><pre><code>class P30
+{
+public static void main(String args[])
+{
+int i,j;
+ for( i=1; i<=5; i++)
+   {
+    char ch = (char)('A' + i - 1);
+            ch = (char)(ch + i - 1);
+
+            for( j=1; j<=i; j++)
+            {
+                System.out.print(ch);
+				ch--;
+            }
+
+            System.out.println();
+        }
+}
+}</code></pre></div><div class="output-block">A
+<br>CB
+<br>EDC
+<br>GFED
+<br>IHGFE
+<br></div>`},
+  {id:138, title:"Problem: 17", content:`<div class="concept-box"><h3>138) Pattern Assignment: P31.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P31.java</span></div><pre><code>class P31
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+ for(j=1; j<=i; j++){
+  if(i%2!=0){
+  System.out.print("*");
+}else
+{
+System.out.print(j);
+}
+}
+System.out.println();
+
+}
+}
+}</code></pre></div><div class="output-block">*
+<br>12
+<br>***
+<br>1234
+<br>*****
+<br></div>`},
+  {id:139, title:"Problem: 18", content:`<div class="concept-box"><h3>139) Pattern Assignment: P32.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P32.java</span></div><pre><code>class P32
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+ for(j=1; j<=i; j++){
+	 if(j%2!=0){
+  System.out.print("1");
+  }else
+  {
+	  System.out.print("0");
+  }
+  }
+  System.out.println();
+
+}
+}
+}</code></pre></div><div class="output-block">1
+<br>10
+<br>101
+<br>1010
+<br>10101
+<br></div>`},
+  {id:140, title:"Problem: 19", content:`<div class="concept-box"><h3>140) Pattern Assignment: P33.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P33.java</span></div><pre><code>class P33
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+ for(j=1; j<=i; j++){
+  if(i==1 || j%2==0){
+	  System.out.print("1");
+  }else
+  {
+	  System.out.print("0");
+  }  
+  }
+  System.out.println();
+  }
+
+}
+}</code></pre></div><div class="output-block">1
+<br>01
+<br>010
+<br>0101
+<br>01010
+<br></div>`},
+  {id:141, title:"Problem: 20", content:`<div class="concept-box"><h3>141) Pattern Assignment: P34.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P34.java</span></div><pre><code>class P34
+{// not complete .....
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+	 char ch = (char)('A' + i - 1);
+            ch = (char)(ch + i - 1);
+ for(j=1; j<=i; j++){
+  System.out.print(ch);
+  ch--;
+  
+  }
+  System.out.println();
+  }
+
+
+
+
+}
+}</code></pre></div><div class="output-block">A
+<br>CB
+<br>EDC
+<br>GFED
+<br>IHGFE
+<br></div>`},
+  {id:142, title:"Problem: 21", content:`<div class="concept-box"><h3>142) Pattern Assignment: P35.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P35.java</span></div><pre><code>class P35
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ for(j=1; j<=i; j++){
+  System.out.print("*");
+  }
+  System.out.println();
+  }
+}
+}</code></pre></div><div class="output-block">*****
+<br>****
+<br>***
+<br>**
+<br>*
+<br></div>`},
+  {id:143, title:"Problem: 22", content:`<div class="concept-box"><h3>143) Pattern Assignment: P36.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P36.java</span></div><pre><code>class P36
+{
+public static void main(String args[])
+{
+int i,j,n=5;
+for(i=1; i<=5; i++){
+ for(j=1; j<=n-i; j++){
+	System.out.print(" ");
+ }
+ for(j=1; j<=i; j++){
+	 System.out.print("*");
+ }
+  System.out.println();
+}
+
+
+}
+}</code></pre></div><div class="output-block">    *
+<br>   **
+<br>  ***
+<br> ****
+<br>*****
+<br></div>`},
+  {id:144, title:"Problem: 23", content:`<div class="concept-box"><h3>144) Pattern Assignment: P39.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P39.java</span></div><pre><code>class P39
+{
+public static void main(String args[])
+{
+
+int i,j,k;
+
+//start
+for(i=1; i<=5; i++){
+System.out.print("* ");
+}
+System.out.println("");
+
+//mid
+for(i=1; i<=3; i++){
+ for(j=1; j<=9; j++){
+   if(j==5 || j==9){
+    System.out.print("* ");
+	}else
+	{
+	System.out.print("  ");
+	}
+	}
+	System.out.println("");
+	}
+	
+	//end
+	for(k=1; k<=9; k++){
+		if(k>=5){
+			System.out.print("* ");
+		}
+		else{
+			System.out.print("  ");
+		}
+	}
+	
+	}
+	}
+</code></pre></div><div class="output-block">* * * * * 
+<br>        *       * 
+<br>        *       * 
+<br>        *       * 
+<br>        * * * * * </div>`},
+  {id:145, title:"Problem: 24", content:`<div class="concept-box"><h3>145) Pattern Assignment: P40.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P40.java</span></div><pre><code>class P40
+{
+public static void main (String args[])
+{
+int i,j,k,n=5;
+
+for(i=1; i<=n; i++){
+System.out.print(i+" ");
+}
+System.out.println("");
+
+for(j=1; j<=n; j++){
+ if(j==1){
+ System.out.print("2 ");}
+ else if(j!=n){
+ System.out.print("  ");}
+ else{
+ System.out.print((n-1)+" ");}
+}
+System.out.println("");
+
+for(k=1; k<=n; k++){
+if(k==1 || k==n){
+System.out.print("3 ");}
+else{
+System.out.print("  ");}
+}
+System.out.println("");
+
+for(j=1; j<=n; j++){
+ if(j==1){
+ System.out.print("4 ");}
+ else if(j==n){
+ System.out.print((n-3)+" ");}
+ else{
+ System.out.print("  ");}
+ }
+ System.out.println("");
+
+for(j=n; j>=1; j--){
+System.out.print(j+" ");
+  }
+
+ }
+ }</code></pre></div><div class="output-block">1 2 3 4 5 
+<br>2       4 
+<br>3       3 
+<br>4       2 
+<br>5 4 3 2 1 </div>`},
+  {id:146, title:"Problem: 25", content:`<div class="concept-box"><h3>146) Pattern Assignment: P40_1.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P40_1.java</span></div><pre><code>class P40_1
+{
+public static void main(String args[])
+{
+int i,j,n=5;
+ for(i=1; i<=n; i++)
+        {
+            for(j=1; j<=n; j++)
+            {
+                if(i==1)
+                {
+                    System.out.print(j+" ");
+                }
+                else if(i==n)
+                {
+                    System.out.print((n-j+1)+" ");
+                }
+                else if(j==1)
+                {
+                    System.out.print((i+1)+" ");
+                }
+                else if(j==n)
+                {
+                    System.out.print((n-i+1)+" ");
+                }
+                else
+                {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+
+
+}
+}</code></pre></div><div class="output-block">1 2 3 4 5 
+<br>3       4 
+<br>4       3 
+<br>5       2 
+<br>5 4 3 2 1 
+<br></div>`},
+  {id:147, title:"Problem: 26", content:`<div class="concept-box"><h3>147) Pattern Assignment: P41.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P41.java</span></div><pre><code>class P41
+{
+public static void main(String args[])
+{
+int i,j,k;
+
+for(i=1; i<=5; i++){
+ System.out.print("*  ");
+}
+ System.out.println("");
+for(j=1; j<=5; j++){
+ if(j==1 || j==5){
+  System.out.print("*  ");
+   }else
+	{
+		System.out.print("   ");
+	}
+   }
+  System.out.println("");
+  
+  
+  
+for(k=1; k<=5; k++){
+	if(k==3)
+		System.out.print("   ");
+	else
+		System.out.print("*  ");
+}  System.out.println("");
+for(j=1; j<=5; j++){
+	if(j==2 || j==4)
+		System.out.print("   ");
+	else
+		System.out.print("*  ");
+} System.out.println("");
+for(k=1; k<=5; k++){
+	if(k==3)
+		System.out.print("   ");
+	else
+		System.out.print("*  ");
+}  System.out.println("");
+	
+
+
+for(j=1; j<=5; j++){
+ if(j==1 || j==5){
+  System.out.print("*  ");
+   }else
+	{
+		System.out.print("   ");
+	}
+   }
+    System.out.println("");
+   for(i=1; i<=5; i++){
+ System.out.print("*  ");
+}
+  
+  }
+  }</code></pre></div><div class="output-block">*  *  *  *  *  
+<br>*           *  
+<br>*  *     *  *  
+<br>*     *     *  
+<br>*  *     *  *  
+<br>*           *  
+<br>*  *  *  *  *  </div>`},
+  {id:148, title:"Problem: 27", content:`<div class="concept-box"><h3>148) Pattern Assignment: P411.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P411.java</span></div><pre><code>class P411
+{
+public static void main(String args[])
+{
+
+for(int i =1; i<8;i++){
+for(int j =1; j<=5;j++){
+if(i==5) System.out.print("*");
+else continue;
+}
+if(i==1 || i==7){
+for(int j =1; j<=3;j++){
+if(i==5) System.out.print("*");
+else continue;
+}
+}
+}
+
+
+}
+}</code></pre></div><div class="output-block">*****</div>`},
+  {id:149, title:"Problem: 28", content:`<div class="concept-box"><h3>149) Pattern Assignment: P41_1.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P41_1.java</span></div><pre><code>class P41_1
+{
+public static void main(String args[])
+{
+int i,j;
+
+for(i=1; i<=7; i++){
+ for(j=1; j<=5; j++){
+  if (i == 1 || i == 7 || j == 1 || j == 5)
+    System.out.print("*  ");
+else if ((i == 3 || i == 5) && j != 3)
+    System.out.print("*  ");
+else if (i == 4 && j == 3)
+    System.out.print("*  ");
+else
+    System.out.print("   ");
+  }
+  System.out.println();
+  }
+  
+}
+}</code></pre></div><div class="output-block">*  *  *  *  *  
+<br>*           *  
+<br>*  *     *  *  
+<br>*     *     *  
+<br>*  *     *  *  
+<br>*           *  
+<br>*  *  *  *  *  
+<br></div>`},
+  {id:150, title:"Problem: 29", content:`<div class="concept-box"><h3>150) Pattern Assignment: P42.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P42.java</span></div><pre><code>class P42
+{
+public static void main(String ags[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ for(j=1; j<=i; j++){
+   System.out.print(j);
+   }
+   System.out.println();
+   }
+
+
+
+}
+}</code></pre></div><div class="output-block">12345
+<br>1234
+<br>123
+<br>12
+<br>1
+<br></div>`},
+  {id:151, title:"Problem: 30", content:`<div class="concept-box"><h3>151) Pattern Assignment: P43.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P43.java</span></div><pre><code>class P43
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+ for(j=5; j>=i; j--){
+  System.out.print(j);
+  }
+  System.out.println();
+  }
+
+
+
+}
+}</code></pre></div><div class="output-block">54321
+<br>5432
+<br>543
+<br>54
+<br>5
+<br></div>`},
+  {id:152, title:"Problem: 31", content:`<div class="concept-box"><h3>152) Pattern Assignment: P45.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P45.java</span></div><pre><code>class P45
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=1; i<=5; i++){
+ for(j=1; j<=6-i; j++){
+  System.out.print(i);
+  }
+  System.out.println();
+  }
+
+
+
+}
+}</code></pre></div><div class="output-block">11111
+<br>2222
+<br>333
+<br>44
+<br>5
+<br></div>`},
+  {id:153, title:"Problem: 32", content:`<div class="concept-box"><h3>153) Pattern Assignment: P47.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P47.java</span></div><pre><code>class P47
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ for(j=1; j<=i; j++){
+  System.out.print(i);
+  }
+  System.out.println();
+  }
+
+
+
+}
+}</code></pre></div><div class="output-block">55555
+<br>4444
+<br>333
+<br>22
+<br>1
+<br></div>`},
+  {id:154, title:"Problem: 33", content:`<div class="concept-box"><h3>154) Pattern Assignment: P48.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P48.java</span></div><pre><code>class P48
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ char ch='A';
+  for(j=1; j<=i; j++){
+   System.out.print(ch);
+    ch++;
+}
+System.out.println();
+}  
+
+}
+}</code></pre></div><div class="output-block">ABCDE
+<br>ABCD
+<br>ABC
+<br>AB
+<br>A
+<br></div>`},
+  {id:155, title:"Problem: 34", content:`<div class="concept-box"><h3>155) Pattern Assignment: P49.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P49.java</span></div><pre><code>class P49
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ char ch='E';
+  for(j=1; j<=i; j++){
+   System.out.print(ch);
+    ch--;
+}
+System.out.println();
+}  
+
+}
+}</code></pre></div><div class="output-block">EDCBA
+<br>EDCB
+<br>EDC
+<br>ED
+<br>E
+<br></div>`},
+  {id:156, title:"Problem: 35", content:`<div class="concept-box"><h3>156) Pattern Assignment: P52.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P52.java</span></div><pre><code>class P52
+{
+public static void main(String args[])
+{
+char ch='A';
+int i,j;
+for(i=5; i>=1; i--){
+  for(j=1; j<=i; j++){
+   System.out.print(ch);   
+}
+ch++;
+System.out.println();
+}  
+
+}
+}</code></pre></div><div class="output-block">AAAAA
+<br>BBBB
+<br>CCC
+<br>DD
+<br>E
+<br></div>`},
+  {id:157, title:"Problem: 36", content:`<div class="concept-box"><h3>157) Pattern Assignment: P53.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P53.java</span></div><pre><code>class P53
+{
+public static void main(String args[])
+{
+int i,j;
+char ch='E';
+
+for(i=5; i>=1; i--){
+	for(j=1; j<=i; j++){
+		System.out.print(ch);
+	}
+	System.out.println();	
+    ch--;	
+}
+}
+}</code></pre></div><div class="output-block">EEEEE
+<br>DDDD
+<br>CCC
+<br>BB
+<br>A
+<br></div>`},
+  {id:158, title:"Problem: 37", content:`<div class="concept-box"><h3>158) Pattern Assignment: P54.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P54.java</span></div><pre><code>class P54
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+int n=1;
+ for(j=1; j<=i; j++){
+  System.out.print(n);
+  n++;
+  }
+  System.out.println();
+  }
+
+
+
+}
+}</code></pre></div><div class="output-block">12345
+<br>1234
+<br>123
+<br>12
+<br>1
+<br></div>`},
+  {id:159, title:"Problem: 38", content:`<div class="concept-box"><h3>159) Pattern Assignment: P55.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P55.java</span></div><pre><code>class P55
+{
+public static void main(String args[])
+{
+int i,j;
+char ch='A';
+
+for(i=5; i>=1; i--){
+ for(j=1; j<=i; j++){
+  System.out.print(ch);
+  ch++;
+  }
+  System.out.println();
+  }
+
+
+
+
+}
+}</code></pre></div><div class="output-block">ABCDE
+<br>FGHI
+<br>JKL
+<br>MN
+<br>O
+<br></div>`},
+  {id:160, title:"Problem: 39", content:`<div class="concept-box"><h3>160) Pattern Assignment: P56.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P56.java</span></div><pre><code>class P56
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ for(j=1; j<=i; j++){
+  if(i%2==0)
+  System.out.print("0");
+  else
+  System.out.print("1");
+  }
+  System.out.println();
+  }
+
+
+
+}
+}</code></pre></div><div class="output-block">11111
+<br>0000
+<br>111
+<br>00
+<br>1
+<br></div>`},
+  {id:161, title:"Problem: 40", content:`<div class="concept-box"><h3>161) Pattern Assignment: P57.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P57.java</span></div><pre><code>class P57
+{
+public static void main(String args[])
+{
+int i,j;
+for(i=5; i>=1; i--){
+ for(j=1; j<=i; j++){
+  if(j%2==0)
+  System.out.print("0");
+  else
+  System.out.print("1");
+  }
+  System.out.println();
+  }
+
+
+
+}
+}</code></pre></div><div class="output-block">10101
+<br>1010
+<br>101
+<br>10
+<br>1
+<br></div>`},
+  {id:162, title:"Problem: 41", content:`<div class="concept-box"><h3>162) Pattern Assignment: P58.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>P58.java</span></div><pre><code>class P58
+{
+    public static void main(String args[])
+    {
+        int n = 5;
+
+        for(int i = 1; i <= n; i++)
+        {
+            int x;
+
+            if(i == 1)
+                x = 1;
+            else if(i == 5)
+                x = 1;
+            else
+                x = 0;
+
+            for(int j = 1; j <= n - i + 1; j++)
+            {
+                System.out.print(x);
+
+                if(x == 1)
+                    x = 0;
+                else
+                    x = 1;
+            }
+
+            System.out.println();
+        }
+    }
+}</code></pre></div><div class="output-block">10101
+<br>0101
+<br>010
+<br>01
+<br>1
+<br></div>`},
+  {id:163, title:"Problem: 42", content:`<div class="concept-box"><h3>163) Pattern Assignment: Ppt.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>Ppt.java</span></div><pre><code>public class Ppt {
+    public static void main(String[] args) {
+
+        int[] space = {0, 1, 6, 1, 4};
+
+        for (int i = 0; i < 5; i++) {
+
+            for (int j = 0; j < space[i]; j++)
+                System.out.print(" ");
+
+            for (int j = 0; j <= i; j++)
+                System.out.print("*");
+
+            System.out.println();
+        }
+    }
+}</code></pre></div><div class="output-block">*
+<br> **
+<br>      ***
+<br> ****
+<br>    *****
+<br></div>`},
+  {id:164, title:"Problem: 43", content:`<div class="concept-box"><h3>164) Pattern Assignment: PracticeSunday19.java</h3><p>Pattern assignment program from the Pattern Assignment practice section.</p></div><div class="code-block"><div class="code-header"><span>PracticeSunday19.java</span></div><pre><code>class PracticeSunday19
+{
+public static void main(String args []){
+
+// for(int i=0; i<5; i++){
+ // for(int j=0; j<5; j++){
+ // if(j==0 || i==0 || j==5-1 || i==5-1){
+ // System.out.print("*");
+ // }
+ // else
+ // System.out.print(" ");
+ // }
+  // System.out.println(" ");
+ // }
+ 
+ for(int i=0; i<5; i++){
+	 for(int j=0; j<5; j++){
+		 if(j==3 && i==0 || j==1 && i==1 || j==3 && i==1 || j==0 && i==2 || j==4 && i==2
+		 || j==1 && i==3 || j==3 && i==3 || j==3 && i==4){
+			 System.out.print(" ");
+		 }
+		 else
+			 System.out.print(" *");
+	 }
+	 System.out.println();
+ }
+}
+}</code></pre></div><div class="output-block"> * * *  *
+<br> *  *  *
+<br>  * * * 
+<br> *  *  *
+<br> * * *  *
+<br></div>`},
 ];

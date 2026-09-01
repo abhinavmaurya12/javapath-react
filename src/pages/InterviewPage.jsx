@@ -8,7 +8,7 @@ import useSidebarSearch from '../hooks/useSidebarSearch'
 
 export default function InterviewPage() {
   const [active, setActive] = useState(0)
-  const [expanded, setExpanded] = useState({ p1: false, p2: false })
+  const [expanded, setExpanded] = useState({ p1: false, p2: false, p3: false })
   const location = useLocation()
   const navigate = useNavigate()
   const { interviewCompleted, markInterviewComplete, setLast, checkBadges } = useProgressContext()
@@ -20,13 +20,13 @@ export default function InterviewPage() {
     if (st && typeof st.question !== 'undefined' && st.question != null) {
       const id = st.question
       setActive(id - 1)
-      setExpanded({ p1: false, p2: false, [id <= 51 ? 'p1' : 'p2']: true })
+      setExpanded({ p1: false, p2: false, p3: false, [id <= 51 ? 'p1' : id <= 121 ? 'p2' : 'p3']: true })
     }
   }, []) // eslint-disable-line
 
   function togglePhase(key) {
     setExpanded(e => {
-      const next = { p1: false, p2: false, [key]: !e[key] }
+      const next = { p1: false, p2: false, p3: false, [key]: !e[key] }
       return next
     })
   }
@@ -34,8 +34,8 @@ export default function InterviewPage() {
   function showQuestion(id) {
     const idx = id - 1
     setActive(idx)
-    const phase = id <= 51 ? 'p1' : 'p2'
-    setExpanded({ p1: false, p2: false, [phase]: true })
+    const phase = id <= 51 ? 'p1' : id <= 121 ? 'p2' : 'p3'
+    setExpanded({ p1: false, p2: false, p3: false, [phase]: true })
     navigate('/interview', { state: { question: id } })
     const q = interviewQuestions[idx]
     if (q) setLast('interview-' + id, q.title)
@@ -88,7 +88,7 @@ export default function InterviewPage() {
             aria-expanded={expanded.p1}
           >
             <i className={'fas ' + (expanded.p1 ? 'fa-chevron-down' : 'fa-chevron-right')}></i>
-            Phase 1 — Java Core ({interviewQuestions.filter(q => q.id <= 51).length} Q)
+            Phase 1 — Java Que ({interviewQuestions.filter(q => q.id <= 51).length} Q)
           </button>
           {expanded.p1 && (
             <div id="interviewSidebarList">
@@ -111,11 +111,34 @@ export default function InterviewPage() {
             aria-expanded={expanded.p2}
           >
             <i className={'fas ' + (expanded.p2 ? 'fa-chevron-down' : 'fa-chevron-right')}></i>
-            Phase 2 — Array Que ({interviewQuestions.filter(q => q.id > 51).length} Q)
+            Phase 2 — Array Que ({interviewQuestions.filter(q => q.id > 51 && q.id <= 121).length} Q)
           </button>
           {expanded.p2 && (
             <div id="interviewSidebarListPhase2">
-              {interviewQuestions.filter(q => q.id > 51).map(qq => (
+              {interviewQuestions.filter(q => q.id > 51 && q.id <= 121).map(qq => (
+                <div
+                  key={qq.id}
+                  className={'sidebar-item' + (active === qq.id - 1 ? ' active' : '')}
+                  onClick={() => showQuestion(qq.id)}
+                >
+                  <i className="fas fa-comments"></i> Q{qq.id}: {qq.title}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="sidebar-section">
+          <button
+            className="phase-toggle-btn"
+            onClick={() => togglePhase('p3')}
+            aria-expanded={expanded.p3}
+          >
+            <i className={'fas ' + (expanded.p3 ? 'fa-chevron-down' : 'fa-chevron-right')}></i>
+            Phase 3 — Pattern Que ({interviewQuestions.filter(q => q.id > 121).length} Q)
+          </button>
+          {expanded.p3 && (
+            <div id="interviewSidebarListPhase3">
+              {interviewQuestions.filter(q => q.id > 121).map(qq => (
                 <div
                   key={qq.id}
                   className={'sidebar-item' + (active === qq.id - 1 ? ' active' : '')}
