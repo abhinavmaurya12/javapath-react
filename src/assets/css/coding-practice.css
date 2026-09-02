@@ -1,0 +1,80 @@
+/* Coding Practice page styles */
+.cp-page{padding:64px 20px 80px;min-height:calc(100vh - 64px);background:var(--bg)}
+.cp-container{max-width:1200px;margin:0 auto}
+.cp-header{text-align:center;margin-bottom:32px}
+.cp-header h1{font-size:2.2rem;margin-bottom:8px;color:var(--text)}
+.cp-header h1 span{color:var(--primary)}
+.cp-header p{color:var(--text-muted);font-size:1.05rem}
+.cp-progress-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:24px}
+.cp-progress-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.cp-progress-label{font-size:.9rem;color:var(--text-muted)}
+.cp-progress-count{font-size:1.4rem;font-weight:700;color:var(--primary)}
+.cp-progress-bar{height:14px;background:var(--surface);border-radius:8px;overflow:hidden;position:relative}
+.cp-progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:8px;transition:width .6s ease;width:0}
+.cp-progress-stats{display:flex;gap:24px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.cp-stat{text-align:center}
+.cp-stat-val{font-size:1.3rem;font-weight:700;color:var(--text)}
+.cp-stat-label{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.cp-filters{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:24px}
+.cp-filter-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.cp-filter-group{display:flex;flex-direction:column;gap:6px;flex:1;min-width:200px}
+.cp-filter-group label{font-size:.78rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.cp-filter-group select,.cp-filter-group input{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:9px 12px;border-radius:8px;font-size:.88rem;font-family:inherit}
+.cp-filter-group input:focus,.cp-filter-group select:focus{outline:none;border-color:var(--primary)}
+.cp-filter-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.cp-chip{background:var(--surface);border:1px solid var(--border);color:var(--text-muted);padding:6px 14px;border-radius:20px;cursor:pointer;font-size:.82rem;transition:all .2s;user-select:none}
+.cp-chip:hover{border-color:var(--primary);color:var(--primary)}
+.cp-chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.cp-question-list{display:flex;flex-direction:column;gap:16px}
+.cp-qcard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s}
+.cp-qcard:hover{border-color:var(--primary);box-shadow:var(--shadow)}
+.cp-qcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:12px;flex-wrap:wrap}
+.cp-qcard-title{font-size:1.2rem;font-weight:700;color:var(--text)}
+.cp-qcard-meta{display:flex;gap:8px;flex-wrap:wrap}
+.cp-badge{padding:4px 12px;border-radius:20px;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.cp-badge.easy{background:rgba(39,174,96,.15);color:#27ae60}
+.cp-badge.medium{background:rgba(241,196,15,.15);color:#f1c40f}
+.cp-badge.hard{background:rgba(231,76,60,.15);color:#e74c3c}
+.cp-cat-badge{background:var(--surface);color:var(--text-muted);font-size:.72rem;padding:3px 10px;border-radius:12px}
+.cp-qcard-desc{color:var(--text-muted);font-size:.92rem;line-height:1.6;margin-bottom:16px}
+.cp-qcard-io{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.cp-io-box{background:var(--surface);border-radius:8px;padding:12px}
+.cp-io-box label{display:block;font-size:.75rem;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.cp-io-box pre{margin:0;font-size:.82rem;overflow-x:auto;color:var(--code-text);white-space:pre-wrap;word-break:break-word}
+.cp-qcard-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.cp-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;border:none;background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.cp-btn:hover{border-color:var(--primary);color:var(--primary)}
+.cp-btn-primary{background:var(--primary);color:#fff}
+.cp-btn-primary:hover{background:var(--primary-dark);color:#fff}
+.cp-btn-solved{background:#27ae60;color:#fff;border-color:#27ae60}
+.cp-qcard-section{margin-top:12px}
+.cp-qcard-section summary{cursor:pointer;font-weight:600;color:var(--primary);padding:8px 0;font-size:.9rem}
+.cp-hint-box{background:rgba(248,152,32,.08);border-left:3px solid var(--primary);padding:12px 16px;border-radius:8px;margin-top:8px;font-size:.9rem;color:var(--text)}
+.cp-sol-box{margin-top:8px}
+.cp-sol-box .code-block{margin:8px 0}
+.cp-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:32px;flex-wrap:wrap}
+.cp-nav-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s;border:1px solid var(--border);background:var(--card);color:var(--text)}
+.cp-nav-btn:hover:not(:disabled){border-color:var(--primary);color:var(--primary)}
+.cp-nav-btn:disabled{opacity:.4;cursor:not-allowed}
+.cp-back-link{display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+.cp-back-link:hover{color:var(--primary)}
+.cp-empty{text-align:center;padding:60px 20px;color:var(--text-muted)}
+.cp-empty i{font-size:3.5rem;margin-bottom:16px;display:block;color:var(--border)}
+.cp-empty h3{color:var(--text);margin-bottom:8px;font-size:1.15rem}
+.cp-empty p{font-size:.88rem;max-width:400px;margin:0 auto}
+@media(max-width:768px){
+  .cp-page{padding:56px 12px 60px}
+  .cp-header h1{font-size:1.6rem}
+  .cp-progress-wrap{padding:16px}
+  .cp-qcard{padding:16px}
+  .cp-qcard-title{font-size:1.05rem}
+  .cp-qcard-io{grid-template-columns:1fr}
+  .cp-nav{flex-direction:column-reverse}
+  .cp-nav-btn{width:100%;justify-content:center}
+  .cp-progress-stats{gap:16px}
+}
+@media(max-width:480px){
+  .cp-header h1{font-size:1.35rem}
+  .cp-progress-stats{gap:12px}
+  .cp-stat-val{font-size:1.1rem}
+}

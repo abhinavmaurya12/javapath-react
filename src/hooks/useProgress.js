@@ -27,6 +27,7 @@ export function useProgress() {
   const [streak, setStreak] = useState(() => read('streak') || { count: 0, lastDate: null })
   const [badges, setBadges] = useState(() => read('badges') || [])
   const [challengesSolved, setChallengesSolved] = useState(() => read('challenges_solved') || [])
+  const [codingCompleted, setCodingCompleted] = useState(() => read('coding_completed') || { solved: [], attempted: [] })
   const [lastLesson, setLastLesson] = useState(() => read('last_lesson') || null)
 
   useEffect(() => { write('java_completed', javaCompleted) }, [javaCompleted])
@@ -38,6 +39,7 @@ export function useProgress() {
   useEffect(() => { write('streak', streak) }, [streak])
   useEffect(() => { write('badges', badges) }, [badges])
   useEffect(() => { write('challenges_solved', challengesSolved) }, [challengesSolved])
+  useEffect(() => { write('coding_completed', codingCompleted) }, [codingCompleted])
   useEffect(() => { write('last_lesson', lastLesson) }, [lastLesson])
   useEffect(() => {
     ;['html','css','javascript','react'].forEach(t => {
@@ -88,6 +90,7 @@ export function useProgress() {
     if (s.frontendCompleted.javascript.length >= 10) unlockBadge('js-master')
     if (s.frontendCompleted.react.length >= 1) unlockBadge('react-beginner')
     if (s.frontendCompleted.react.length >= 8) unlockBadge('react-master')
+    if (s.codingCompleted && s.codingCompleted.solved && s.codingCompleted.solved.length >= 50) unlockBadge('code-arena-master')
   }, [unlockBadge])
 
   const markJavaComplete = useCallback((idx) => {
@@ -129,14 +132,24 @@ export function useProgress() {
     updateStreak()
   }, [addXP, updateStreak])
 
+  const markCodingComplete = useCallback((qId, status) => {
+    setCodingCompleted(c => {
+      const solved = status === 'solved' ? (c.solved.includes(qId) ? c.solved : [...c.solved, qId]) : c.solved.filter(x => x !== qId)
+      const attempted = status === 'attempted' ? (c.attempted.includes(qId) ? c.attempted : [...c.attempted, qId]) : c.attempted.filter(x => x !== qId)
+      return { solved, attempted }
+    })
+    addXP(15, 'Solve Coding Question')
+    updateStreak()
+  }, [addXP, updateStreak])
+
   const getSolved = () => javaCompleted.length + dsaCompleted.length + interviewCompleted.length
 
   return {
     javaCompleted, dsaCompleted, interviewCompleted, projectsCompleted,
     frontendCompleted, xp, xpHistory, streak, badges, challengesSolved,
-    lastLesson, getStreak, updateStreak, addXP, unlockBadge, checkBadges,
+    codingCompleted, lastLesson, getStreak, updateStreak, addXP, unlockBadge, checkBadges,
     markJavaComplete, markDSAComplete, markInterviewComplete, markProjectComplete,
-    markFrontendComplete, setLast, markChallengeSolved, getSolved
+    markFrontendComplete, setLast, markChallengeSolved, markCodingComplete, getSolved
   }
 }
 

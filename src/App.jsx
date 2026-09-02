@@ -1,3 +1,5 @@
+import CodingPractice from './pages/CodingPractice'
+import CodeArenaPage from './pages/CodeArenaPage'
 import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ProgressProvider } from './contexts/ProgressContext'
@@ -46,6 +48,8 @@ export default function App() {
   return (
     <ProgressProvider>
       <Routes>
+        <Route path="/coding-practice" element={<Layout hideFooter><CodingPractice /></Layout>} />
+        <Route path="/codearena" element={<Layout hideFooter><CodeArenaPage /></Layout>} />
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/java" element={<Layout hideFooter><JavaPage /></Layout>} />
         <Route path="/dsa" element={<Layout hideFooter><DSAPage /></Layout>} />

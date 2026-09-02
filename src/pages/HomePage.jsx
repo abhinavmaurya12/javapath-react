@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useProgressContext } from '../contexts/ProgressContext'
 import ProgressDashboard from '../components/ProgressDashboard'
@@ -8,14 +8,21 @@ import WhyJavaNest from '../components/WhyJavaNest'
 import JavaRoadmapVisual from '../components/JavaRoadmapVisual'
 
 const WHATS_NEW = [
-  { date: 'September 1, 2026', title: 'Voice Reader, Dark/Light Fixes & More', items: [
-    'Voice reader (read-aloud) now available for all Java, DSA, HTML, CSS, JavaScript and React chapters',
-    'Fixed dark/light mode text color bugs on the 10-Day Update Cycle and Fresh Content section',
-    'Added a slow-internet loader so content loads smoothly even on weak connections',
-    'Fixed compiler iframe bugs in the Try It editor',
-    'Next update soon… with more features'
-  ]},
-  { date: 'August 31, 2026', title: 'Bug Fixes & Polish', items: [
+  { date: 'September 2, 2026', title: 'CodeArena — 200 Practice Questions', items: [
+      'Originally written coding & interview questions with hints, solutions, and progress tracking',
+      '200 Coding & Interview Practice Questions covering HTML + CSS, JavaScript, React, Java Basics to Advanced, Arrays, Strings, Linked Lists, Stacks & Queues, Advanced DSA, and Mixed Interview Questions',
+      'Difficulty levels: Easy, Medium, Hard across 12 Categories',
+      'Each question links straight to the online compiler with the problem loaded'
+    ]},
+    { date: 'September 1, 2026', title: 'Voice Reader, Dark/Light Fixes & More', items: [
+      'Voice reader (read-aloud) now available for all Java, DSA, HTML, CSS, JavaScript and React chapters',
+      'Added Pattern Questions Phase 3 (42 questions) to the Interview section',
+      'Fixed dark/light mode text color bugs on the 10-Day Update Cycle and Fresh Content section',
+      'Added a slow-internet loader so content loads smoothly even on weak connections',
+      'Fixed compiler iframe bugs in the Try It editor',
+      'Next update soon… with more features'
+    ]},
+    { date: 'August 31, 2026', title: 'Bug Fixes & Polish', items: [
     'Fixed Java compiler editor text color — code is now visible in both light and dark themes',
     'Frontend (HTML/CSS/JS/React) sidebar now closes automatically after selecting a chapter on mobile',
     'Improved overall page rendering and theme consistency',
@@ -52,6 +59,16 @@ const WHATS_NEW = [
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768)
+
+  useEffect(() => {
+    function onResize() {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   useEffect(() => {
     window.__nav = (to) => navigate(to)
@@ -63,19 +80,21 @@ export default function HomePage() {
       <section className="hero">
         <div className="hero-content">
           <h1>Learn Java, DSA & <span>Frontend</span></h1>
-          <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers.</p>
+          <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. <strong>CodeArena — 200+ practice questions</strong> with hints, solutions, and progress tracking.</p>
           <div className="hero-btns">
             <Link to="/java" className="btn btn-primary"><i className="fas fa-play"></i> Start Learning Java</Link>
             <Link to="/dsa" className="btn btn-secondary"><i className="fas fa-project-diagram"></i> Start DSA</Link>
+            <Link to="/codearena" className="btn btn-primary"><i className="fas fa-trophy"></i> CodeArena</Link>
             <Link to="/frontend/html" className="btn btn-outline"><i className="fab fa-html5"></i> Learn Frontend</Link>
-            <Link to="/tryit" className="btn btn-outline"><i className="fas fa-laptop-code"></i> Start Coding</Link>
+            {!isMobile && <Link to="/tryit" className="btn btn-outline"><i className="fas fa-laptop-code"></i> Start Coding</Link>}
           </div>
           <div className="hero-stats">
-            <div className="hero-stat"><span className="stat-num">15+</span><span className="stat-label">Java Chapters</span></div>
-            <div className="hero-stat"><span className="stat-num">30+</span><span className="stat-label">DSA Topics</span></div>
-            <div className="hero-stat"><span className="stat-num">375+</span><span className="stat-label">Java Programs</span></div>
-            <div className="hero-stat"><span className="stat-num">30+</span><span className="stat-label">Frontend Chapters</span></div>
-            <div className="hero-stat"><span className="stat-num">100+</span><span className="stat-label">Interview Q&A</span></div>
+            <div className="hero-stat"><Link to="/java" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">15+</span><span className="stat-label">Java Chapters</span></Link></div>
+            <div className="hero-stat"><Link to="/dsa" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">30+</span><span className="stat-label">DSA Topics</span></Link></div>
+            <div className="hero-stat"><Link to="/practice" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">375+</span><span className="stat-label">Java Programs</span></Link></div>
+            <div className="hero-stat"><Link to="/frontend/html" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">30+</span><span className="stat-label">Frontend Chapters</span></Link></div>
+            <div className="hero-stat"><Link to="/interview" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">100+</span><span className="stat-label">Interview Q&A</span></Link></div>
+            <div className="hero-stat"><Link to="/codearena" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">200+</span><span className="stat-label">CodeArena</span></Link></div>
           </div>
           <div className="hero-link"><Link to="/roadmap">View Roadmap <i className="fas fa-arrow-right"></i></Link></div>
           <div className="hero-code">
@@ -127,6 +146,34 @@ export default function HomePage() {
           <p>Solve today's coding problem and build your streak</p>
         </div>
         <DailyChallenge />
+      </section>
+
+      <section className="section" id="codearena-section">
+        <div className="section-title">
+          <h2><i className="fas fa-trophy" style={{ color: 'var(--primary)' }}></i> CodeArena — 200 Practice Questions</h2>
+          <p>Originally written coding & interview questions with hints, solutions, and progress tracking</p>
+        </div>
+        <div style={{ maxWidth: 600, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ background: 'var(--card)', border: '2px solid var(--primary)', borderRadius: 'var(--radius)', padding: 32, marginBottom: 24 }}>
+            <i className="fas fa-code" style={{ fontSize: '2.5rem', color: 'var(--primary)', display: 'block', marginBottom: 12 }}></i>
+            <h3 style={{ marginBottom: 8, color: 'var(--text)' }}>200 Coding & Interview Practice Questions</h3>
+            <p style={{ color: 'var(--text-muted)', marginBottom: 16, fontSize: '.9rem' }}>
+              Covers HTML + CSS, JavaScript, React, Java Basics to Advanced, Arrays, Strings, Linked Lists, Stacks & Queues, Advanced DSA, and Mixed Interview Questions.
+            </p>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16 }}>
+              <span style={{ background: 'rgba(39,174,96,.15)', color: '#27ae60', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem', fontWeight: 600 }}>Easy</span>
+              <span style={{ background: 'rgba(241,196,15,.15)', color: '#f1c40f', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem', fontWeight: 600 }}>Medium</span>
+              <span style={{ background: 'rgba(231,76,60,.15)', color: '#e74c3c', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem', fontWeight: 600 }}>Hard</span>
+              <span style={{ background: 'var(--surface)', color: 'var(--text-muted)', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem' }}>12 Categories</span>
+            </div>
+            <Link to="/codearena" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 32px', fontSize: '1rem' }}>
+              <i className="fas fa-trophy"></i> Enter CodeArena
+            </Link>
+            <p style={{ color: 'var(--text-muted)', fontSize: '.82rem', marginTop: 16, marginBottom: 0 }}>
+              <b>For coding in CodeArena use Laptop/PC with a keyboard. Mobile devices are not recommended for coding.</b>
+            </p>
+          </div>
+        </div>
       </section>
 
       <section className="section" id="gamification-section">
