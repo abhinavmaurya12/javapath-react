@@ -94,26 +94,6 @@ useEffect(() => {
     <div id="page-home">
       <section className="hero">
         <div className="hero-aurora"></div>
-        <div className="hero-cloud" aria-hidden="true">
-          <div className="hero-cloud-inner">
-            <span className="cc cc-1">{}</span>
-            <span className="cc cc-2">[]</span>
-            <span className="cc cc-3">()</span>
-            <span className="cc cc-4">;</span>
-            <span className="cc cc-5">&lt;&gt;</span>
-            <span className="cc cc-6">=&gt;</span>
-            <span className="cc cc-7">+</span>
-            <span className="cc cc-8">{}</span>
-            <span className="cc cc-9">[]</span>
-            <span className="cc cc-10">()</span>
-            <span className="cc cc-11">;</span>
-            <span className="cc cc-12">&lt;&gt;</span>
-          </div>
-          <span className="hero-cloud-cut cut-top"></span>
-          <span className="hero-cloud-cut cut-bottom"></span>
-          <span className="hero-cloud-cut cut-left"></span>
-          <span className="hero-cloud-cut cut-right"></span>
-        </div>
         <div className="hero-marquee" aria-hidden="true">
           <div className="hero-marquee-track">
             {HERO_NOTICE.map((n, i) => (
