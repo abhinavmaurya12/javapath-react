@@ -75,9 +75,51 @@ export default function HomePage() {
     return () => { delete window.__nav }
   }, [navigate])
 
+  // Code-rain animation for the hero background
+  useEffect(() => {
+    const canvas = document.getElementById('hero-code-rain')
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    let raf
+    const chars = '01{}()[];<>+-*/=classpublicstaticvoidnewreturnifelseforwhileStringint[]System.out.println//'
+    const fontSize = 14
+    let columns, drops
+
+    function resize() {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      columns = Math.floor(canvas.width / fontSize)
+      drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -20))
+    }
+    resize()
+    window.addEventListener('resize', resize)
+
+    function draw() {
+      ctx.fillStyle = 'rgba(13,17,23,0.08)'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.font = fontSize + "px 'Courier New', monospace"
+      for (let i = 0; i < columns; i++) {
+        const ch = chars[Math.floor(Math.random() * chars.length)]
+        const x = i * fontSize
+        const y = drops[i] * fontSize
+        ctx.fillStyle = 'rgba(248,152,32,' + (0.15 + Math.random() * 0.35) + ')'
+        ctx.fillText(ch, x, y)
+        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0
+        drops[i]++
+      }
+      raf = requestAnimationFrame(draw)
+    }
+    draw()
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
   return (
     <div id="page-home">
       <section className="hero">
+        <div className="hero-code-rain"><canvas id="hero-code-rain"></canvas></div>
         <div className="hero-content">
           <h1>Learn Java, DSA & <span>Frontend</span></h1>
           <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. <strong>CodeArena — 200+ practice questions</strong> with hints, solutions, and progress tracking.</p>
