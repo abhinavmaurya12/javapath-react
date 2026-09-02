@@ -58,11 +58,10 @@ const WHATS_NEW = [
 ]
 
 const HERO_NOTICE = [
-  'Upcoming: Voice Reader for all chapters — coming next cycle',
-  'New: Array Core Interview Questions Phase 3 (42 questions)',
-  'Update: Daily coding challenges with XP rewards',
-  'Feature: Progress badges extended to all frontend tracks',
-  'Notice: Site content refreshes every 10 days — stay tuned'
+  'New: Voice Reader for all chapters — read-aloud feature',
+  'New: CodeArena 200+ coding & practice questions',
+  'New: Array Core Interview Questions Phase 2 (70 questions)',
+  'New: Added Pattern Questions Phase 3 (43 questions)'
 ]
 
 export default function HomePage() {

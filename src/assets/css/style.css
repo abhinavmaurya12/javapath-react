@@ -643,7 +643,7 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 .hero-aurora::after{width:360px;height:360px;background:radial-gradient(circle,rgba(70,160,235,.45),transparent 70%);bottom:-100px;right:-60px;animation-delay:-11s}
 @keyframes auroraDrift{0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}33%{transform:translate(50px,-35px) scale(1.1) rotate(10deg)}66%{transform:translate(-35px,40px) scale(.92) rotate(-8deg)}}
 
-.hero-marquee{position:relative;z-index:3;overflow:hidden;width:100%;max-width:1100px;margin:0 auto 18px;pointer-events:none}
+.hero-marquee{position:relative;z-index:3;overflow:hidden;width:100%;max-width:1100px;margin:6px auto 10px;pointer-events:none}
 .hero-marquee-track{display:flex;gap:32px;white-space:nowrap;animation:marquee 28s linear infinite;will-change:transform}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .hero-marquee-item{display:inline-flex;align-items:center;gap:8px;color:#87ceeb;font-size:.82rem;font-weight:600;letter-spacing:.3px;text-shadow:0 0 10px rgba(135,206,250,.4)}
