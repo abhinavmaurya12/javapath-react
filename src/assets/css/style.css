@@ -633,27 +633,29 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 .hero-stat .stat-num{display:block;font-size:1.5rem;font-weight:700;color:var(--primary)}
 .hero-stat .stat-label{font-size:.78rem;color:rgba(255,255,255,.7)}
 
-/* === Hero Code-Rain Background === */
-.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0d1117 0%,#161b22 50%,#0d1117 100%);color:#e6edf3}
-.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.18;
-  background-image:
-    repeating-linear-gradient(0deg,transparent 0 2px,rgba(248,152,32,.06) 2px 4px);
-  animation:heroGrid 6s linear infinite}
-.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+/* === Hero Animated Background === */
+.hero{position:relative;overflow:hidden;background:#070b14;color:#e6edf3;min-height:640px}
+.hero::before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 20%,rgba(248,152,32,.18),transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 80%,rgba(97,218,255,.16),transparent 60%),
-    radial-gradient(ellipse 60% 40% at 50% 50%,rgba(39,174,96,.10),transparent 70%)}
-@keyframes heroGrid{0%{background-position:0 0}100%{background-position:0 4px}}
-.hero-code-rain{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.16}
-.hero-code-rain canvas{position:absolute;inset:0;width:100%;height:100%}
-.hero-content{position:relative;z-index:1}
+    radial-gradient(ellipse 60% 50% at 18% 12%,rgba(248,152,32,.28),transparent 55%),
+    radial-gradient(ellipse 55% 45% at 92% 88%,rgba(97,218,255,.22),transparent 55%),
+    radial-gradient(ellipse 50% 35% at 50% 60%,rgba(39,174,96,.12),transparent 70%)}
+.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.45;
+  background-image:
+    linear-gradient(rgba(248,152,32,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(248,152,32,.12) 1px,transparent 1px);
+  background-size:44px 44px;
+  animation:heroGrid 3.5s linear infinite}
+@keyframes heroGrid{0%{background-position:0 0}100%{background-position:0 44px}}
+.hero-code-rain{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero-code-rain canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-content{position:relative;z-index:2}
 .hero-content h1,.hero-content p,.hero-link a{color:#e6edf3}
 .hero-content h1 span{color:var(--primary)}
-.hero-btns .btn{box-shadow:0 4px 16px rgba(248,152,32,.25)}
-.hero-code{position:relative;z-index:1;opacity:.95}
+.hero-btns .btn{box-shadow:0 4px 16px rgba(248,152,32,.25);transition:all .2s}
+.hero-btns .btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(248,152,32,.5)}
+.hero-code{position:relative;z-index:2;opacity:.98}
 @media(max-width:768px){
-  .hero::after,.hero::before{opacity:.10}
   .hero-code{display:none}
 }
 

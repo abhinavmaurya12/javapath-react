@@ -81,31 +81,51 @@ export default function HomePage() {
     if (!canvas) return
     const ctx = canvas.getContext('2d')
     let raf
-    const chars = '01{}()[];<>+-*/=classpublicstaticvoidnewreturnifelseforwhileStringint[]System.out.println//'
-    const fontSize = 14
-    let columns, drops
+    const charSets = [
+      '01{}()[];<>+-*/=classpublicstaticvoidnewreturnifelseforwhileStringint[]System.out.println//',
+      'public static void main(String[] args){System.out.println("Hello, World!");}',
+      'for(int i=0;i<n;i++){if(a[i]==x)return i;}return-1;',
+      'ArrayList<Node> queue=new LinkedList<>();queue.add(root);',
+      'while(!stack.isEmpty()){int x=stack.pop();System.out.println(x);}'
+    ]
+    const fontSize = 16
+    let columns, drops, colors
 
     function resize() {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
       columns = Math.floor(canvas.width / fontSize)
-      drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -20))
+      drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -40))
+      colors = new Array(columns).fill(0).map(() => {
+        const r = ['#f8a832','#61dafb','#27ae60','#f1c40f','#e74c3c','#b453f2']
+        return r[Math.floor(Math.random() * r.length)]
+      })
     }
     resize()
     window.addEventListener('resize', resize)
 
     function draw() {
-      ctx.fillStyle = 'rgba(13,17,23,0.08)'
+      // motion-blur trail: fade previous frame instead of clearing
+      ctx.fillStyle = 'rgba(7,11,20,0.28)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.font = fontSize + "px 'Courier New', monospace"
+      ctx.font = "600 " + fontSize + "px 'Courier New', monospace"
       for (let i = 0; i < columns; i++) {
-        const ch = chars[Math.floor(Math.random() * chars.length)]
+        const set = charSets[Math.floor(Math.random() * charSets.length)]
+        const ch = set[Math.floor(Math.random() * set.length)]
         const x = i * fontSize
         const y = drops[i] * fontSize
-        ctx.fillStyle = 'rgba(248,152,32,' + (0.15 + Math.random() * 0.35) + ')'
+        const col = colors[i]
+        // dim trailing chars
+        ctx.fillStyle = col
+        ctx.globalAlpha = 0.18
+        ctx.fillText(ch, x, y - fontSize)
+        // bright head of the stream
+        ctx.fillStyle = '#fff'
+        ctx.globalAlpha = 0.95
         ctx.fillText(ch, x, y)
+        ctx.globalAlpha = 1
         if (y > canvas.height && Math.random() > 0.975) drops[i] = 0
-        drops[i]++
+        drops[i] += 0.55 + Math.random() * 0.7
       }
       raf = requestAnimationFrame(draw)
     }
