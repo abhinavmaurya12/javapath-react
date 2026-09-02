@@ -160,6 +160,18 @@ a{text-decoration:none;color:var(--primary)}ul{list-style:none}
 .voice-reader__fab--paused{background:linear-gradient(135deg,#f39c12,#e67e22)}
 .voice-reader__fab-dot{position:absolute;top:6px;right:6px;width:10px;height:10px;border-radius:50%;background:#fff;animation:voiceDot 1.4s ease-in-out infinite}
 @keyframes voiceDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+/* Visible "Voice Reader" label pill next to the FAB — always shown so the
+   read-aloud feature is discoverable on every chapter. */
+.voice-reader__label{position:absolute;right:64px;bottom:6px;background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:.82rem;font-weight:700;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.18);display:flex;align-items:center;gap:7px;animation:voiceLabelIn .4s ease both}
+.voice-reader__label i{color:var(--primary);font-size:.86rem}
+.voice-reader__label .voice-reader__label-dot{width:8px;height:8px;border-radius:50%;background:#27ae60;animation:voiceDot 1.4s ease-in-out infinite}
+@keyframes voiceLabelIn{from{opacity:0;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+
+/* Pulsing halo around the FAB to draw attention to the read-aloud feature. */
+.voice-reader__halo{position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--primary);opacity:0;pointer-events:none;animation:voiceHalo 2.4s ease-in-out infinite}
+@keyframes voiceHalo{0%{opacity:.5;transform:scale(1)}50%{opacity:0;transform:scale(1.25)}100%{opacity:.5;transform:scale(1)}}
+.voice-reader__fab--idle .voice-reader__halo{animation:voiceHalo 2.4s ease-in-out infinite}
 .voice-reader__panel{width:320px;max-width:calc(100vw - 32px);background:linear-gradient(135deg,var(--surface) 0%,var(--card) 100%);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 12px 40px rgba(0,0,0,.30);animation:voicePanelIn .2s ease;position:relative;overflow:hidden}
 .voice-reader__panel::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));opacity:.9}
 @keyframes voicePanelIn{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
@@ -611,45 +623,45 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(248,152,32,.15);border:1px solid rgba(248,152,32,.3);color:var(--primary);padding:6px 16px;border-radius:20px;font-size:.82rem;font-weight:600;margin-bottom:20px}
 .hero-stats{display:flex;gap:24px;justify-content:center;margin:28px 0 22px;flex-wrap:wrap}
 .hero-stat{text-align:center}
-.hero-stat .stat-num{display:block;font-size:1.5rem;font-weight:700;color:var(--primary)}
-.hero-stat .stat-label{font-size:.78rem;color:rgba(255,255,255,.7)}
+.hero-stat .stat-num{display:block;font-size:1.5rem;font-weight:700;color:var(--primary);text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.hero-stat .stat-label{font-size:.78rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
 
-/* === Hero Animated Background — sky-blue & black === */
-.hero{position:relative;overflow:hidden;background:#02060d;color:#e6edf3;min-height:640px}
+/* === Hero Animated Background — light blue-gray & black === */
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#cfd8e6 0%,#9fb4cc 35%,#5a7289 65%,#1a1a1a 100%);color:#fff;min-height:640px}
 .hero::before{content:'';position:absolute;inset:-40%;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 70% 55% at 22% 15%,rgba(135,206,250,.42),transparent 58%),
-    radial-gradient(ellipse 60% 50% at 82% 88%,rgba(70,160,235,.34),transparent 58%),
-    radial-gradient(ellipse 50% 38% at 50% 62%,rgba(100,180,255,.24),transparent 70%),
-    radial-gradient(ellipse 80% 70% at 50% 0%,rgba(40,120,210,.20),transparent 60%),
-    linear-gradient(180deg,#02060d 0%,#0a1f3a 30%,#0d2847 55%,#060e1c 100%)}
-.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    radial-gradient(ellipse 70% 55% at 22% 15%,rgba(255,255,255,.5),transparent 58%),
+    radial-gradient(ellipse 60% 50% at 82% 88%,rgba(255,255,255,.35),transparent 58%),
+    radial-gradient(ellipse 50% 38% at 50% 62%,rgba(255,255,255,.22),transparent 70%),
+    radial-gradient(ellipse 80% 70% at 50% 0%,rgba(0,0,0,.35),transparent 60%),
+    linear-gradient(180deg,#cfd8e6 0%,#9fb4cc 35%,#5a7289 65%,#1a1a1a 100%)}
+.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.35;
   background-image:
-    linear-gradient(rgba(135,206,250,.18) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(135,206,250,.18) 1px,transparent 1px);
+    linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
   background-size:44px 44px;
   animation:heroGrid 3s linear infinite}
 @keyframes heroGrid{0%{background-position:0 0}100%{background-position:44px 44px}}
 .hero-content{position:relative;z-index:2;margin-top:4px}
-.hero-content h1,.hero-content p,.hero-link a{color:#e6edf3}
-.hero-content h1 span{color:var(--primary)}
+.hero-content h1,.hero-content p,.hero-link a{color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.hero-content h1 span{color:var(--primary);text-shadow:0 1px 4px rgba(0,0,0,.6)}
 .hero-content h1{margin-bottom:10px}
-.hero-btns .btn{box-shadow:0 4px 16px rgba(135,206,250,.35);transition:all .2s}
-.hero-btns .btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(135,206,250,.6)}
+.hero-btns .btn{box-shadow:0 4px 16px rgba(0,0,0,.45);transition:all .2s}
+.hero-btns .btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.7)}
 .hero-code{position:relative;z-index:3;opacity:.98}
 /* === Aurora bands drifting behind the cloud === */
-.hero-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.4}
+.hero-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5}
 .hero-aurora::before,.hero-aurora::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);animation:auroraDrift 22s ease-in-out infinite}
-.hero-aurora::before{width:400px;height:400px;background:radial-gradient(circle,rgba(135,206,250,.5),transparent 70%);top:-120px;left:-80px}
-.hero-aurora::after{width:360px;height:360px;background:radial-gradient(circle,rgba(70,160,235,.45),transparent 70%);bottom:-100px;right:-60px;animation-delay:-11s}
+.hero-aurora::before{width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);top:-120px;left:-80px}
+.hero-aurora::after{width:360px;height:360px;background:radial-gradient(circle,rgba(0,0,0,.5),transparent 70%);bottom:-100px;right:-60px;animation-delay:-11s}
 @keyframes auroraDrift{0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}33%{transform:translate(50px,-35px) scale(1.1) rotate(10deg)}66%{transform:translate(-35px,40px) scale(.92) rotate(-8deg)}}
 
 .hero-marquee{position:relative;z-index:3;overflow:hidden;width:100%;max-width:1100px;margin:0 auto 2px;pointer-events:none}
 .hero-marquee-track{display:flex;gap:32px;white-space:nowrap;animation:marquee 28s linear infinite;will-change:transform}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.hero-marquee-item{display:inline-flex;align-items:center;gap:8px;color:#87ceeb;font-size:.82rem;font-weight:600;letter-spacing:.3px;text-shadow:0 0 10px rgba(135,206,250,.4)}
-.hero-marquee-item i{color:var(--primary);font-size:.78rem}
-.hero-marquee-dot{width:5px;height:5px;border-radius:50%;background:var(--primary);box-shadow:0 0 6px var(--primary)}
+.hero-marquee-item{display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:.82rem;font-weight:700;letter-spacing:.3px;text-shadow:0 1px 3px rgba(0,0,0,.7),0 0 12px rgba(0,0,0,.5)}
+.hero-marquee-item i{color:#fff;font-size:.85rem;text-shadow:0 0 8px rgba(0,0,0,.7)}
+.hero-marquee-dot{width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 8px #fff,0 0 4px rgba(0,0,0,.5)}
 .hero-marquee:hover .hero-marquee-track{animation-play-state:paused}
 @media(max-width:768px){.hero-marquee{margin:0 12px 14px}.hero-marquee-item{font-size:.72rem}}
 /* === Hero Cloud — bouncing code symbols with blue half-circle cuts === */

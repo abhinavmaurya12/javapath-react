@@ -6,9 +6,9 @@ const NAV_ITEMS = [
   { label: 'Home', to: '/' },
   { label: 'Java', to: '/java' },
   { label: 'DSA', to: '/dsa' },
-  { label: 'Practice', to: '/practice' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'Interview', to: '/interview' },
+  { label: 'CodeArena', to: '/coding-practice' },
+   { label: 'Interview', to: '/interview' },
+  { label: 'Program', to: '/practice' },
   { label: 'Roadmap', to: '/roadmap' },
   { label: 'Book', to: '/javapro' },
   { label: 'Compiler', to: '/tryit' },
@@ -92,7 +92,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.8.8</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.8.9</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); setMenuOpen(!menuOpen); setDropdownOpen(false) }}>
         <i className="fas fa-bars"></i>

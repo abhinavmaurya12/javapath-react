@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useState } from 'react'
 
 const CATEGORIES = [
   { key: 'HTML/CSS', label: 'HTML/CSS', color: '#e34f26' },
@@ -16,6 +16,7 @@ const CATEGORIES = [
 ]
 
 export default function QuestionFilters({ filters, onChange }) {
+  const [open, setOpen] = useState(false)
   const { difficulty, category, search } = filters
 
   const toggleDifficulty = (d) => {
@@ -27,33 +28,41 @@ export default function QuestionFilters({ filters, onChange }) {
   }
 
   return (
-    <div className="cp-filters">
-      <div className="cp-filter-row">
-        <div className="cp-filter-group" style={{ flex: '0 0 auto' }}>
-          <label>Difficulty</label>
-          <div className="cp-filter-chips">
-            {['All', 'Easy', 'Medium', 'Hard'].map(d => (
-              <span key={d} className={'cp-chip' + (difficulty === d ? ' active' : '')} onClick={() => toggleDifficulty(d)}>{d}</span>
-            ))}
+    <div className={'cp-filters' + (open ? '' : ' collapsed')}>
+      <div className="cp-filter-header" onClick={() => setOpen(!open)}>
+        <span>
+          <i className={'fas ' + (open ? 'fa-chevron-down' : 'fa-chevron-right')} style={{ marginRight: 6, fontSize: '.7rem' }}></i>
+          Difficulty / Category / Search
+        </span>
+      </div>
+      {open && (
+        <div className="cp-filter-row">
+          <div className="cp-filter-group diff-group">
+            <label>Difficulty</label>
+            <div className="cp-filter-chips">
+              {['All', 'Easy', 'Medium', 'Hard'].map(d => (
+                <span key={d} className={'cp-chip' + (difficulty === d ? ' active' : '')} onClick={() => toggleDifficulty(d)}>{d}</span>
+              ))}
+            </div>
+          </div>
+          <div className="cp-filter-group" style={{ flex: '0 1 auto' }}>
+            <label>Category</label>
+            <select value={category} onChange={e => toggleCategory(e.target.value)}>
+              <option value="All">All Categories</option>
+              {CATEGORIES.map(c => <option key={c.key} value={c.key}>{c.label}</option>)}
+            </select>
+          </div>
+          <div className="cp-filter-group" style={{ flex: '0 1 260px' }}>
+            <label>Search</label>
+            <input
+              type="text"
+              placeholder="Search number, title, topic, keyword..."
+              value={search}
+              onChange={e => onChange({ ...filters, search: e.target.value })}
+            />
           </div>
         </div>
-        <div className="cp-filter-group" style={{ flex: '1 1 300px' }}>
-          <label>Category</label>
-          <select value={category} onChange={e => toggleCategory(e.target.value)}>
-            <option value="All">All Categories</option>
-            {CATEGORIES.map(c => <option key={c.key} value={c.key}>{c.label}</option>)}
-          </select>
-        </div>
-        <div className="cp-filter-group" style={{ flex: '1 1 300px' }}>
-          <label>Search</label>
-          <input
-            type="text"
-            placeholder="Search number, title, topic, keyword..."
-            value={search}
-            onChange={e => onChange({ ...filters, search: e.target.value })}
-          />
-        </div>
-      </div>
+      )}
     </div>
   )
 }

@@ -24,10 +24,10 @@ export default function TryItPage() {
       <div id="page-tryit" style={{ position: 'fixed', inset: 0, background: 'var(--bg)', overflow: 'hidden' }}>
         {!isMobile && (
           <div style={{ position: 'fixed', top: 64, left: 0, right: 0, padding: '10px 16px', background: 'var(--card)', borderBottom: '1px solid var(--border)', zIndex: 1000, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
-            <span style={{ color: 'var(--text-muted)', fontSize: '.85rem' }}>No question selected. Choose a problem from Coding Practice to start coding here.</span>
-            <Link to="/codearena" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '8px 18px', fontSize: '.85rem', marginLeft: 'auto' }}>
-              <i className="fas fa-trophy"></i> CodeArena
-            </Link>
+<span style={{ color: 'var(--text-muted)', fontSize: '.85rem' }}>No question selected. Choose a problem from Coding Practice to start coding here.</span>
+              <Link to="/coding-practice" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '8px 18px', fontSize: '.85rem', marginLeft: 'auto' }}>
+                <i className="fas fa-trophy"></i> Coding Practice
+              </Link>
           </div>
         )}
         <div style={{ position: 'fixed', top: isMobile ? 56 : 108, left: 0, right: 0, bottom: 44, overflow: 'auto' }}>
@@ -96,17 +96,17 @@ export default function TryItPage() {
       <div id="page-tryit" style={{ position: 'fixed', inset: 0, background: 'var(--bg)', overflow: 'hidden', display: 'flex' }}>
         {/* Left: question card */}
         <div style={{
-          width: '42%',
-          minWidth: 320,
-          maxWidth: 520,
+          width: '38%',
+          minWidth: 280,
+          maxWidth: 440,
           background: 'var(--card)',
           borderRight: '1px solid var(--border)',
           overflowY: 'auto',
           height: '100%',
-          paddingTop: 72,
+          paddingTop: 64,
           paddingBottom: 44
         }}>
-          <div style={{ padding: '0 16px 16px' }}>
+          <div style={{ padding: '0 12px 12px' }}>
 <QuestionCard
             q={question}
             status={status}

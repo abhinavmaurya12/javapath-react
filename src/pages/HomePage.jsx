@@ -58,10 +58,10 @@ const WHATS_NEW = [
 ]
 
 const HERO_NOTICE = [
-  'New: Voice Reader for all chapters — read-aloud feature',
-  'New: CodeArena 200+ coding & practice questions',
-  'New: Array Core Interview Questions Phase 2 (70 questions)',
-  'New: Added Pattern Questions Phase 3 (43 questions)'
+  'Voice Reader for all chapters — read-aloud feature',
+  'CodeArena 200+ coding & practice questions',
+  'Array Core Interview Questions Phase 2 (70 questions)',
+  'Pattern Questions Phase 3 (43 questions)'
 ]
 
 export default function HomePage() {
@@ -80,6 +80,19 @@ export default function HomePage() {
 useEffect(() => {
     window.__nav = (to) => navigate(to)
     return () => { delete window.__nav }
+  }, [navigate])
+
+  // Demo button on the Voice Reader section sends users to a chapter where
+  // the floating Voice Reader is mounted and ready to use.
+  useEffect(() => {
+    const btn = document.getElementById('voice-reader-demo')
+    if (!btn) return
+    function onClick(e) {
+      e.preventDefault()
+      navigate('/java')
+    }
+    btn.addEventListener('click', onClick)
+    return () => btn.removeEventListener('click', onClick)
   }, [navigate])
 
   function scrollCards(dir) {
@@ -117,8 +130,8 @@ useEffect(() => {
             <Link to="/java" className="btn btn-primary"><i className="fas fa-play"></i> Start Learning Java</Link>
             <Link to="/dsa" className="btn btn-secondary"><i className="fas fa-project-diagram"></i> Start DSA</Link>
             <Link to="/codearena" className="btn btn-primary"><i className="fas fa-trophy"></i> CodeArena</Link>
-            <Link to="/frontend/html" className="btn btn-outline"><i className="fab fa-html5"></i> Learn Frontend</Link>
-            {!isMobile && <Link to="/tryit" className="btn btn-outline"><i className="fas fa-laptop-code"></i> Start Coding</Link>}
+             <Link to="/frontend/html" className="btn btn-secondary"><i className="fab fa-html5"></i> Learn Frontend</Link>
+               {/* {!isMobile &&<Link to="/tryit" className="btn btn-outline"><i className="fas fa-laptop-code"></i> Start Coding</Link>} */}
           </div>
           <div className="hero-stats">
             <div className="hero-stat"><Link to="/java" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">15+</span><span className="stat-label">Java Chapters</span></Link></div>
@@ -128,6 +141,7 @@ useEffect(() => {
             <div className="hero-stat"><Link to="/interview" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">100+</span><span className="stat-label">Interview Q&A</span></Link></div>
             <div className="hero-stat"><Link to="/codearena" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">200+</span><span className="stat-label">CodeArena</span></Link></div>
           </div>
+          
         </div>
       </section>
 
@@ -167,6 +181,52 @@ useEffect(() => {
           <p>Solve today's coding problem and build your streak</p>
         </div>
         <DailyChallenge />
+      </section>
+
+      <section className="section" id="voice-reader-section">
+        <div className="section-title">
+          <h2><i className="fas fa-volume-high" style={{ color: 'var(--primary)' }}></i> Voice Reader — Read-Aloud Feature</h2>
+          <p>Listen to any chapter out loud — Java, DSA, HTML, CSS, JavaScript & React</p>
+        </div>
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <div style={{ background: 'linear-gradient(135deg, var(--surface) 0%, var(--card) 100%)', border: '2px solid var(--primary)', borderRadius: 'var(--radius)', padding: 36, display: 'flex', flexWrap: 'wrap', gap: 28, alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ flex: '1 1 320px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+                <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'linear-gradient(135deg,var(--primary),var(--secondary))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
+                  <i className="fas fa-volume-high" style={{ fontSize: '1.6rem' }}></i>
+                </div>
+                <div>
+                  <h3 style={{ margin: 0, color: 'var(--text)', fontSize: '1.25rem' }}>Listen While You Learn</h3>
+                  <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '.85rem' }}>Text-to-speech for every chapter across the whole platform</p>
+                </div>
+              </div>
+              <p style={{ color: 'var(--text-muted)', marginBottom: 18, fontSize: '.92rem', lineHeight: 1.6 }}>
+                The Voice Reader converts any lesson into natural speech so you can study on the go — during a commute, workout, or chores. Pause, resume, and adjust the playback speed to match your pace.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 20 }}>
+                <span style={{ background: 'rgba(39,174,96,.15)', color: '#27ae60', padding: '6px 14px', borderRadius: 20, fontSize: '.8rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}><i className="fas fa-check"></i> All 15 Java Chapters</span>
+                <span style={{ background: 'rgba(39,174,96,.15)', color: '#27ae60', padding: '6px 14px', borderRadius: 20, fontSize: '.8rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}><i className="fas fa-check"></i> 30+ DSA Topics</span>
+                <span style={{ background: 'rgba(39,174,96,.15)', color: '#27ae60', padding: '6px 14px', borderRadius: 20, fontSize: '.8rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}><i className="fas fa-check"></i> HTML, CSS, JS & React</span>
+                <span style={{ background: 'rgba(39,174,96,.15)', color: '#27ae60', padding: '6px 14px', borderRadius: 20, fontSize: '.8rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}><i className="fas fa-check"></i> Interview Q&amp;A</span>
+              </div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '.82rem', marginBottom: 0, lineHeight: 1.6 }}>
+                <b>How to use:</b> Open any chapter and press the <b style={{ color: 'var(--primary)' }}><i className="fas fa-volume-high" style={{ color: 'var(--primary)' }}></i> Voice Reader</b> button in the bottom-right corner. Works offline — no internet required once the page is loaded.
+              </p>
+            </div>
+            <div style={{ flex: '0 0 260px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+              <div style={{ position: 'relative', width: 96, height: 96 }}>
+                <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: 'linear-gradient(135deg,var(--primary),var(--secondary))', opacity: 0.25, animation: 'voiceHalo 2.4s ease-in-out infinite' }}></div>
+                <div style={{ position: 'relative', width: 96, height: 96, borderRadius: '50%', background: 'linear-gradient(135deg,var(--primary),var(--secondary))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', boxShadow: '0 8px 24px rgba(0,0,0,.25)' }}>
+                  <i className="fas fa-volume-high" style={{ fontSize: '2.4rem' }}></i>
+                </div>
+              </div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '.78rem', margin: 0, textAlign: 'center' }}>Tap the button below to hear a demo</p>
+              <button id="voice-reader-demo" style={{ background: 'linear-gradient(135deg,var(--primary),var(--secondary))', color: '#fff', border: 'none', borderRadius: 999, padding: '12px 26px', fontSize: '.95rem', fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, boxShadow: '0 6px 18px rgba(0,0,0,.2)' }}>
+                <i className="fas fa-play"></i> Hear Demo
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="section" id="codearena-section">

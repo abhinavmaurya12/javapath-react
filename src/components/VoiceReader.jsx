@@ -238,6 +238,7 @@ export default function VoiceReader({ text, title }) {
 
   return createPortal(
     <div className="voice-reader" ref={panelRef}>
+      <div className="voice-reader__halo" aria-hidden="true"></div>
       <button
         className={'voice-reader__fab ' + (playing ? (paused ? 'voice-reader__fab--paused' : 'voice-reader__fab--playing') : 'voice-reader__fab--idle')}
         onClick={e => { e.stopPropagation(); setOpen(o => !o) }}
@@ -248,6 +249,13 @@ export default function VoiceReader({ text, title }) {
         <i className={'fas ' + (playing ? (paused ? 'fa-play' : 'fa-pause') : 'fa-volume-high')}></i>
         {playing && <span className="voice-reader__fab-dot"></span>}
       </button>
+
+      {/* Visible label so the read-aloud feature is easy to spot on every chapter. */}
+      <div className="voice-reader__label" aria-hidden="true">
+        <i className="fas fa-volume-high"></i>
+        <span>Voice Reader</span>
+        <span className="voice-reader__label-dot"></span>
+      </div>
 
       {open && (
         <div className="voice-reader__panel">

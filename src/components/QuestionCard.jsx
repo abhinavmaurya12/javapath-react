@@ -17,16 +17,33 @@ export default function QuestionCard({ q, status, onStatusChange, onLeetCode, on
   const isReact = q.category === 'React'
 
   return (
-    <div className="cp-qcard" id={'q-' + q.id}>
+    <div className={'cp-qcard' + (autoHint ? ' cp-qcard-leetcode' : '')} id={'q-' + q.id}>
+      {autoHint && (
+        <div className="cp-leetcode-topbar">
+          <button className="cp-ll-back" onClick={() => onBackToArena && onBackToArena()}>
+            <i className="fas fa-arrow-left"></i> Back
+          </button>
+          <span className="cp-ll-title">Problem #{q.id}: {q.title}</span>
+          <span className={'cp-ll-diff ' + q.difficulty.toLowerCase()}>{q.difficulty}</span>
+        </div>
+      )}
       <div className="cp-qcard-top">
-        <div>
-          <div className="cp-qcard-title">Problem #{q.id}: {q.title}</div>
+        {!autoHint && (
+          <div>
+            <div className="cp-qcard-title">Problem #{q.id}: {q.title}</div>
+            <div className="cp-qcard-meta">
+              <span className={'cp-badge ' + q.difficulty.toLowerCase()}>{q.difficulty}</span>
+              <span className="cp-cat-badge">{q.category}</span>
+              <span className="cp-cat-badge">{q.topic}</span>
+            </div>
+          </div>
+        )}
+        {autoHint && (
           <div className="cp-qcard-meta">
-            <span className={'cp-badge ' + q.difficulty.toLowerCase()}>{q.difficulty}</span>
             <span className="cp-cat-badge">{q.category}</span>
             <span className="cp-cat-badge">{q.topic}</span>
           </div>
-        </div>
+        )}
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <button className={'cp-btn ' + statusClass} onClick={toggleStatus}>
             <i className={'fas ' + (status === 'solved' ? 'fa-check-circle' : status === 'attempted' ? 'fa-pen' : 'fa-circle')}></i>
@@ -63,11 +80,6 @@ export default function QuestionCard({ q, status, onStatusChange, onLeetCode, on
         {onStartCoding && (
           <button className="cp-btn cp-btn-primary" onClick={() => onStartCoding(q)}>
             <i className="fas fa-code"></i> Start Coding
-          </button>
-        )}
-        {onBackToArena && (
-          <button className="cp-btn" onClick={() => onBackToArena()}>
-            <i className="fas fa-arrow-left"></i> Back to CodeArena
           </button>
         )}
       </div>
