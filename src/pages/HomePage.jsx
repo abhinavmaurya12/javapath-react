@@ -57,6 +57,14 @@ const WHATS_NEW = [
   ]}
 ]
 
+const HERO_NOTICE = [
+  'Upcoming: Voice Reader for all chapters — coming next cycle',
+  'New: Array Core Interview Questions Phase 3 (42 questions)',
+  'Update: Daily coding challenges with XP rewards',
+  'Feature: Progress badges extended to all frontend tracks',
+  'Notice: Site content refreshes every 10 days — stay tuned'
+]
+
 export default function HomePage() {
   const navigate = useNavigate()
   const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768)
@@ -106,6 +114,22 @@ useEffect(() => {
           <span className="hero-cloud-cut cut-bottom"></span>
           <span className="hero-cloud-cut cut-left"></span>
           <span className="hero-cloud-cut cut-right"></span>
+        </div>
+        <div className="hero-marquee" aria-hidden="true">
+          <div className="hero-marquee-track">
+            {HERO_NOTICE.map((n, i) => (
+              <span key={i} className="hero-marquee-item">
+                <i className="fas fa-bullhorn"></i> {n}
+                <span className="hero-marquee-dot"></span>
+              </span>
+            ))}
+            {HERO_NOTICE.map((n, i) => (
+              <span key={'dup'+i} className="hero-marquee-item">
+                <i className="fas fa-bullhorn"></i> {n}
+                <span className="hero-marquee-dot"></span>
+              </span>
+            ))}
+          </div>
         </div>
         <div className="hero-content">
           <h1>Learn Java, DSA & <span>Frontend</span></h1>
