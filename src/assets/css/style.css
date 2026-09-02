@@ -614,47 +614,40 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 .hero-stat .stat-num{display:block;font-size:1.5rem;font-weight:700;color:var(--primary)}
 .hero-stat .stat-label{font-size:.78rem;color:rgba(255,255,255,.7)}
 
-/* === Hero Animated Background — blue & black === */
+/* === Hero Animated Background — sky-blue & black === */
 .hero{position:relative;overflow:hidden;background:#02060d;color:#e6edf3;min-height:640px}
 .hero::before{content:'';position:absolute;inset:-40%;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 60% 50% at 25% 18%,rgba(0,140,255,.34),transparent 58%),
-    radial-gradient(ellipse 55% 48% at 80% 88%,rgba(0,168,220,.30),transparent 58%),
-    radial-gradient(ellipse 45% 35% at 50% 60%,rgba(0,120,212,.20),transparent 70%),
-    radial-gradient(ellipse 70% 60% at 50% 0%,rgba(0,110,200,.16),transparent 60%),
-    linear-gradient(180deg,#02060d 0%,#030a18 45%,#02060d 100%)}
-.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55;
+    radial-gradient(ellipse 70% 55% at 22% 15%,rgba(135,206,250,.42),transparent 58%),
+    radial-gradient(ellipse 60% 50% at 82% 88%,rgba(70,160,235,.34),transparent 58%),
+    radial-gradient(ellipse 50% 38% at 50% 62%,rgba(100,180,255,.24),transparent 70%),
+    radial-gradient(ellipse 80% 70% at 50% 0%,rgba(40,120,210,.20),transparent 60%),
+    linear-gradient(180deg,#02060d 0%,#0a1f3a 30%,#0d2847 55%,#060e1c 100%)}
+.hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
   background-image:
-    linear-gradient(rgba(0,168,255,.16) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(0,168,255,.16) 1px,transparent 1px);
+    linear-gradient(rgba(135,206,250,.18) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(135,206,250,.18) 1px,transparent 1px);
   background-size:44px 44px;
   animation:heroGrid 3s linear infinite}
 @keyframes heroGrid{0%{background-position:0 0}100%{background-position:44px 44px}}
-.hero-code-rain{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.hero-code-rain canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .hero-content{position:relative;z-index:2}
 .hero-content h1,.hero-content p,.hero-link a{color:#e6edf3}
 .hero-content h1 span{color:var(--primary)}
-.hero-btns .btn{box-shadow:0 4px 16px rgba(0,168,255,.3);transition:all .2s}
-.hero-btns .btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,168,255,.55)}
+.hero-btns .btn{box-shadow:0 4px 16px rgba(135,206,250,.35);transition:all .2s}
+.hero-btns .btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(135,206,250,.6)}
 .hero-code{position:relative;z-index:3;opacity:.98}
 /* === Aurora bands drifting behind the cloud === */
 .hero-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.4}
 .hero-aurora::before,.hero-aurora::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);animation:auroraDrift 22s ease-in-out infinite}
-.hero-aurora::before{width:400px;height:400px;background:radial-gradient(circle,rgba(0,168,255,.45),transparent 70%);top:-120px;left:-80px}
-.hero-aurora::after{width:360px;height:360px;background:radial-gradient(circle,rgba(0,140,220,.4),transparent 70%);bottom:-100px;right:-60px;animation-delay:-11s}
+.hero-aurora::before{width:400px;height:400px;background:radial-gradient(circle,rgba(135,206,250,.5),transparent 70%);top:-120px;left:-80px}
+.hero-aurora::after{width:360px;height:360px;background:radial-gradient(circle,rgba(70,160,235,.45),transparent 70%);bottom:-100px;right:-60px;animation-delay:-11s}
 @keyframes auroraDrift{0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}33%{transform:translate(50px,-35px) scale(1.1) rotate(10deg)}66%{transform:translate(-35px,40px) scale(.92) rotate(-8deg)}}
 
-/* Floating particles rising */
-.hero-particles{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-.hero-particles .hp{position:absolute;bottom:-20px;width:2px;height:2px;border-radius:50%;background:rgba(0,168,255,.5);box-shadow:0 0 6px rgba(0,168,255,.45);animation:floatUp linear infinite}
-@keyframes floatUp{0%{transform:translateY(0) scale(.3);opacity:0}15%{opacity:.6}100%{transform:translateY(-100vh) scale(1.1);opacity:0}}
-
-/* === Hero Cloud — rotating + bouncing code symbols with blue half-circle cuts === */
-.hero-cloud{position:absolute;top:36%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;filter:drop-shadow(0 0 18px rgba(0,168,255,.35));animation:cloudBob 6s ease-in-out infinite}
+/* === Hero Cloud — bouncing code symbols with blue half-circle cuts === */
+.hero-cloud{position:absolute;top:36%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;filter:drop-shadow(0 0 18px rgba(135,206,250,.35));animation:cloudBob 6s ease-in-out infinite}
 @keyframes cloudBob{0%,100%{transform:translate(-50%,-50%) translateY(0)}50%{transform:translate(-50%,-50%) translateY(-8px)}}
 .hero-cloud-inner{position:relative;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center;max-width:560px;padding:0 6px}
-.hero-cloud .cc{font:600 15px 'Courier New',monospace;color:#7ec8ff;opacity:.85;will-change:transform,opacity;animation:cloudBounce 3.4s cubic-bezier(.3,.7,.4,1) infinite}
+.hero-cloud .cc{font:600 15px 'Courier New',monospace;color:#87ceeb;opacity:.85;will-change:transform,opacity;animation:cloudBounce 3.4s cubic-bezier(.3,.7,.4,1) infinite}
 .hero-cloud .cc:nth-child(1){animation-delay:0s}
 .hero-cloud .cc:nth-child(2){animation-delay:.28s}
 .hero-cloud .cc:nth-child(3){animation-delay:.56s}
@@ -673,11 +666,10 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 .cut-left{left:-18px;top:50%;width:32px;height:64px;transform:translateY(-50%);border-radius:50% 0 0 50%;border-right:none;animation-delay:1.3s}
 .cut-right{right:-18px;top:50%;width:32px;height:64px;transform:translateY(-50%);border-radius:0 50% 50% 0;border-left:none;animation-delay:1.95s}
 @keyframes cutPulse{0%,100%{opacity:.3;transform:translate(-50%,-50%) scale(.7)}50%{opacity:.95;transform:translate(-50%,-50%) scale(1.2)}}
-.hero-cloud-cut{position:absolute;background:rgba(0,168,255,.14);border:2px solid rgba(0,168,255,.5);box-shadow:0 0 12px rgba(0,168,255,.35);animation:cutPulse 3.2s ease-in-out infinite}
+.hero-cloud-cut{position:absolute;background:rgba(135,206,250,.16);border:2px solid rgba(135,206,250,.55);box-shadow:0 0 12px rgba(135,206,250,.4);animation:cutPulse 3.2s ease-in-out infinite}
 @media(max-width:768px){
   .hero-code{display:none}
   .hero-cloud{display:none}
-  .hero-particles{display:none}
   .hero-aurora::before,.hero-aurora::after{display:none}
 }
 
