@@ -148,16 +148,6 @@ useEffect(() => {
             <div className="hero-stat"><Link to="/interview" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">100+</span><span className="stat-label">Interview Q&A</span></Link></div>
             <div className="hero-stat"><Link to="/codearena" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">200+</span><span className="stat-label">CodeArena</span></Link></div>
           </div>
-          <div className="hero-code">
-            <div className="code-block">
-              <div className="code-header"><span> HelloWorld.java</span><span>Java</span></div>
-              <pre><code><span className="kw">public class</span> <span className="cls">HelloWorld</span> &#123;
-    <span className="kw">public static void</span> <span className="mth">main</span>(String[] args) &#123;
-        System.out.<span className="mth">println</span>(<span className="str">"Hello, World!"</span>);
-    &#125;
-&#125;</code></pre>
-            </div>
-          </div>
         </div>
       </section>
 
