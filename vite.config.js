@@ -11,6 +11,18 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    assetsInlineLimit: 0
+    assetsInlineLimit: 0,
+    // Deterministic asset filenames so the committed dist/index.html always
+    // references the current bundle. With hashed names the tracked HTML would
+    // keep pointing at a stale bundle after rebuilds (GitHub Pages serves the
+    // old JS until the hash changes).
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/index.js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      }
+    }
   }
 })
