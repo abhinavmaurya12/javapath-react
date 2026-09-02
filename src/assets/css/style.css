@@ -627,14 +627,14 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 .hero-stat .stat-label{font-size:.78rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.7)}
 
 /* === Hero Animated Background — light blue-gray & black === */
-.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#cfd8e6 0%,#9fb4cc 35%,#5a7289 65%,#1a1a1a 100%);color:#fff;min-height:640px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#3a4a58 0%,#2c3a48 35%,#1e2a36 65%,#0c121a 100%);color:#fff;min-height:640px}
 .hero::before{content:'';position:absolute;inset:-40%;z-index:0;pointer-events:none;
   background:
-    radial-gradient(ellipse 70% 55% at 22% 15%,rgba(255,255,255,.5),transparent 58%),
-    radial-gradient(ellipse 60% 50% at 82% 88%,rgba(255,255,255,.35),transparent 58%),
-    radial-gradient(ellipse 50% 38% at 50% 62%,rgba(255,255,255,.22),transparent 70%),
+    radial-gradient(ellipse 70% 55% at 22% 15%,rgba(255,255,255,.12),transparent 58%),
+    radial-gradient(ellipse 60% 50% at 82% 88%,rgba(255,255,255,.10),transparent 58%),
+    radial-gradient(ellipse 50% 38% at 50% 62%,rgba(255,255,255,.08),transparent 70%),
     radial-gradient(ellipse 80% 70% at 50% 0%,rgba(0,0,0,.35),transparent 60%),
-    linear-gradient(180deg,#cfd8e6 0%,#9fb4cc 35%,#5a7289 65%,#1a1a1a 100%)}
+    linear-gradient(180deg,#3a4a58 0%,#2c3a48 35%,#1e2a36 65%,#0c121a 100%)}
 .hero::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.35;
   background-image:
     linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
@@ -652,7 +652,7 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 /* === Aurora bands drifting behind the cloud === */
 .hero-aurora{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5}
 .hero-aurora::before,.hero-aurora::after{content:'';position:absolute;border-radius:50%;filter:blur(90px);animation:auroraDrift 22s ease-in-out infinite}
-.hero-aurora::before{width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.6),transparent 70%);top:-120px;left:-80px}
+.hero-aurora::before{width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.18),transparent 70%);top:-120px;left:-80px}
 .hero-aurora::after{width:360px;height:360px;background:radial-gradient(circle,rgba(0,0,0,.5),transparent 70%);bottom:-100px;right:-60px;animation-delay:-11s}
 @keyframes auroraDrift{0%,100%{transform:translate(0,0) scale(1) rotate(0deg)}33%{transform:translate(50px,-35px) scale(1.1) rotate(10deg)}66%{transform:translate(-35px,40px) scale(.92) rotate(-8deg)}}
 
