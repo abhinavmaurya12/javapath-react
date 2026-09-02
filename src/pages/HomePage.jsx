@@ -70,10 +70,18 @@ export default function HomePage() {
     return () => window.removeEventListener('resize', onResize)
   }, [])
 
-  useEffect(() => {
+useEffect(() => {
     window.__nav = (to) => navigate(to)
     return () => { delete window.__nav }
-}, [navigate])
+  }, [navigate])
+
+  function scrollCards(dir) {
+    const track = document.getElementById('whats-new-track')
+    if (!track) return
+    const card = track.querySelector('.whats-new-card')
+    const amount = card ? card.offsetWidth + 20 : 320
+    track.scrollBy({ left: dir * amount, behavior: 'smooth' })
+  }
 
   return (
     <div id="page-home">
@@ -218,11 +226,12 @@ export default function HomePage() {
           <h2><i className="fas fa-newspaper" style={{ color: 'var(--primary)' }}></i> What's New</h2>
           <p>Latest updates and improvements</p>
         </div>
-        <div className="whats-new-list">
+        <div className="whats-new-slider">
+          <div className="whats-new-track" id="whats-new-track">
             {WHATS_NEW.map((w, i) => (
-              <div key={i} className="whats-new-item">
-                <div className="whats-new-date"><i className="fas fa-calendar"></i> {w.date}</div>
-                <div className="whats-new-content">
+              <div key={i} className="whats-new-card">
+                <div className="whats-new-card-date"><i className="fas fa-calendar"></i> {w.date}</div>
+                <div className="whats-new-card-content">
                   <h4>{w.title}</h4>
                   <ul>
                     {w.items.map((item, j) => <li key={j}>{item}</li>)}
@@ -231,6 +240,11 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <div className="whats-new-nav">
+            <button type="button" aria-label="Previous" onClick={() => scrollCards(-1)}><i className="fas fa-chevron-left"></i></button>
+            <button type="button" aria-label="Next" onClick={() => scrollCards(1)}><i className="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
       </section>
 
       <section className="section" style={{ background: 'var(--card)' }}>

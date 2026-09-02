@@ -748,20 +748,24 @@ code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-size:.85re
 .hero-link a:hover{color:#fff;gap:10px}
 .hero-link a i{font-size:.8rem}
 
-/* === What's New === */
-.whats-new-list{max-width:800px;margin:0 auto}
-.whats-new-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border)}
-.whats-new-item:last-child{border-bottom:none}
-.whats-new-date{flex-shrink:0;width:140px;color:var(--text-muted);font-size:.85rem;display:flex;align-items:flex-start;gap:8px;padding-top:2px}
-.whats-new-date i{color:var(--primary);font-size:.8rem}
-.whats-new-content h4{color:var(--primary);margin-bottom:8px;font-size:1rem}
-.whats-new-content ul{list-style:none;padding:0}
-.whats-new-content li{padding:4px 0;color:var(--text-muted);font-size:.88rem;position:relative;padding-left:16px}
-.whats-new-content li::before{content:'•';color:var(--primary);position:absolute;left:0;font-weight:bold}
+/* === What's New — card slider (scrollable, no visible scrollbar) === */
+.whats-new-slider{position:relative;max-width:900px;margin:0 auto}
+.whats-new-slider:hover .whats-new-nav{opacity:1}
+.whats-new-track{display:flex;gap:20px;overflow-x:auto;scroll-behavior:smooth;scroll-snap-type:x mandatory;padding:8px 4px 24px}
+.whats-new-track::-webkit-scrollbar{display:none}
+.whats-new-track{scrollbar-width:none}
+.whats-new-card{flex:0 0 380px;scroll-snap-align:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s}
+.whats-new-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--primary)}
+.whats-new-card-date{color:var(--primary);font-size:.85rem;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.whats-new-card-content h4{color:var(--text);margin-bottom:12px;font-size:1.05rem}
+.whats-new-card-content ul{margin:0;padding-left:20px}
+.whats-new-card-content li{margin-bottom:8px;color:var(--text-muted);font-size:.9rem;line-height:1.5}
+.whats-new-nav{position:absolute;top:50%;left:0;right:0;transform:translateY(-50%);display:flex;justify-content:space-between;pointer-events:none;opacity:0;transition:opacity .25s}
+.whats-new-nav button{pointer-events:auto;width:40px;height:40px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--primary);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:all .2s}
+.whats-new-nav button:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
 @media(max-width:768px){
-  .whats-new-item{flex-direction:column;gap:8px}
-  .whats-new-date{width:auto}
-  .hero-link{text-align:center}
+  .whats-new-card{flex:0 0 300px;width:300px}
+  .whats-new-nav{opacity:1}
 }
 
 /* === Additional Mobile Improvements === */
