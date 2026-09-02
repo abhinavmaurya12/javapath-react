@@ -97,7 +97,7 @@ export default function HomePage() {
       columns = Math.floor(canvas.width / fontSize)
       drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -40))
       colors = new Array(columns).fill(0).map(() => {
-        const r = ['#f8a832','#61dafb','#27ae60','#f1c40f','#e74c3c','#b453f2']
+        const r = ['#61dafb','#40c4ff','#1e90ff','#2a9df4','#48cae4','#00b4d8','#90e0ef']
         return r[Math.floor(Math.random() * r.length)]
       })
     }
