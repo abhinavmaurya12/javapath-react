@@ -88,16 +88,16 @@ export default function HomePage() {
       'ArrayList<Node> queue=new LinkedList<>();queue.add(root);',
       'while(!stack.isEmpty()){int x=stack.pop();System.out.println(x);}'
     ]
-    const fontSize = 16
+    const fontSize = 19
     let columns, drops, colors
 
     function resize() {
       canvas.width = canvas.offsetWidth
       canvas.height = canvas.offsetHeight
       columns = Math.floor(canvas.width / fontSize)
-      drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -40))
+      drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -50))
       colors = new Array(columns).fill(0).map(() => {
-        const r = ['#61dafb','#40c4ff','#1e90ff','#2a9df4','#48cae4','#00b4d8','#90e0ef']
+        const r = ['#00a8ff','#0096ff','#00b4d8','#48cae4']
         return r[Math.floor(Math.random() * r.length)]
       })
     }
@@ -106,26 +106,28 @@ export default function HomePage() {
 
     function draw() {
       // motion-blur trail: fade previous frame instead of clearing
-      ctx.fillStyle = 'rgba(7,11,20,0.28)'
+      ctx.fillStyle = 'rgba(7,11,20,0.32)'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       ctx.font = "600 " + fontSize + "px 'Courier New', monospace"
+      const t = performance.now() * 0.001
       for (let i = 0; i < columns; i++) {
         const set = charSets[Math.floor(Math.random() * charSets.length)]
         const ch = set[Math.floor(Math.random() * set.length)]
         const x = i * fontSize
         const y = drops[i] * fontSize
         const col = colors[i]
+        const wave = Math.sin(t * 0.8 + i * 0.5) * 1.2
         // dim trailing chars
         ctx.fillStyle = col
-        ctx.globalAlpha = 0.18
-        ctx.fillText(ch, x, y - fontSize)
+        ctx.globalAlpha = 0.12
+        ctx.fillText(ch, x + wave, y - fontSize)
         // bright head of the stream
         ctx.fillStyle = '#fff'
-        ctx.globalAlpha = 0.95
-        ctx.fillText(ch, x, y)
+        ctx.globalAlpha = 0.85
+        ctx.fillText(ch, x + wave, y)
         ctx.globalAlpha = 1
-        if (y > canvas.height && Math.random() > 0.975) drops[i] = 0
-        drops[i] += 0.55 + Math.random() * 0.7
+        if (y > canvas.height && Math.random() > 0.98) drops[i] = 0
+        drops[i] += 0.4 + Math.random() * 0.4
       }
       raf = requestAnimationFrame(draw)
     }
@@ -136,10 +138,36 @@ export default function HomePage() {
     }
   }, [])
 
-  return (
+return (
     <div id="page-home">
       <section className="hero">
         <div className="hero-code-rain"><canvas id="hero-code-rain"></canvas></div>
+        <div className="hero-aurora"></div>
+        <div className="hero-cloud" aria-hidden="true">
+          <div className="hero-cloud-inner">
+            <span className="cc cc-1">{}</span>
+            <span className="cc cc-2">[]</span>
+            <span className="cc cc-3">()</span>
+            <span className="cc cc-4">;</span>
+            <span className="cc cc-5">&lt;&gt;</span>
+            <span className="cc cc-6">=&gt;</span>
+            <span className="cc cc-7">+</span>
+            <span className="cc cc-8">{}</span>
+            <span className="cc cc-9">[]</span>
+            <span className="cc cc-10">()</span>
+            <span className="cc cc-11">;</span>
+            <span className="cc cc-12">&lt;&gt;</span>
+          </div>
+          <span className="hero-cloud-cut cut-top"></span>
+          <span className="hero-cloud-cut cut-bottom"></span>
+          <span className="hero-cloud-cut cut-left"></span>
+          <span className="hero-cloud-cut cut-right"></span>
+        </div>
+        <div className="hero-particles" aria-hidden="true">
+          {Array.from({length: 8}, (_,i) => (
+            <span key={i} className="hp" style={{left:(i*12+4)+'%', animationDelay:(i*0.7)+'s', animationDuration:(6+i*0.8)+'s'}}></span>
+          ))}
+        </div>
         <div className="hero-content">
           <h1>Learn Java, DSA & <span>Frontend</span></h1>
           <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. <strong>CodeArena — 200+ practice questions</strong> with hints, solutions, and progress tracking.</p>
@@ -259,12 +287,11 @@ export default function HomePage() {
           <h2><i className="fas fa-newspaper" style={{ color: 'var(--primary)' }}></i> What's New</h2>
           <p>Latest updates and improvements</p>
         </div>
-        <div className="whats-new-scroll">
-          <div className="whats-new-cards">
+        <div className="whats-new-list">
             {WHATS_NEW.map((w, i) => (
-              <div key={i} className="whats-new-card">
-                <div className="whats-new-card-date"><i className="fas fa-calendar"></i> {w.date}</div>
-                <div className="whats-new-card-content">
+              <div key={i} className="whats-new-item">
+                <div className="whats-new-date"><i className="fas fa-calendar"></i> {w.date}</div>
+                <div className="whats-new-content">
                   <h4>{w.title}</h4>
                   <ul>
                     {w.items.map((item, j) => <li key={j}>{item}</li>)}
@@ -273,7 +300,6 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-        </div>
       </section>
 
       <section className="section" style={{ background: 'var(--card)' }}>
