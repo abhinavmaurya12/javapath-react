@@ -92,7 +92,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.9.3</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.9.4</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); setMenuOpen(!menuOpen); setDropdownOpen(false) }}>
         <i className="fas fa-bars"></i>
