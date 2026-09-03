@@ -53,14 +53,19 @@ function chunkText(text) {
   return chunks.filter(c => c.length > 0)
 }
 
-// Pick the default voice: prefer Google Hindi, then any Hindi voice, then default.
-function findHindiVoice(voices) {
+// Pick the default voice: prefer a clear, widely-available English voice,
+// then fall back to Hindi, then the browser default.
+function findDefaultVoice(voices) {
   if (!voices || !voices.length) return ''
+  const googleEnglish = voices.find(v => /google/i.test(v.name) && /en-US|english/i.test(v.lang))
+  if (googleEnglish) return googleEnglish.voiceURI
+  const anyEnglish = voices.find(v => /en-US|english/i.test(v.lang))
+  if (anyEnglish) return anyEnglish.voiceURI
   const googleHindi = voices.find(v => /google/i.test(v.name) && /hi-IN|hindi/i.test(v.lang))
   if (googleHindi) return googleHindi.voiceURI
   const anyHindi = voices.find(v => /hi-IN|hindi/i.test(v.lang))
   if (anyHindi) return anyHindi.voiceURI
-  return ''
+  return voices[0].voiceURI
 }
 
 export default function VoiceReader({ text, title }) {
@@ -98,8 +103,8 @@ export default function VoiceReader({ text, title }) {
 
   useEffect(() => {
     if (!voices.length) return
-    const pick = findHindiVoice(voices)
-    if (pick) setVoiceURI(pick)
+    const pick = findDefaultVoice(voices)
+    setVoiceURI(pick)
   }, [voices]) // eslint-disable-line
 
   useEffect(() => {
@@ -240,6 +245,18 @@ export default function VoiceReader({ text, title }) {
     currentChunkRef.current = -1
   }
 
+  // On mobile the expanded panel is hidden, so the FAB must start/pause
+  // reading directly instead of toggling the panel open.
+  function handleFabClick(e) {
+    e.stopPropagation()
+    if (isMobile) {
+      if (playing) togglePause()
+      else speak()
+    } else {
+      setOpen(o => !o)
+    }
+  }
+
   if (!synth || !text) return null
 
   const plain = stripHtml(text)
@@ -254,7 +271,7 @@ export default function VoiceReader({ text, title }) {
       <div className="voice-reader__halo" aria-hidden="true"></div>
       <button
         className={'voice-reader__fab ' + (playing ? (paused ? 'voice-reader__fab--paused' : 'voice-reader__fab--playing') : 'voice-reader__fab--idle')}
-        onClick={e => { e.stopPropagation(); setOpen(o => !o) }}
+        onClick={handleFabClick}
         title={playing ? (paused ? 'Resume' : 'Pause') : 'Read aloud'}
         aria-label={label}
         aria-expanded={open}
