@@ -1,11 +1,47 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useProgressContext } from '../contexts/ProgressContext'
 import ProgressDashboard from '../components/ProgressDashboard'
 import DailyChallenge from '../components/DailyChallenge'
 import GamificationDashboard from '../components/GamificationDashboard'
-import WhyJavaNest from '../components/WhyJavaNest'
 import JavaRoadmapVisual from '../components/JavaRoadmapVisual'
+import UpdateCycle from '../components/UpdateCycle'
+
+const COURSES = [
+  { icon: '☕', title: 'Java Mastery', desc: 'From variables to streams — complete Java from beginner to advanced.', to: '/java', color: '#e74c3c', level: 'Beginner', weeks: '15 Chapters', students: 'Free', rating: 4.8 },
+  { icon: '🧠', title: 'DSA & Algorithms', desc: 'Master data structures and algorithms with Java implementations.', to: '/dsa', color: '#27ae60', level: 'Intermediate', weeks: '30 Topics', students: 'Free', rating: 4.7 },
+  { icon: '💻', title: 'Web Development', desc: 'HTML, CSS, JavaScript and React — build modern websites.', to: '/frontend/html', color: '#2563eb', level: 'Beginner', weeks: '30 Chapters', students: 'Free', rating: 4.9 },
+  { icon: '🔥', title: 'Interview Prep', desc: '100+ interview questions with hints, solutions and progress tracking.', to: '/interview', color: '#8e44ad', level: 'Advanced', weeks: '150+ Qs', students: 'Free', rating: 4.8 },
+  { icon: '🏆', title: 'CodeArena Practice', desc: '200 coding & interview practice questions across 12 categories.', to: '/codearena', color: '#2563eb', level: 'All Levels', weeks: '200 Qs', students: 'Free', rating: 4.6 },
+  { icon: '📚', title: 'Java Programs', desc: '375+ hands-on coding programs across all Java topics.', to: '/practice', color: '#0ea5e9', level: 'Practice', weeks: '375+ Progs', students: 'Free', rating: 4.7 }
+]
+
+const FEATURES = [
+  { icon: '🎁', title: 'Free Forever', desc: 'A complete learning platform for Java, DSA, HTML, CSS, JavaScript, and React.' },
+  { icon: '🎓', title: 'Beginner Friendly', desc: 'Start from absolute basics. No prior programming experience required.' },
+  { icon: '📖', title: '15 Complete Chapters', desc: 'From introduction to Java Streams. Organized in a logical learning path.' },
+  { icon: '💻', title: 'Real Code Examples', desc: 'Every concept comes with practical, runnable code examples.' },
+  { icon: '🧠', title: '30+ DSA Topics', desc: 'Complete DSA course with Java implementations and practice problems.' },
+  { icon: '🏆', title: '375+ Practice Programs', desc: 'Hands-on coding practice across all Java topics.' },
+  { icon: '⚔️', title: 'CodeArena Practice', desc: '200 coding & interview practice questions with hints, solutions, and progress tracking.' }
+]
+
+const STATS = [
+  { num: '15+', label: 'Java Chapters' },
+  { num: '30+', label: 'DSA Topics' },
+  { num: '375+', label: 'Practice Programs' },
+  { num: '200+', label: 'CodeArena Questions' },
+  { num: '100+', label: 'Interview Q&A' },
+  { num: '30+', label: 'Frontend Chapters' }
+]
+
+const CATEGORIES = [
+  { icon: '💻', label: 'Web Development', to: '/frontend/html' },
+  { icon: '☕', label: 'Java', to: '/java' },
+  { icon: '🧠', label: 'Data Structures', to: '/dsa' },
+  { icon: '🔥', label: 'Interview Prep', to: '/interview' },
+  { icon: '🏆', label: 'Coding Practice', to: '/codearena' },
+  { icon: '📚', label: 'Programs', to: '/practice' }
+]
 
 const WHATS_NEW = [
   { date: 'September 2, 2026', title: 'CodeArena — 200 Practice Questions', items: [
@@ -66,18 +102,8 @@ const HERO_NOTICE = [
 
 export default function HomePage() {
   const navigate = useNavigate()
-  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768)
 
   useEffect(() => {
-    function onResize() {
-      setIsMobile(window.innerWidth <= 768)
-    }
-    onResize()
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
-
-useEffect(() => {
     window.__nav = (to) => navigate(to)
     return () => { delete window.__nav }
   }, [navigate])
@@ -93,77 +119,125 @@ useEffect(() => {
     }
     btn.addEventListener('click', onClick)
     return () => btn.removeEventListener('click', onClick)
-  }, [navigate])
-
-  function scrollCards(dir) {
-    const track = document.getElementById('whats-new-track')
-    if (!track) return
-    const card = track.querySelector('.whats-new-card')
-    const amount = card ? card.offsetWidth + 20 : 320
-    track.scrollBy({ left: dir * amount, behavior: 'smooth' })
-  }
+}, [navigate])
 
   return (
     <div id="page-home">
-      <section className="hero">
-        <div className="hero-aurora"></div>
-        <div className="hero-marquee" aria-hidden="true">
-          <div className="hero-marquee-track">
-            {HERO_NOTICE.map((n, i) => (
-              <span key={i} className="hero-marquee-item">
-                <i className="fas fa-bullhorn"></i> {n}
-                <span className="hero-marquee-dot"></span>
-              </span>
-            ))}
-            {HERO_NOTICE.map((n, i) => (
-              <span key={'dup'+i} className="hero-marquee-item">
-                <i className="fas fa-bullhorn"></i> {n}
-                <span className="hero-marquee-dot"></span>
-              </span>
-            ))}
+<section className="ph-hero">
+        <div className="ph-hero-grid">
+          <div className="ph-hero-left">
+            <div className="ph-hero-marquee" aria-hidden="true">
+              <div className="ph-hero-marquee-track">
+                {HERO_NOTICE.map((n, i) => (
+                  <span key={i} className="ph-hero-marquee-item">
+                    <i className="fas fa-bullhorn"></i> {n}
+                    <span className="ph-hero-marquee-dot"></span>
+                  </span>
+                ))}
+                {HERO_NOTICE.map((n, i) => (
+                  <span key={'dup'+i} className="ph-hero-marquee-item">
+                    <i className="fas fa-bullhorn"></i> {n}
+                    <span className="ph-hero-marquee-dot"></span>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <h1>Learn Java, DSA & <span>Frontend</span></h1>
+            <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. <strong>CodeArena — 200+ practice questions</strong> with hints, solutions, and progress tracking.</p>
+<div className="ph-hero-btns">
+            <Link to="/java" className="ph-btn ph-btn-primary"><i className="fas fa-play"></i> Start Learning Java</Link>
+            <Link to="/dsa" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-project-diagram"></i> Start DSA</Link>
+            <Link to="/frontend/html" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fab fa-html5"></i> Learn Frontend</Link>
+            <Link to="/codearena" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-trophy"></i> CodeArena</Link>
           </div>
-        </div>
-        <div className="hero-content">
-          <h1>Learn Java, DSA & <span>Frontend</span></h1>
-          <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. <strong>CodeArena — 200+ practice questions</strong> with hints, solutions, and progress tracking.</p>
-          <div className="hero-btns">
-            <Link to="/java" className="btn btn-primary"><i className="fas fa-play"></i> Start Learning Java</Link>
-            <Link to="/dsa" className="btn btn-secondary"><i className="fas fa-project-diagram"></i> Start DSA</Link>
-            <Link to="/codearena" className="btn btn-primary"><i className="fas fa-trophy"></i> CodeArena</Link>
-             <Link to="/frontend/html" className="btn btn-secondary"><i className="fab fa-html5"></i> Learn Frontend</Link>
-               {/* {!isMobile &&<Link to="/tryit" className="btn btn-outline"><i className="fas fa-laptop-code"></i> Start Coding</Link>} */}
           </div>
-          <div className="hero-stats">
-            <div className="hero-stat"><Link to="/java" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">15+</span><span className="stat-label">Java Chapters</span></Link></div>
-            <div className="hero-stat"><Link to="/dsa" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">30+</span><span className="stat-label">DSA Topics</span></Link></div>
-            <div className="hero-stat"><Link to="/practice" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">375+</span><span className="stat-label">Java Programs</span></Link></div>
-            <div className="hero-stat"><Link to="/frontend/html" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">30+</span><span className="stat-label">Frontend Chapters</span></Link></div>
-            <div className="hero-stat"><Link to="/interview" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">100+</span><span className="stat-label">Interview Q&A</span></Link></div>
-            <div className="hero-stat"><Link to="/codearena" style={{ color: 'inherit', textDecoration: 'none' }}><span className="stat-num">200+</span><span className="stat-label">CodeArena</span></Link></div>
+          <div className="ph-hero-right">
+            <div className="ph-hero-stats-card">
+              <div className="ph-hero-stats-row">
+                {STATS.map((s, i) => (
+                  <div key={i} className="ph-hero-stat">
+                    <span className="num">{s.num}</span>
+                    <span className="label">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          
         </div>
       </section>
 
-      <section className="update-cycle">
-        <div className="update-cycle-inner">
-          <div className="cycle-badge"><i className="fas fa-sync-alt fa-spin"></i> 10-Day Update Cycle</div>
-          <h2 className="cycle-heading">Fresh Content Every <span className="cycle-highlight">10 Days</span></h2>
-          <p className="cycle-sub">We research, write, and publish new topics on a rolling schedule so you always have something new to learn.</p>
-          <div className="cycle-timeline">
-            {['Research & Outline','Write Concepts','Add Code Examples','Review & Diagrams','Publish & Notify','Gather Feedback','Update Practice','Fix Issues','Prepare Next','Launch Update'].map((t, i) => (
-              <div key={i} className="cycle-day" style={{ '--delay': i }}>
-                <div className="day-dot"></div>
-                <div className="day-card">
-                  <span className="day-label">Day {i + 1}</span>
-                  <span className="day-task">{t}</span>
+      <section className="ph-section" style={{ background: 'var(--card)' }}>
+        <div className="ph-section-title">
+          <h2>Popular Programming Courses</h2>
+          <p>Master in-demand skills with our comprehensive course catalog</p>
+        </div>
+        <div className="ph-courses-grid">
+          {COURSES.map((c, i) => (
+            <div key={i} className="ph-course-card">
+              <div className="ph-course-img" style={{ background: c.color }}>{c.icon}</div>
+              <div className="ph-course-body">
+                <h3>{c.title}</h3>
+                <p>{c.desc}</p>
+                <div className="ph-course-meta">
+                  <span>{c.level}</span>
+                  <span className="ph-course-rating">★ {c.rating}</span>
+                  <span>{c.students}</span>
+                </div>
+                <div className="ph-course-footer">
+                  <span style={{ color: 'var(--text-muted)', fontSize: '.85rem' }}>{c.weeks}</span>
+                  <Link to={c.to} className="ph-enroll-btn">Start Now</Link>
                 </div>
               </div>
-            ))}
-          </div>
-          <div className="cycle-cta">
-            <Link to="/java" className="btn btn-primary"><i className="fas fa-bell"></i> Start Learning Now</Link>
-          </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <UpdateCycle />
+
+      <section className="ph-section" style={{ background: 'var(--surface)' }}>
+        <div className="ph-section-title">
+          <h2>Why Choose JavaNest?</h2>
+          <p>Experience the future of programming education with our innovative learning approach</p>
+        </div>
+        <div className="ph-features-grid">
+          {FEATURES.map((f, i) => (
+            <div key={i} className="ph-feature-card">
+              <div className="ph-feature-icon" style={{ background: 'linear-gradient(135deg,var(--primary),var(--secondary))' }}>{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="ph-section" style={{ background: 'linear-gradient(135deg,var(--primary),var(--secondary))', color: '#fff' }}>
+        <div className="ph-section-title">
+          <h2 style={{ color: '#fff' }}>Platform Statistics</h2>
+          <p style={{ color: 'rgba(255,255,255,.8)' }}>Join thousands of learners mastering programming</p>
+        </div>
+        <div className="ph-stats-row">
+          {STATS.map((s, i) => (
+            <div key={i} className="ph-stat-card">
+              <div className="num">{s.num}</div>
+              <div className="label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="ph-section" style={{ background: 'var(--card)' }}>
+        <div className="ph-section-title">
+          <h2>Browse by Category</h2>
+          <p>Find the perfect learning path for your goals</p>
+        </div>
+        <div className="ph-category-row">
+          {CATEGORIES.map((c, i) => (
+            <Link key={i} to={c.to} className="ph-cat-chip" style={{ textDecoration: 'none' }}>
+              <span style={{ fontSize: '1.3rem' }}>{c.icon}</span>
+              <span>{c.label}</span>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -243,7 +317,7 @@ useEffect(() => {
             </p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16 }}>
               <span style={{ background: 'rgba(39,174,96,.15)', color: '#27ae60', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem', fontWeight: 600 }}>Easy</span>
-              <span style={{ background: 'rgba(241,196,15,.15)', color: '#f1c40f', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem', fontWeight: 600 }}>Medium</span>
+              <span style={{ background: 'rgba(37,99,235,.15)', color: '#2563eb', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem', fontWeight: 600 }}>Medium</span>
               <span style={{ background: 'rgba(231,76,60,.15)', color: '#e74c3c', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem', fontWeight: 600 }}>Hard</span>
               <span style={{ background: 'var(--surface)', color: 'var(--text-muted)', padding: '4px 12px', borderRadius: 20, fontSize: '.75rem' }}>12 Categories</span>
             </div>
@@ -265,14 +339,6 @@ useEffect(() => {
         <GamificationDashboard />
       </section>
 
-      <section className="section">
-        <div className="section-title">
-          <h2>Why JavaNest?</h2>
-          <p>Everything you need to master Java programming in one place</p>
-        </div>
-        <WhyJavaNest />
-      </section>
-
       <section className="section" style={{ background: 'var(--card)' }}>
         <div className="section-title">
           <h2><i className="fas fa-newspaper" style={{ color: 'var(--primary)' }}></i> What's New</h2>
@@ -291,10 +357,6 @@ useEffect(() => {
                 </div>
               </div>
             ))}
-          </div>
-          <div className="whats-new-nav">
-            <button type="button" aria-label="Previous" onClick={() => scrollCards(-1)}><i className="fas fa-chevron-left"></i></button>
-            <button type="button" aria-label="Next" onClick={() => scrollCards(1)}><i className="fas fa-chevron-right"></i></button>
           </div>
         </div>
       </section>
