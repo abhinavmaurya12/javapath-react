@@ -132,7 +132,17 @@ export default function Search() {
     return () => clearTimeout(t)
   }, [query, performSearch])
 
-  function hideResults() { setShow(false); setQuery(''); setSelected(-1) }
+  function hideResults() { setShow(false); setQuery(''); setSelected(-1); document.body.style.overflow = '' }
+
+  // Prevent the page from scrolling behind the search dropdown while it is open.
+  useEffect(() => {
+    if (show && results.length) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [show, results.length])
 
   function handleKeyDown(e) {
     if (e.key === 'Escape') { hideResults(); inputRef.current && inputRef.current.blur() }
@@ -141,11 +151,11 @@ export default function Search() {
     else if (e.key === 'Enter' && selected >= 0 && results[selected]) { e.preventDefault(); results[selected].action(); hideResults() }
   }
 
-  const iconColor = { java: 'var(--secondary)', practice: 'var(--primary)', book: '#e91e63', dsa: '#27ae60', interview: '#f39c12', frontend: '#61dafb' }
+  const iconColor = { java: '#93c5fd', practice: '#93c5fd', book: '#93c5fd', dsa: '#93c5fd', interview: '#93c5fd', frontend: '#93c5fd' }
 
   return (
     <div className="search-box" style={{ position: 'relative' }}>
-      <i className="fas fa-search" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', fontSize: '.85rem', pointerEvents: 'none' }}></i>
+      <i className="fas fa-search" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,.7)', fontSize: '.85rem', pointerEvents: 'none' }}></i>
       <input
         ref={inputRef}
         type="text"

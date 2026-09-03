@@ -26,8 +26,8 @@ const FRONTEND_DROPDOWN = [
 // on every theme switch, otherwise the stale background/color overrides the
 // CSS variables and the page keeps the old theme until the next reload.
 const THEME_PAINT = {
-  dark: { bg: '#0d1117', text: '#e6edf3' },
-  light: { bg: '#f5f7fa', text: '#1a1a2e' },
+  dark: { bg: '#0b1220', text: '#e8eefc' },
+  light: { bg: '#f8fafc', text: '#0f172a' },
 }
 
 function applyTheme(theme) {
@@ -92,7 +92,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.8.9</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.9.3</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); setMenuOpen(!menuOpen); setDropdownOpen(false) }}>
         <i className="fas fa-bars"></i>
@@ -112,10 +112,10 @@ export default function Navbar() {
         ) : (
           <div className={'nav-dropdown' + (dropdownOpen ? ' open' : '')}>
             <span
-              style={{ padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+              style={{ padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, color: '#fff' }}
               onClick={e => { e.stopPropagation(); setDropdownOpen(!dropdownOpen) }}
             >
-              Frontend <i className="fas fa-chevron-down" style={{ fontSize: '.7rem' }}></i>
+              Frontend <i className="fas fa-chevron-down" style={{ fontSize: '.7rem', color: '#fff' }}></i>
             </span>
             <div className="dropdown-menu">
               {FRONTEND_DROPDOWN.map(item => (

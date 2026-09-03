@@ -25,7 +25,7 @@ export default function CodeArenaPage() {
 
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 28 }}>
           <span style={{ background: 'rgba(39,174,96,.15)', color: '#27ae60', padding: '6px 16px', borderRadius: 20, fontSize: '.8rem', fontWeight: 600 }}>Easy</span>
-          <span style={{ background: 'rgba(241,196,15,.15)', color: '#f1c40f', padding: '6px 16px', borderRadius: 20, fontSize: '.8rem', fontWeight: 600 }}>Medium</span>
+          <span style={{ background: 'rgba(37,99,235,.15)', color: '#2563eb', padding: '6px 16px', borderRadius: 20, fontSize: '.8rem', fontWeight: 600 }}>Medium</span>
           <span style={{ background: 'rgba(231,76,60,.15)', color: '#e74c3c', padding: '6px 16px', borderRadius: 20, fontSize: '.8rem', fontWeight: 600 }}>Hard</span>
           <span style={{ background: 'var(--surface)', color: 'var(--text-muted)', padding: '6px 16px', borderRadius: 20, fontSize: '.8rem' }}>12 Categories</span>
         </div>

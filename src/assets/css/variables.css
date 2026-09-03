@@ -1,9 +1,9 @@
 /* === Variables & Reset === */
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--primary:#f89820;--primary-dark:#d17f11;--secondary:#5382a1;--secondary-dark:#3a5e7c;--dark-bg:#1a1a2e;--dark-card:#16213e;--dark-surface:#0f3460;--light-bg:#f5f7fa;--light-card:#ffffff;--light-surface:#e8ecf1;--radius:12px;--shadow:0 4px 15px rgba(0,0,0,0.1);--font:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;--bg:#f5f7fa;--card:#ffffff;--surface:#e8ecf1;--text:#1a1a2e;--text-muted:#555;--border:rgba(0,0,0,0.1);--code-bg:#ffffff;--code-text:#1a1a2e}
-[data-theme="dark"]{--bg:#0d1117;--card:#161b22;--surface:#21262d;--text:#e6edf3;--text-muted:#8b949e;--border:#30363d;--code-bg:#0d1117;--code-text:#e6edf3}
-[data-theme="light"]{--bg:var(--light-bg);--card:var(--light-card);--surface:var(--light-surface);--text:#1a1a2e;--text-muted:#555;--border:rgba(0,0,0,0.1);--code-bg:#ffffff;--code-text:#1a1a2e}
+:root{--primary:#2563eb;--primary-dark:#1e40af;--primary-soft:#dbeafe;--secondary:#6366f1;--secondary-dark:#4f46e5;--accent:#0ea5e9;--dark-bg:#0f172a;--dark-card:#1e293b;--dark-surface:#0f1f3d;--light-bg:#f8fafc;--light-card:#ffffff;--light-surface:#eef2f7;--radius:16px;--shadow:0 4px 15px rgba(0,0,0,0.08);--shadow-lg:0 20px 40px rgba(0,0,0,0.12);--font:'Segoe UI',Verdana,Geneva,sans-serif;--bg:#f8fafc;--card:#ffffff;--surface:#eef2f7;--text:#0f172a;--text-muted:#64748b;--border:rgba(0,0,0,0.08);--code-bg:#ffffff;--code-text:#0f172a}
+[data-theme="dark"]{--bg:#0b1220;--card:#0f1a2e;--surface:#0b1426;--text:#e8eefc;--text-muted:#94a3b8;--border:#1e2c44;--code-bg:#0b1220;--code-text:#e8eefc;--primary:#6ea0ff;--primary-dark:#3b77e0;--primary-soft:#1c2f52;--secondary:#9fb0ff;--secondary-dark:#7a8be0;--accent:#7ec8ff;--light-bg:#0b1220;--light-card:#0f1a2e;--light-surface:#0b1426}
+[data-theme="light"]{--bg:var(--light-bg);--card:var(--light-card);--surface:var(--light-surface);--text:#0f172a;--text-muted:#64748b;--border:rgba(0,0,0,0.08);--code-bg:#ffffff;--code-text:#0f172a}
 [data-theme="dark"] .playground{background:#0d1117}
 [data-theme="dark"] .code-block pre{color:#e6edf3}
 [data-theme="dark"] .code-block .cmt{color:#6a737d}

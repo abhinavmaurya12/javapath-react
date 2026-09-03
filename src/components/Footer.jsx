@@ -7,13 +7,11 @@ export default function Footer() {
       <div className="footer-grid">
         <div className="footer-brand">
           <h4><i className="fa-brands fa-java"></i> JavaNest</h4>
-          <p>Learn Java, DSA & Frontend Development.</p>
-          <p style={{ color: 'var(--text-muted)', fontSize: '.85rem', marginTop: 8 }}>A complete learning platform for Java, DSA, HTML, CSS, JavaScript, and React.</p>
+          <p>Learn Java, DSA &amp; Frontend</p>
+          <p style={{ color: 'rgba(255,255,255,.75)', fontSize: '.85rem', marginTop: 8 }}>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. CodeArena — 200+ practice questions with hints, solutions, and progress tracking.</p>
           <div className="footer-social">
-            <a href="#"><i className="fab fa-github"></i></a>
-            <a href="#"><i className="fab fa-youtube"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
-            <a href="#"><i className="fab fa-discord"></i></a>
+            <a href="https://github.com/abhinavmaurya12" target="_blank" rel="noopener"><i className="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/abhinavmaurya1/" target="_blank" rel="noopener"><i className="fab fa-linkedin-in"></i></a>
           </div>
         </div>
         <div>
@@ -24,6 +22,7 @@ export default function Footer() {
           <Link to="/frontend/css">CSS Track</Link>
           <Link to="/roadmap">Learning Roadmap</Link>
           <Link to="/practice">Practice Code</Link>
+          <Link to="/coding-practice">CodeArena</Link>
         </div>
         <div>
           <h4>Prepare</h4>
