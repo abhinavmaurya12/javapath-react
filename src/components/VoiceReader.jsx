@@ -1,6 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
+// On mobile the expanded panel (with progress text, speed control, etc.)
+// crowds the small viewport, so only the floating button is shown.
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth <= 768)
+  useEffect(() => {
+    function onResize() { setIsMobile(window.innerWidth <= 768) }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+  return isMobile
+}
+
 // Browsers silently fail or truncate very long utterances, so we split the
 // text into chunks and speak them one after another.
 const CHUNK_SIZE = 180
@@ -53,6 +65,7 @@ function findHindiVoice(voices) {
 
 export default function VoiceReader({ text, title }) {
   const synth = typeof window !== 'undefined' ? window.speechSynthesis : null
+  const isMobile = useIsMobile()
   const [playing, setPlaying] = useState(false)
   const [paused, setPaused] = useState(false)
   const [rate, setRate] = useState(0.9)
@@ -250,14 +263,8 @@ export default function VoiceReader({ text, title }) {
         {playing && <span className="voice-reader__fab-dot"></span>}
       </button>
 
-      {/* Visible label so the read-aloud feature is easy to spot on every chapter. */}
-      <div className="voice-reader__label" aria-hidden="true">
-        <i className="fas fa-volume-high"></i>
-        <span>Voice Reader</span>
-        <span className="voice-reader__label-dot"></span>
-      </div>
-
-      {open && (
+      {/* On mobile the panel crowds the small viewport — show only the FAB. */}
+      {open && !isMobile && (
         <div className="voice-reader__panel">
           <div className="voice-reader__panel-head">
             <div className="voice-reader__panel-title">
