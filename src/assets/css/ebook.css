@@ -1,0 +1,403 @@
+/* === E-Book Flipbook === */
+/* E-book layout: sidebar (pages) + main content, like the learn-section sidebar */
+.ebook-layout {
+  display: flex;
+  height: calc(100vh - 64px);
+  overflow: hidden;
+  background: var(--bg);
+}
+.ebook-sidebar {
+  width: 300px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  padding: 0;
+  transition: transform .3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+.ebook-sidebar-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+.ebook-sidebar .sidebar-section-title {
+  padding: 10px 20px 4px;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 1px;
+}
+.ebook-sidebar .sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: all .2s;
+  font-size: .85rem;
+  border-left: 3px solid transparent;
+  color: var(--text);
+}
+.ebook-sidebar .sidebar-item:hover {
+  background: var(--surface);
+  color: var(--primary);
+}
+.ebook-sidebar .sidebar-item.active {
+  background: var(--surface);
+  color: var(--primary);
+  border-left-color: var(--primary);
+  font-weight: 600;
+}
+.ebook-sidebar .sidebar-item i {
+  width: 16px;
+  font-size: .8rem;
+  color: var(--text-muted);
+}
+.ebook-main {
+  margin-left: 300px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 20px 40px;
+}
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+.sidebar-toggle-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+/* Slide the sidebar out on mobile */
+@media (max-width: 900px) {
+  .ebook-sidebar {
+    transform: translateX(-100%);
+  }
+  .ebook-sidebar.open {
+    transform: translateX(0);
+  }
+  .ebook-main {
+    margin-left: 0;
+    padding: 14px 16px 40px;
+  }
+  .ebook-toolbar { flex-wrap: wrap; }
+  .ebook-tools { flex-wrap: wrap; justify-content: center; }
+}
+
+/* === E-Book Flipbook === */
+.ebook-wrap {
+  min-height: calc(100vh - 64px);
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 14px 40px;
+}
+
+.ebook-toolbar {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ebook-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ebook-title i { color: var(--primary); }
+.ebook-badge {
+  font-size: .7rem;
+  font-weight: 700;
+  background: var(--primary-soft);
+  color: var(--primary);
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .3px;
+}
+
+.ebook-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.eb-tool-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .85rem;
+  transition: all .2s;
+}
+.eb-tool-btn:hover { background: var(--surface); color: var(--primary); border-color: var(--primary); }
+.eb-zoom-label {
+  min-width: 42px;
+  text-align: center;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 0 4px;
+}
+
+/* Progress bar */
+.ebook-progress {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  font-size: .85rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.ebook-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--surface);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.ebook-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  border-radius: 999px;
+  transition: width .25s ease;
+}
+
+/* Flipbook viewer — PDF-style vertical scroll of full pages */
+.ebook-viewer {
+  width: 100%;
+  max-width: 1100px;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  overflow-y: auto;
+  padding-bottom: 40px;
+}
+.ebook-pdf-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.ebook-pdf-page {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.28);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.08);
+  scroll-margin-top: 80px;
+}
+.ebook-pdf-page img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.ebook-pdf-page-num {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: rgba(0,0,0,.5);
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+}
+
+/* Floating prev/next + goto at the bottom */
+.ebook-pdf-nav {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.eb-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s;
+}
+.eb-nav-btn:hover:not(:disabled) { background: var(--primary-dark); transform: translateY(-2px); }
+.eb-nav-btn:disabled { opacity: .4; cursor: not-allowed; }
+.ebook-goto {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ebook-goto input {
+  width: 70px;
+  padding: 10px 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  font-size: .9rem;
+  text-align: center;
+}
+.ebook-goto input:focus { outline: none; border-color: var(--primary); }
+.eb-go-btn {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.eb-go-btn:hover { background: var(--secondary-dark); }
+
+/* LevelUp / ApnaNote panel */
+.ebook-levelup-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: ebookFadeIn .25s ease;
+}
+@keyframes ebookFadeIn { from { opacity: 0 } to { opacity: 1 } }
+.ebook-levelup-card {
+  width: 100%;
+  max-width: 560px;
+  max-height: 80vh;
+  background: var(--card);
+  color: var(--text);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: ebookPop .3s ease;
+}
+@keyframes ebookPop { from { transform: scale(.92); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+.ebook-levelup-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+}
+.ebook-levelup-eyebrow {
+  display: block;
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary);
+}
+.ebook-levelup-head h3 {
+  margin: 4px 0 0;
+  font-size: 1.4rem;
+  color: var(--text);
+}
+.ebook-levelup-desc {
+  padding: 14px 22px;
+  color: var(--text-muted);
+  font-size: .88rem;
+  margin: 0;
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border);
+}
+.ebook-notearea {
+  flex: 1;
+  min-height: 240px;
+  width: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 18px 22px;
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: .92rem;
+  line-height: 1.6;
+}
+.ebook-levelup-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 22px;
+  border-top: 1px solid var(--border);
+  background: var(--card);
+}
+.ebook-note-hint {
+  font-size: .78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .ebook-toolbar { flex-direction: column; align-items: stretch; }
+  .ebook-tools { justify-content: center; }
+  .ebook-nav { flex-direction: column; align-items: stretch; }
+  .ebook-goto { order: -1; justify-content: center; margin-bottom: 8px; }
+  .eb-nav-btn { justify-content: center; }
+}
+@media (max-width: 480px) {
+  .ebook-title { font-size: 1.05rem; }
+  .ebook-badge { display: none; }
+  .ebook-page-frame { max-width: 100%; }
+}

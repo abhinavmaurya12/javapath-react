@@ -34,6 +34,7 @@ export default function Footer() {
         <div>
           <h4>Resources</h4>
           <Link to="/javapro">JavaBook</Link>
+          <Link to="/ebook">E-Book</Link>
           <Link to="/tryit">Compiler</Link>
           <Link to="/roadmap">Roadmap</Link>
         </div>

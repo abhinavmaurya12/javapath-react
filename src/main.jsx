@@ -5,6 +5,7 @@ import App from './App.jsx'
 import './assets/css/style.css'
 import './assets/css/coding-practice.css'
 import './assets/css/programminghub.css'
+import './assets/css/ebook.css'
 
 // vite.config.js sets base: '/javapath/javapathapp/' for local dev. For the
 // GitHub Pages deployment of this repo the app is served from the repo root

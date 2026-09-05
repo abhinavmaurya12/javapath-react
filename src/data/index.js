@@ -2,6 +2,7 @@ import lessons from './lessons.js'
 import dsaTopics from './dsaTopics.js'
 import practiceData from './practiceData.js'
 import javaproData from './javaproData.js'
+import codesqzData from './codesqzData.js'
 import interviewQuestions from './interviewQuestions.js'
 import dailyChallenges from './dailyChallenges.js'
 import frontendHtml from './frontend/frontendHtml.js'
@@ -9,7 +10,7 @@ import frontendCss from './frontend/frontendCss.js'
 import frontendJavascript from './frontend/frontendJavascript.js'
 import frontendReact from './frontend/frontendReact.js'
 
-export { lessons, dsaTopics, practiceData, javaproData, interviewQuestions, dailyChallenges }
+export { lessons, dsaTopics, practiceData, javaproData, codesqzData, interviewQuestions, dailyChallenges }
 export { frontendHtml, frontendCss, frontendJavascript, frontendReact }
 
 export const frontendTracks = {

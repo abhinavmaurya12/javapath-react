@@ -115,6 +115,8 @@
 .ph-hero-left p{font-size:1.05rem;opacity:1;margin-bottom:30px;color:#fff;line-height:1.65;text-shadow:0 1px 6px rgba(0,0,0,.3)}
 .ph-hero-btns{display:flex;gap:12px;flex-wrap:nowrap;margin-bottom:28px}
 @media(max-width:900px){.ph-hero-btns{flex-wrap:wrap;justify-content:center}}
+.ph-hero-btns--second{margin-top:14px;gap:10px}
+@media(max-width:900px){.ph-hero-btns--second{justify-content:center}}
 .ph-hero-right{display:flex;justify-content:center}
 .ph-hero-stats-card{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:28px;width:100%}
 .ph-hero-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}

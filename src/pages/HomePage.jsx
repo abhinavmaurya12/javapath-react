@@ -8,6 +8,7 @@ import UpdateCycle from '../components/UpdateCycle'
 
 const COURSES = [
   { icon: '☕', title: 'Java Mastery', desc: 'From variables to streams — complete Java from beginner to advanced.', to: '/java', color: '#e74c3c', level: 'Beginner', weeks: '15 Chapters', students: 'Free', rating: 4.8 },
+  { icon: '📖', title: 'E-Book Library', desc: 'Handwritten Java notebook — 160 scanned pages with flipbook reader, zoom and LevelUp/ApnaNote.', to: '/ebook', color: '#0ea5e9', level: 'Free', weeks: '160 Pages', students: 'Free', rating: 4.9 },
   { icon: '🧠', title: 'DSA & Algorithms', desc: 'Master data structures and algorithms with Java implementations.', to: '/dsa', color: '#27ae60', level: 'Intermediate', weeks: '30 Topics', students: 'Free', rating: 4.7 },
   { icon: '💻', title: 'Web Development', desc: 'HTML, CSS, JavaScript and React — build modern websites.', to: '/frontend/html', color: '#2563eb', level: 'Beginner', weeks: '30 Chapters', students: 'Free', rating: 4.9 },
   { icon: '🔥', title: 'Interview Prep', desc: '100+ interview questions with hints, solutions and progress tracking.', to: '/interview', color: '#8e44ad', level: 'Advanced', weeks: '150+ Qs', students: 'Free', rating: 4.8 },
@@ -40,7 +41,8 @@ const CATEGORIES = [
   { icon: '🧠', label: 'Data Structures', to: '/dsa' },
   { icon: '🔥', label: 'Interview Prep', to: '/interview' },
   { icon: '🏆', label: 'Coding Practice', to: '/codearena' },
-  { icon: '📚', label: 'Programs', to: '/practice' }
+  { icon: '📚', label: 'Programs', to: '/practice' },
+  { icon: '📖', label: 'E-Book', to: '/ebook' }
 ]
 
 const WHATS_NEW = [
@@ -149,6 +151,10 @@ export default function HomePage() {
             <Link to="/dsa" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-project-diagram"></i> Start DSA</Link>
             <Link to="/frontend/html" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fab fa-html5"></i> Learn Frontend</Link>
             <Link to="/codearena" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-trophy"></i> CodeArena</Link>
+          </div>
+          <div className="ph-hero-btns ph-hero-btns--second">
+            <Link to="/ebook" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book"></i> E-Book</Link>
+            <Link to="/codesqz" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book-open"></i> CodeSqz</Link>
           </div>
           </div>
           <div className="ph-hero-right">

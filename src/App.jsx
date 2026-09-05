@@ -16,6 +16,8 @@ import InterviewPage from './pages/InterviewPage'
 import JavaProPage from './pages/JavaProPage'
 import TryItPage from './pages/TryItPage'
 import RoadmapPage from './pages/RoadmapPage'
+import EBookPage from './pages/EBookPage'
+import CodeSqzPage from './pages/CodeSqzPage'
 import FrontendPage from './pages/FrontendPage'
 
 function Layout({ children, hideFooter = false }) {
@@ -60,6 +62,8 @@ export default function App() {
         <Route path="/javapro" element={<Layout hideFooter><JavaProPage /></Layout>} />
         <Route path="/tryit" element={<Layout hideFooter><TryItPage /></Layout>} />
         <Route path="/roadmap" element={<Layout hideFooter><RoadmapPage /></Layout>} />
+        <Route path="/ebook" element={<Layout hideFooter><EBookPage /></Layout>} />
+        <Route path="/codesqz" element={<Layout hideFooter><CodeSqzPage /></Layout>} />
         <Route path="/frontend/:track" element={<Layout hideFooter><FrontendPage /></Layout>} />
       </Routes>
     </ProgressProvider>
