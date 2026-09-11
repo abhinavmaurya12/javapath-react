@@ -4,6 +4,7 @@ import Search from './Search'
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/' },
+  // { label: 'Quick Learn', to: '/quick-learn' },
   { label: 'Java', to: '/java' },
   { label: 'DSA', to: '/dsa' },
   { label: 'CodeArena', to: '/coding-practice' },
@@ -93,7 +94,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.9.5</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.9.7</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); setMenuOpen(!menuOpen); setDropdownOpen(false) }}>
         <i className="fas fa-bars"></i>

@@ -16,6 +16,7 @@ export default function Footer() {
         </div>
         <div>
           <h4>Learn</h4>
+          <Link to="/quick-learn">Quick Learn</Link>
           <Link to="/java">Java Chapters</Link>
           <Link to="/dsa">DSA Topics</Link>
           <Link to="/frontend/html">HTML Track</Link>

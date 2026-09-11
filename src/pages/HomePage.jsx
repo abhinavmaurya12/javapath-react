@@ -7,6 +7,7 @@ import JavaRoadmapVisual from '../components/JavaRoadmapVisual'
 import UpdateCycle from '../components/UpdateCycle'
 
 const COURSES = [
+  { icon: '⚡', title: 'Quick Learn', desc: 'Java complete quick reference — 80+ key concepts at a glance.', to: '/quick-learn', color: '#f59e0b', level: 'Quick', weeks: '80+ Points', students: 'Free', rating: 4.9 },
   { icon: '☕', title: 'Java Mastery', desc: 'From variables to streams — complete Java from beginner to advanced.', to: '/java', color: '#e74c3c', level: 'Beginner', weeks: '15 Chapters', students: 'Free', rating: 4.8 },
   { icon: '📖', title: 'E-Book Library', desc: 'Handwritten Java notebook — 160 scanned pages with flipbook reader, zoom and LevelUp/ApnaNote.', to: '/ebook', color: '#0ea5e9', level: 'Free', weeks: '160 Pages', students: 'Free', rating: 4.9 },
   { icon: '🧠', title: 'DSA & Algorithms', desc: 'Master data structures and algorithms with Java implementations.', to: '/dsa', color: '#27ae60', level: 'Intermediate', weeks: '30 Topics', students: 'Free', rating: 4.7 },
@@ -28,6 +29,7 @@ const FEATURES = [
 
 const STATS = [
   { num: '15+', label: 'Java Chapters' },
+  { num: '80+', label: 'Quick Points' },
   { num: '30+', label: 'DSA Topics' },
   { num: '375+', label: 'Practice Programs' },
   { num: '200+', label: 'CodeArena Questions' },
@@ -96,6 +98,7 @@ const WHATS_NEW = [
 ]
 
 const HERO_NOTICE = [
+   'Quick Learn — 80+ Java key concepts at a glance',
   'Voice Reader for all chapters — read-aloud feature',
   'CodeArena 200+ coding & practice questions',
   'Array Core Interview Questions Phase 2 (70 questions)',
@@ -148,11 +151,13 @@ export default function HomePage() {
             <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. <strong>CodeArena — 200+ practice questions</strong> with hints, solutions, and progress tracking.</p>
 <div className="ph-hero-btns">
             <Link to="/java" className="ph-btn ph-btn-primary"><i className="fas fa-play"></i> Start Learning Java</Link>
+           
             <Link to="/dsa" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-project-diagram"></i> Start DSA</Link>
             <Link to="/frontend/html" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fab fa-html5"></i> Learn Frontend</Link>
             <Link to="/codearena" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-trophy"></i> CodeArena</Link>
           </div>
           <div className="ph-hero-btns ph-hero-btns--second">
+             <Link to="/quick-learn" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-bolt"></i> Quick Learn</Link>
             <Link to="/ebook" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book"></i> E-Book</Link>
             <Link to="/codesqz" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book-open"></i> CodeSqz</Link>
           </div>

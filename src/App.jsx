@@ -18,6 +18,7 @@ import TryItPage from './pages/TryItPage'
 import RoadmapPage from './pages/RoadmapPage'
 import EBookPage from './pages/EBookPage'
 import CodeSqzPage from './pages/CodeSqzPage'
+import QuickLearnPage from './pages/QuickLearnPage'
 import FrontendPage from './pages/FrontendPage'
 
 function Layout({ children, hideFooter = false }) {
@@ -64,6 +65,7 @@ export default function App() {
         <Route path="/roadmap" element={<Layout hideFooter><RoadmapPage /></Layout>} />
         <Route path="/ebook" element={<Layout hideFooter><EBookPage /></Layout>} />
         <Route path="/codesqz" element={<Layout hideFooter><CodeSqzPage /></Layout>} />
+        <Route path="/quick-learn" element={<Layout hideFooter><QuickLearnPage /></Layout>} />
         <Route path="/frontend/:track" element={<Layout hideFooter><FrontendPage /></Layout>} />
       </Routes>
     </ProgressProvider>
