@@ -155,7 +155,7 @@ export default function Search() {
 
   return (
     <div className="search-box" style={{ position: 'relative' }}>
-      <i className="fas fa-search" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,.7)', fontSize: '.85rem', pointerEvents: 'none' }}></i>
+      <i className="fas fa-search" style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', fontSize: '.85rem', pointerEvents: 'none' }}></i>
       <input
         ref={inputRef}
         type="text"

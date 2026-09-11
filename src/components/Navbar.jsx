@@ -57,13 +57,37 @@ export default function Navbar() {
     applyTheme(theme)
   }, [theme])
 
+  // Keep this toggle in sync with the mobile SubNav theme toggle.
+  useEffect(() => {
+    function onThemeChange(e) { setTheme(e.detail.theme) }
+    window.addEventListener('themechange', onThemeChange)
+    return () => window.removeEventListener('themechange', onThemeChange)
+  }, [])
+
   function toggleTheme() {
-    setTheme(t => (t === 'dark' ? 'light' : 'dark'))
+    const next = theme === 'dark' ? 'light' : 'dark'
+    applyTheme(next)
+    setTheme(next)
+    // Keep the mobile SubNav theme toggle in sync with this one.
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }))
   }
 
   function closeAll() {
     setMenuOpen(false)
     setDropdownOpen(false)
+    document.body.removeAttribute('data-subnav-hidden')
+  }
+
+  function toggleMenu() {
+    setMenuOpen(o => {
+      const next = !o
+      // When the mobile nav-links menu opens it covers the sub-nav bar, so
+      // hide the sub-nav to avoid a stacked/overlapping mess.
+      if (next) document.body.setAttribute('data-subnav-hidden', '1')
+      else document.body.removeAttribute('data-subnav-hidden')
+      setDropdownOpen(false)
+      return next
+    })
   }
 
   // Close mobile menu + dropdowns on resize
@@ -96,7 +120,7 @@ export default function Navbar() {
       <div className="nav-brand">
         <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.9.7</span>
       </div>
-      <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); setMenuOpen(!menuOpen); setDropdownOpen(false) }}>
+      <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); toggleMenu() }}>
         <i className="fas fa-bars"></i>
       </button>
       <div className={'nav-links' + (menuOpen ? ' open' : '')} id="navLinks">
@@ -114,10 +138,10 @@ export default function Navbar() {
         ) : (
           <div className={'nav-dropdown' + (dropdownOpen ? ' open' : '')}>
             <span
-              style={{ padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, color: '#fff' }}
+              style={{ padding: '8px 16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text)' }}
               onClick={e => { e.stopPropagation(); setDropdownOpen(!dropdownOpen) }}
             >
-              Frontend <i className="fas fa-chevron-down" style={{ fontSize: '.7rem', color: '#fff' }}></i>
+              Frontend <i className="fas fa-chevron-down" style={{ fontSize: '.7rem', color: 'var(--text-muted)' }}></i>
             </span>
             <div className="dropdown-menu">
               {FRONTEND_DROPDOWN.map(item => (

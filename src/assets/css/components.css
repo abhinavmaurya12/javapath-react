@@ -1,14 +1,78 @@
+/* === Footer (theme-aware) === */
+.footer{background:var(--card);border-top:1px solid var(--border);padding:48px 20px 24px;color:var(--text)}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;max-width:1200px;margin:0 auto}
+.footer h4{color:var(--text)}
+.footer a{display:block;color:var(--text-muted);font-size:.88rem;margin-bottom:8px;transition:color .2s}
+.footer a:hover{color:var(--primary)}
+.footer-bottom{text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--border);color:var(--text-muted);font-size:.85rem}
+.footer-brand p{color:var(--text-muted);font-size:.88rem;margin-bottom:8px}
+.footer-social{display:flex;gap:12px;margin-top:12px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--text);transition:all .2s;border:1px solid var(--border)}
+.footer-social a:hover{border-color:var(--primary);color:var(--primary);background:var(--surface)}
+
+:root{--nav-h:64px;--nav-sub-h:112px}
+@media(max-width:768px){:root{--nav-h:56px;--nav-sub-h:104px}}
+/* === Sub Navigation Bar (below navbar) === */
+.sub-nav{position:fixed;top:64px;left:0;right:0;z-index:990;background:var(--card);border-bottom:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.06);overflow:hidden;display:flex;align-items:center}
+/* Sidebar on learn-layout pages must start below BOTH the navbar (64px)
+   and the sub-nav bar (48px), otherwise the sidebar overlaps the sub-nav. */
+.sidebar{top:112px}
+.frontend-sidebar{top:112px}
+/* Mobile-only theme toggle pinned to the LEFT of the sub-nav bar. */
+.sub-nav-theme-btn{display:none;align-items:center;gap:6px;height:44px;padding:0 14px;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:8px;cursor:pointer;font-size:.82rem;font-weight:600;flex-shrink:0}
+.sub-nav-theme-btn i{font-size:.85rem}
+@media(max-width:768px){
+  .sub-nav{top:56px}
+  .sub-nav-theme-btn{display:flex}
+  /* On mobile show only the icon, not the "Dark"/"Light" text. */
+  .sub-nav-theme-btn span{display:none}
+  /* On mobile the sidebar drawer must also clear the sub-nav bar. */
+  .sidebar{top:104px}
+  .frontend-sidebar{top:104px}
+  /* When the mobile nav-links menu is open it covers the sub-nav, so hide
+     the sub-nav to avoid a stacked/overlapping mess. */
+  body[data-subnav-hidden] .sub-nav{display:none}
+}
+.sub-nav-inner{display:flex;gap:0;overflow-x:auto;scroll-behavior:smooth;max-width:1200px;margin:0 auto;padding:0 16px;scrollbar-width:none}
+.sub-nav-inner::-webkit-scrollbar{display:none}
+.sub-nav-item{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;color:var(--text-muted);text-decoration:none;font-size:.88rem;font-weight:600;white-space:nowrap;transition:all .2s;border-bottom:3px solid transparent;flex-shrink:0}
+.sub-nav-item:hover{color:var(--primary);background:var(--surface)}
+.sub-nav-item.active{color:var(--primary);border-bottom-color:var(--primary);background:var(--surface)}
+.sub-nav-item i{font-size:.85rem}
+@media(max-width:768px){.sub-nav-item{padding:10px 14px;font-size:.82rem}.sub-nav{top:56px}}
+@media(max-width:480px){.sub-nav-item span{display:none}.sub-nav-item i{font-size:1rem}}
+
 /* === Navbar, Search, Buttons === */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--card);border-bottom:1px solid var(--border);padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(10px);overflow:visible}
-.nav-brand{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:700;color:var(--primary)}
+/* Theme-aware navbar overrides (components.css loads after style.css so it
+   wins). style.css hardcodes a blue gradient + white text which renders
+   invisible in light mode (white-on-white). Use CSS variables instead. */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--card);border-bottom:1px solid var(--border);padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(10px);overflow:visible;color:var(--text)}
+.nav-brand{display:flex;align-items:center;gap:10px;font-size:1.3rem;font-weight:700;color:var(--text)}
 .nav-brand i{color:var(--primary)}
-.nav-links{display:flex;gap:8px;align-items:center}
+.nav-brand .nav-version{color:var(--text-muted)}
+.nav-links{gap:8px;align-items:center}
 .nav-links a{padding:8px 16px;border-radius:8px;color:var(--text);font-size:.9rem;transition:all .2s}
 .nav-links a:hover,.nav-links a.active{background:var(--surface);color:var(--primary)}
+.nav-links a.active{font-weight:600}
+.nav-dropdown{position:relative}
+.nav-dropdown>*{color:var(--text)}
+.dropdown-menu{display:none;position:absolute;top:100%;left:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:8px 0;min-width:180px;box-shadow:0 12px 40px rgba(0,0,0,.3);z-index:1001}
+.dropdown-menu a{display:block;padding:10px 20px;color:var(--text);font-size:.88rem;transition:all .2s;white-space:nowrap}
+.dropdown-menu a:hover{background:var(--surface);color:var(--primary)}
 .nav-right{display:flex;align-items:center;gap:12px}
-.search-box{position:relative}
-.search-box input{background:var(--surface);border:1px solid var(--border);color:var(--text);padding:8px 12px 8px 36px;border-radius:8px;width:220px;font-size:.85rem;transition:all .3s}
-.search-box input:focus{outline:none;border-color:var(--primary);width:280px}
+.navbar .search-box input{background:var(--surface);border:1px solid var(--border);color:var(--text)}
+.navbar .search-box input::placeholder{color:var(--text-muted)}
+.navbar .search-box input:focus{border-color:var(--primary)}
+/* Override the hardcoded blue gradient + white text used by the mobile
+   dropdown menu (style.css) so it follows the active theme. */
+.nav-links.open .nav-dropdown .dropdown-menu{background:var(--card);border:1px solid var(--border)}
+.nav-links.open .nav-dropdown .dropdown-menu a{color:var(--text)}
+.nav-links.open .nav-dropdown .dropdown-menu a:hover{background:var(--surface);color:var(--primary)}
+/* Search icon color must follow the theme (was hardcoded white -> invisible
+   in light mode). */
+.navbar .search-box i{color:var(--text-muted)}
+.theme-btn,.mobile-menu-btn{background:none;border:1px solid var(--border);color:var(--text)}
+.theme-btn:hover,.mobile-menu-btn:hover{background:var(--surface);color:var(--primary);border-color:var(--primary)}
 .search-results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);max-height:300px;overflow-y:auto;display:none;z-index:9999;box-shadow:0 8px 24px rgba(0,0,0,.3)}
 .search-results.show{display:block}
 .search-item{padding:10px 14px;color:var(--text);font-size:.85rem;border-bottom:1px solid var(--border);cursor:pointer;display:flex;align-items:center;gap:8px}
@@ -17,14 +81,21 @@
 .search-item .search-label{color:var(--text-muted);font-size:.75rem;margin-left:auto}
 .theme-btn,.mobile-menu-btn{background:none;border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all .2s}
 .theme-btn:hover,.mobile-menu-btn:hover{background:var(--surface);color:var(--primary);border-color:var(--primary)}
-.mobile-menu-btn{display:none}
+/* Hamburger is mobile-only: hide it on desktop. */
+@media(min-width:769px){.mobile-menu-btn{display:none}}
+/* On mobile show only the search bar + hamburger; hide the theme toggle so
+   the small navbar isn't crowded. */
+@media(max-width:768px){.nav-right .theme-btn{display:none}.nav-right{gap:6px}}
 .page{display:none;padding-top:64px;min-height:100vh}.page.active{display:block}
 .hero{background:linear-gradient(135deg,#cfd8e6 0%,#9fb4cc 35%,#5a7289 65%,#1a1a1a 100%);padding:100px 20px 80px;text-align:center;color:#fff;position:relative;overflow:hidden}
 
 /* 5-Day Update Cycle */
 .update-cycle{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%);padding:60px 24px;text-align:center;position:relative;overflow:hidden}
+[data-theme="light"] .update-cycle{background:linear-gradient(135deg,#eef2ff 0%,#e0e7ff 50%,#dbeafe 100%)}
 .update-cycle::before{content:'';position:absolute;top:-50%;left:-20%;width:400px;height:400px;background:rgba(248,152,32,.08);border-radius:50%;animation:floatOrb 8s ease-in-out infinite}
 .update-cycle::after{content:'';position:absolute;bottom:-30%;right:-10%;width:300px;height:300px;background:rgba(83,130,161,.08);border-radius:50%;animation:floatOrb 10s ease-in-out infinite reverse}
+[data-theme="light"] .update-cycle::before{background:rgba(37,99,235,.10)}
+[data-theme="light"] .update-cycle::after{background:rgba(99,102,241,.10)}
 @keyframes floatOrb{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-40px)}}
 .update-cycle-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
 .cycle-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(248,152,32,.15);border:1px solid rgba(248,152,32,.3);color:var(--primary);padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:600;margin-bottom:20px;animation:fadeSlideDown .6s ease-out}
@@ -36,10 +107,14 @@
 .cycle-timeline{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap}
 .cycle-day{display:flex;flex-direction:column;align-items:center;gap:0;animation:popIn .5s ease-out calc(var(--delay) * .12s) both}
 .day-dot{width:14px;height:14px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px rgba(248,152,32,.5);position:relative;z-index:2;animation:pulse 2s ease-in-out infinite;animation-delay:calc(var(--delay) * .3s)}
-.day-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;min-width:110px;backdrop-filter:blur(8px);transition:all .3s}
+/* Cards need enough contrast against the section background in both themes
+   (var(--surface) nearly vanishes on the dark section in dark mode). */
+.day-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;min-width:110px;backdrop-filter:blur(8px);transition:all .3s}
 .day-card:hover{background:rgba(248,152,32,.12);border-color:rgba(248,152,32,.3);transform:translateY(-4px)}
 .day-label{display:block;font-size:.75rem;color:var(--primary);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.day-task{display:block;font-size:.85rem;color:var(--text);font-weight:500}
+.day-task{display:block;font-size:.85rem;font-weight:500}
+[data-theme="dark"] .day-task{color:#e8eefc}
+[data-theme="light"] .day-task{color:#0f172a}
 @keyframes fadeSlideDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{from{opacity:0;transform:scale(.5) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes pulse{0%,100%{box-shadow:0 0 12px rgba(248,152,32,.4)}50%{box-shadow:0 0 24px rgba(248,152,32,.8)}}

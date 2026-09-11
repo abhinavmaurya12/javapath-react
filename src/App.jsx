@@ -19,13 +19,15 @@ import RoadmapPage from './pages/RoadmapPage'
 import EBookPage from './pages/EBookPage'
 import CodeSqzPage from './pages/CodeSqzPage'
 import QuickLearnPage from './pages/QuickLearnPage'
+import SubNav from './components/SubNav'
 import FrontendPage from './pages/FrontendPage'
 
-function Layout({ children, hideFooter = false }) {
+function Layout({ children, hideFooter = false, hideSubNav = false }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <Navbar />
-      <main style={{ flex: 1, paddingTop: 64 }}>
+      {!hideSubNav && <SubNav />}
+      <main style={{ flex: 1, paddingTop: hideSubNav ? 'var(--nav-h, 64px)' : 'var(--nav-sub-h, 112px)' }}>
         {children}
       </main>
       {!hideFooter && <Footer />}
@@ -63,7 +65,7 @@ export default function App() {
         <Route path="/javapro" element={<Layout hideFooter><JavaProPage /></Layout>} />
         <Route path="/tryit" element={<Layout hideFooter><TryItPage /></Layout>} />
         <Route path="/roadmap" element={<Layout hideFooter><RoadmapPage /></Layout>} />
-        <Route path="/ebook" element={<Layout hideFooter><EBookPage /></Layout>} />
+        <Route path="/ebook" element={<Layout hideFooter hideSubNav><EBookPage /></Layout>} />
         <Route path="/codesqz" element={<Layout hideFooter><CodeSqzPage /></Layout>} />
         <Route path="/quick-learn" element={<Layout hideFooter><QuickLearnPage /></Layout>} />
         <Route path="/frontend/:track" element={<Layout hideFooter><FrontendPage /></Layout>} />

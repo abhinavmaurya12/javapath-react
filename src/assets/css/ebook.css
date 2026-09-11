@@ -2,7 +2,7 @@
 /* E-book layout: sidebar (pages) + main content, like the learn-section sidebar */
 .ebook-layout {
   display: flex;
-  height: calc(100vh - 64px);
+  height: calc(100vh - var(--nav-sub-h, 112px));
   overflow: hidden;
   background: var(--bg);
 }
@@ -11,7 +11,7 @@
   background: var(--card);
   border-right: 1px solid var(--border);
   position: fixed;
-  top: 64px;
+  top: var(--nav-sub-h, 112px);
   bottom: 0;
   left: 0;
   overflow-y: auto;

@@ -151,15 +151,14 @@ export default function HomePage() {
             <p>A complete learning platform with structured lessons for Java, DSA, HTML, CSS, JavaScript, and React. Practical examples, coding practice, interview preparation, and online compilers. <strong>CodeArena — 200+ practice questions</strong> with hints, solutions, and progress tracking.</p>
 <div className="ph-hero-btns">
             <Link to="/java" className="ph-btn ph-btn-primary"><i className="fas fa-play"></i> Start Learning Java</Link>
-           
-            <Link to="/dsa" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-project-diagram"></i> Start DSA</Link>
-            <Link to="/frontend/html" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fab fa-html5"></i> Learn Frontend</Link>
+            {/* <Link to="/frontend/html" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fab fa-html5"></i> Learn Frontend</Link> */}
             <Link to="/codearena" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-trophy"></i> CodeArena</Link>
           </div>
           <div className="ph-hero-btns ph-hero-btns--second">
+            <Link to="/dsa" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-project-diagram"></i> Start DSA</Link>
              <Link to="/quick-learn" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-bolt"></i> Quick Learn</Link>
-            <Link to="/ebook" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book"></i> E-Book</Link>
-            <Link to="/codesqz" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book-open"></i> CodeSqz</Link>
+            {/* <Link to="/ebook" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book"></i> E-Book</Link> */}
+            {/* <Link to="/codesqz" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book-open"></i> CodeSqz</Link> */}
           </div>
           </div>
           <div className="ph-hero-right">
