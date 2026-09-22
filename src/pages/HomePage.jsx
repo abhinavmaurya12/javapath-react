@@ -159,6 +159,7 @@ export default function HomePage() {
           <div className="ph-hero-btns ph-hero-btns--second">
             <Link to="/dsa" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-project-diagram"></i> Start DSA</Link>
              <Link to="/quick-learn" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-bolt"></i> Quick Learn</Link>
+            <a href="https://github.com/abhinavmaurya12/JavaSquadz" target="_blank" rel="noopener noreferrer" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fab fa-github"></i> JavaSquadz</a>
             {/* <Link to="/ebook" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book"></i> E-Book</Link> */}
             {/* <Link to="/codesqz" className="ph-btn ph-btn-outline ph-btn-outline--hero"><i className="fas fa-book-open"></i> CodeSqz</Link> */}
           </div>

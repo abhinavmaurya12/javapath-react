@@ -14,6 +14,7 @@ const NAV_ITEMS = [
   { label: 'Book', to: '/javapro' },
   // { label: 'E-Book', to: '/ebook' },
   { label: 'Compiler', to: '/tryit' },
+  { label: 'JavaSquadz', to: 'https://github.com/abhinavmaurya12/JavaSquadz', external: true },
 ]
 
 const FRONTEND_DROPDOWN = [
@@ -125,9 +126,15 @@ export default function Navbar() {
       </button>
       <div className={'nav-links' + (menuOpen ? ' open' : '')} id="navLinks">
         {NAV_ITEMS.map(item => (
-          <Link key={item.to} to={item.to} onClick={closeAll} className={isActive(item.to) ? 'active' : ''}>
-            {item.label}
-          </Link>
+          item.external ? (
+            <a key={item.to} href={item.to} target="_blank" rel="noopener noreferrer" onClick={closeAll}>
+              <i className="fab fa-github"></i> {item.label}
+            </a>
+          ) : (
+            <Link key={item.to} to={item.to} onClick={closeAll} className={isActive(item.to) ? 'active' : ''}>
+              {item.label}
+            </Link>
+          )
         ))}
         {menuOpen ? (
           FRONTEND_DROPDOWN.map(item => (
