@@ -19,6 +19,7 @@ export default function Footer() {
           <Link to="/quick-learn">Quick Learn</Link>
           <Link to="/java">Java Chapters</Link>
           <Link to="/dsa">DSA Topics</Link>
+          <Link to="/mynotes">My Notes</Link>
           <Link to="/frontend/html">HTML Track</Link>
           <Link to="/frontend/css">CSS Track</Link>
           <Link to="/roadmap">Learning Roadmap</Link>
@@ -36,6 +37,7 @@ export default function Footer() {
           <h4>Resources</h4>
           <Link to="/javapro">JavaBook</Link>
           <Link to="/ebook">E-Book</Link>
+          <Link to="/mynotes">My Notes</Link>
           <Link to="/tryit">Compiler</Link>
           <Link to="/roadmap">Roadmap</Link>
         </div>

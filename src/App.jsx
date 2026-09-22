@@ -1,5 +1,6 @@
 import CodingPractice from './pages/CodingPractice'
 import CodeArenaPage from './pages/CodeArenaPage'
+import MyNotesPage from './pages/MyNotesPage'
 import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { ProgressProvider } from './contexts/ProgressContext'
@@ -68,6 +69,7 @@ export default function App() {
         <Route path="/ebook" element={<Layout hideFooter hideSubNav><EBookPage /></Layout>} />
         <Route path="/codesqz" element={<Layout hideFooter><CodeSqzPage /></Layout>} />
         <Route path="/quick-learn" element={<Layout hideFooter><QuickLearnPage /></Layout>} />
+        <Route path="/mynotes" element={<Layout><MyNotesPage /></Layout>} />
         <Route path="/frontend/:track" element={<Layout hideFooter><FrontendPage /></Layout>} />
       </Routes>
     </ProgressProvider>

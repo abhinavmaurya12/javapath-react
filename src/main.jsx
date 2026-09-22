@@ -9,6 +9,7 @@ import './assets/css/ebook.css'
 import './assets/css/quicklearn.css'
 import './assets/css/responsive.css'
 import './assets/css/components.css'
+import './assets/css/mynotes.css'
 
 // vite.config.js sets base: '/javapath/javapathapp/' for local dev. For the
 // GitHub Pages deployment of this repo the app is served from the repo root

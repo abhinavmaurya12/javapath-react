@@ -23,14 +23,14 @@ export default function TryItPage() {
     return (
       <div id="page-tryit" style={{ position: 'fixed', inset: 0, background: 'var(--bg)', overflow: 'hidden' }}>
         {!isMobile && (
-          <div style={{ position: 'fixed', top: 64, left: 0, right: 0, padding: '10px 16px', background: 'var(--card)', borderBottom: '1px solid var(--border)', zIndex: 1000, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+          <div style={{ position: 'fixed', top: 112, left: 0, right: 0, padding: '10px 16px', background: 'var(--card)', borderBottom: '1px solid var(--border)', zIndex: 1000, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
 <span style={{ color: 'var(--text-muted)', fontSize: '.85rem' }}>No question selected. Choose a problem from Coding Practice to start coding here.</span>
               <Link to="/coding-practice" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '8px 18px', fontSize: '.85rem', marginLeft: 'auto' }}>
                 <i className="fas fa-trophy"></i> Coding Practice
               </Link>
           </div>
         )}
-        <div style={{ position: 'fixed', top: isMobile ? 56 : 108, left: 0, right: 0, bottom: 44, overflow: 'auto' }}>
+        <div style={{ position: 'fixed', top: isMobile ? 104 : 112, left: 0, right: 0, bottom: 44, overflow: 'auto' }}>
           <iframe
             id="tryItFrame"
             src="https://onecompiler.com/embed/java?codeChangeEvent=true"
@@ -103,7 +103,7 @@ export default function TryItPage() {
           borderRight: '1px solid var(--border)',
           overflowY: 'auto',
           height: '100%',
-          paddingTop: 64,
+          paddingTop: 112,
           paddingBottom: 44
         }}>
           <div style={{ padding: '0 12px 12px' }}>
@@ -120,7 +120,7 @@ export default function TryItPage() {
         </div>
 
         {/* Right: compiler */}
-        <div style={{ flex: 1, height: '100%', overflow: 'hidden', background: 'var(--bg)', paddingTop: 64, paddingBottom: 44 }}>
+        <div style={{ flex: 1, height: '100%', overflow: 'hidden', background: 'var(--bg)', paddingTop: 112, paddingBottom: 44 }}>
           <iframe
             id="tryItFrame"
             src="https://onecompiler.com/embed/java?codeChangeEvent=true"
@@ -164,7 +164,7 @@ export default function TryItPage() {
     <div id="page-tryit" style={{ position: 'fixed', inset: 0, background: 'var(--bg)', overflow: 'hidden' }}>
       <div style={{
         position: 'fixed',
-        top: 56,
+        top: 104,
         left: 0,
         right: 0,
         background: 'var(--bg)',
@@ -185,7 +185,7 @@ export default function TryItPage() {
         </div>
       </div>
 
-      <div style={{ position: 'fixed', top: '55vh', left: 0, right: 0, bottom: 44, overflow: 'auto' }}>
+      <div style={{ position: 'fixed', top: 'calc(104px + 55vh)', left: 0, right: 0, bottom: 44, overflow: 'auto' }}>
         <iframe
           id="tryItFrameMobile"
           src="https://onecompiler.com/embed/java?codeChangeEvent=true"

@@ -14,7 +14,8 @@ const COURSES = [
   { icon: '💻', title: 'Web Development', desc: 'HTML, CSS, JavaScript and React — build modern websites.', to: '/frontend/html', color: '#2563eb', level: 'Beginner', weeks: '30 Chapters', students: 'Free', rating: 4.9 },
   { icon: '🔥', title: 'Interview Prep', desc: '100+ interview questions with hints, solutions and progress tracking.', to: '/interview', color: '#8e44ad', level: 'Advanced', weeks: '150+ Qs', students: 'Free', rating: 4.8 },
   { icon: '🏆', title: 'CodeArena Practice', desc: '200 coding & interview practice questions across 12 categories.', to: '/codearena', color: '#2563eb', level: 'All Levels', weeks: '200 Qs', students: 'Free', rating: 4.6 },
-  { icon: '📚', title: 'Java Programs', desc: '375+ hands-on coding programs across all Java topics.', to: '/practice', color: '#0ea5e9', level: 'Practice', weeks: '375+ Progs', students: 'Free', rating: 4.7 }
+  { icon: '📚', title: 'Java Programs', desc: '375+ hands-on coding programs across all Java topics.', to: '/practice', color: '#0ea5e9', level: 'Practice', weeks: '375+ Progs', students: 'Free', rating: 4.7 },
+  { icon: '📝', title: 'My Notes', desc: 'Rich text notebook with formatting, colors, images and offline persistence.', to: '/mynotes', color: '#f59e0b', level: 'Free', weeks: 'Unlimited', students: 'Free', rating: 4.9 }
 ]
 
 const FEATURES = [
@@ -44,7 +45,8 @@ const CATEGORIES = [
   { icon: '🔥', label: 'Interview Prep', to: '/interview' },
   { icon: '🏆', label: 'Coding Practice', to: '/codearena' },
   { icon: '📚', label: 'Programs', to: '/practice' },
-  { icon: '📖', label: 'E-Book', to: '/ebook' }
+  { icon: '📖', label: 'E-Book', to: '/ebook' },
+  { icon: '📝', label: 'My Notes', to: '/mynotes' }
 ]
 
 const WHATS_NEW = [

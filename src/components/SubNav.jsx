@@ -8,7 +8,8 @@ const SUB_NAV = [
   { label: 'CodeArena', to: '/codearena', icon: 'fa-trophy' },
   { label: 'Quick Learn', to: '/quick-learn', icon: 'fa-bolt' },
   { label: 'E-Book', to: '/ebook', icon: 'fa-book' },
-  { label: 'CodeSqz', to: '/codesqz', icon: 'fa-book-open' }
+  { label: 'CodeSqz', to: '/codesqz', icon: 'fa-book-open' },
+  { label: 'My Notes', to: '/mynotes', icon: 'fas fa-sticky-note' }
 ]
 
 const THEME_PAINT = {
