@@ -112,6 +112,13 @@ export default function HomePage() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    // The horizontal sub-nav bar is mobile-only on the home page; the
+    // desktop layout uses the left side sub-nav instead.
+    document.body.classList.add('home-subnav-mobile-only')
+    return () => document.body.classList.remove('home-subnav-mobile-only')
+  }, [])
+
+  useEffect(() => {
     window.__nav = (to) => navigate(to)
     return () => { delete window.__nav }
   }, [navigate])

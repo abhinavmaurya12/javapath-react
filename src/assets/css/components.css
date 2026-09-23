@@ -42,6 +42,12 @@
 @media(max-width:768px){.sub-nav-item{padding:10px 14px;font-size:.82rem}.sub-nav{top:56px}}
 @media(max-width:480px){.sub-nav-item span{display:none}.sub-nav-item i{font-size:1rem}}
 
+/* On the home page the horizontal sub-nav bar is mobile-only; the desktop
+   layout uses the left side sub-nav instead. */
+@media(min-width:769px){
+  body.home-subnav-mobile-only .sub-nav{display:none}
+}
+
 /* === Home Page Left Side Sub-Nav === */
 /* Sits beside the homepage content on desktop; stacks above on mobile. */
 .ph-home-layout{display:flex;gap:28px;max-width:1320px;margin:0 auto;padding:0 20px}
