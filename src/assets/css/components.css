@@ -42,6 +42,33 @@
 @media(max-width:768px){.sub-nav-item{padding:10px 14px;font-size:.82rem}.sub-nav{top:56px}}
 @media(max-width:480px){.sub-nav-item span{display:none}.sub-nav-item i{font-size:1rem}}
 
+/* === Home Page Left Side Sub-Nav === */
+/* Sits beside the homepage content on desktop; stacks above on mobile. */
+.ph-home-layout{display:flex;gap:28px;max-width:1320px;margin:0 auto;padding:0 20px}
+.ph-home-main{flex:1;min-width:0}
+.home-subnav{position:sticky;top:calc(var(--nav-h,64px) + 18px);align-self:flex-start;width:232px;max-height:calc(100vh - var(--nav-h,64px) - 36px);overflow-y:auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px 10px;box-shadow:0 2px 12px rgba(0,0,0,.06);flex-shrink:0}
+.home-subnav-title{display:flex;align-items:center;gap:8px;padding:6px 12px 12px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);border-bottom:1px solid var(--border);margin-bottom:8px}
+.home-subnav-title i{color:var(--primary)}
+.home-subnav-item{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:9px;color:var(--text-muted);text-decoration:none;font-size:.86rem;font-weight:500;transition:all .18s;border:none;background:none;cursor:pointer;text-align:left}
+.home-subnav-item:hover{background:var(--surface);color:var(--text)}
+.home-subnav-item.active{background:linear-gradient(135deg,rgba(248,152,32,.18),rgba(248,152,32,.06));color:var(--primary);font-weight:600}
+.home-subnav-icon{width:30px;height:30px;border-radius:8px;background:var(--surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.82rem;color:var(--text-muted);transition:all .18s}
+.home-subnav-item.active .home-subnav-icon{background:var(--primary);color:#fff}
+.home-subnav-item.active .home-subnav-icon i{color:#fff}
+@media(max-width:1100px){
+  .ph-home-layout{flex-direction:column;gap:18px;padding:0 18px}
+  .home-subnav{position:static;width:100%;max-height:none;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:flex-start;overflow-x:auto;scroll-behavior:smooth}
+  .home-subnav::-webkit-scrollbar{display:none}
+  .home-subnav-title{display:none}
+  .home-subnav-item{flex-shrink:0;padding:8px 12px;font-size:.82rem}
+  .home-subnav-icon{width:28px;height:28px}
+}
+@media(max-width:640px){
+  .ph-home-layout{padding:0 14px}
+  /* Hide the left side sub-nav on mobile — it is a desktop-only sidebar. */
+  .home-subnav{display:none}
+}
+
 /* === Navbar, Search, Buttons === */
 /* Theme-aware navbar overrides (components.css loads after style.css so it
    wins). style.css hardcodes a blue gradient + white text which renders

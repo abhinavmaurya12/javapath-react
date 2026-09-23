@@ -5,6 +5,7 @@ import DailyChallenge from '../components/DailyChallenge'
 import GamificationDashboard from '../components/GamificationDashboard'
 import JavaRoadmapVisual from '../components/JavaRoadmapVisual'
 import UpdateCycle from '../components/UpdateCycle'
+import HomeSubNav from '../components/HomeSubNav'
 
 const COURSES = [
   { icon: '⚡', title: 'Quick Learn', desc: 'Java complete quick reference — 80+ key concepts at a glance.', to: '/quick-learn', color: '#f59e0b', level: 'Quick', weeks: '80+ Points', students: 'Free', rating: 4.9 },
@@ -128,9 +129,12 @@ export default function HomePage() {
     return () => btn.removeEventListener('click', onClick)
 }, [navigate])
 
-  return (
+return (
     <div id="page-home">
-<section className="ph-hero">
+      <div className="ph-home-layout">
+        <HomeSubNav />
+        <div className="ph-home-main">
+      <section className="ph-hero">
         <div className="ph-hero-grid">
           <div className="ph-hero-left">
             <div className="ph-hero-marquee" aria-hidden="true">
@@ -415,5 +419,7 @@ export default function HomePage() {
         </div>
       </section>
     </div>
+  </div>
+</div>
   )
 }

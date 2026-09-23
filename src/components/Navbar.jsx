@@ -14,7 +14,7 @@ const NAV_ITEMS = [
   { label: 'Book', to: '/javapro' },
   // { label: 'E-Book', to: '/ebook' },
   { label: 'Compiler', to: '/tryit' },
-  { label: 'JavaSquadz', to: 'https://github.com/abhinavmaurya12/JavaSquadz', external: true },
+  // { label: 'JavaSquadz', to: 'https://github.com/abhinavmaurya12/JavaSquadz', external: true },
 ]
 
 const FRONTEND_DROPDOWN = [
@@ -119,7 +119,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.6.9.9</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.7.2.2</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); toggleMenu() }}>
         <i className="fas fa-bars"></i>
