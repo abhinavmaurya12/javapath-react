@@ -56,7 +56,7 @@ export default function App() {
       <Routes>
         <Route path="/coding-practice" element={<Layout hideFooter><CodingPractice /></Layout>} />
         <Route path="/codearena" element={<Layout hideFooter><CodeArenaPage /></Layout>} />
-        <Route path="/" element={<Layout hideSubNav><HomePage /></Layout>} />
+        <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/java" element={<Layout hideFooter><JavaPage /></Layout>} />
         <Route path="/dsa" element={<Layout hideFooter><DSAPage /></Layout>} />
         <Route path="/practice" element={<Layout hideFooter><PracticePage /></Layout>} />
