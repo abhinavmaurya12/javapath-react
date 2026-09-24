@@ -119,7 +119,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.7.2.3</span>
+        <i className="fa-brands fa-java"></i> JavaNest <span className="nav-version">Vr.7.2.4</span>
       </div>
       <button className="mobile-menu-btn" onClick={e => { e.stopPropagation(); toggleMenu() }}>
         <i className="fas fa-bars"></i>

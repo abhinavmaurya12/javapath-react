@@ -46,6 +46,10 @@
    layout uses the left side sub-nav instead. */
 @media(min-width:769px){
   body.home-subnav-mobile-only .sub-nav{display:none}
+  /* On the home page the horizontal sub-nav is hidden on desktop, so the
+     hero can sit flush against the navbar (no 48px gap). The main element
+     uses an inline padding-top, so this needs !important to win. */
+  body.home-subnav-mobile-only main{padding-top:var(--nav-h,64px) !important}
 }
 
 /* === Home Page Left Side Sub-Nav === */
