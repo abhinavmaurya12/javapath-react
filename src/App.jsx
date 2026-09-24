@@ -22,6 +22,7 @@ import CodeSqzPage from './pages/CodeSqzPage'
 import QuickLearnPage from './pages/QuickLearnPage'
 import SubNav from './components/SubNav'
 import FrontendPage from './pages/FrontendPage'
+import FrontendLandingPage from './pages/FrontendLandingPage'
 
 function Layout({ children, hideFooter = false, hideSubNav = false }) {
   return (
@@ -70,6 +71,7 @@ export default function App() {
         <Route path="/codesqz" element={<Layout hideFooter><CodeSqzPage /></Layout>} />
         <Route path="/quick-learn" element={<Layout hideFooter><QuickLearnPage /></Layout>} />
         <Route path="/mynotes" element={<Layout hideFooter><MyNotesPage /></Layout>} />
+        <Route path="/frontend" element={<Layout hideFooter><FrontendLandingPage /></Layout>} />
         <Route path="/frontend/:track" element={<Layout hideFooter><FrontendPage /></Layout>} />
       </Routes>
     </ProgressProvider>

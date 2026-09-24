@@ -1,6 +1,37 @@
-.frontend-layout {
-  display: flex;
-  min-height: calc(100vh - 64px);
+.frontend-landing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+.frontend-landing-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius, 12px);
+  padding: 24px;
+  transition: transform .2s ease, box-shadow .2s ease;
+  cursor: pointer;
+}
+.frontend-landing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .18);
+}
+.frontend-landing-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+.frontend-landing-card h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+.frontend-landing-card p {
+  line-height: 1.5;
+  font-size: .9rem;
 }
 
 /* ===== W3Schools-style vertical sidebar =====

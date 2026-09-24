@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 const SUB_NAV = [
   { label: 'Start Learning Java', to: '/java', icon: 'fa-brands fa-java' },
   { label: 'Start DSA', to: '/dsa', icon: 'fa-project-diagram' },
-  { label: 'Learn Frontend', to: '/frontend/html', icon: 'fab fa-html5' },
+  { label: 'Learn Frontend', to: '/frontend', icon: 'fab fa-html5' },
   { label: 'CodeArena', to: '/codearena', icon: 'fa-trophy' },
   { label: 'Quick Learn', to: '/quick-learn', icon: 'fa-bolt' },
   { label: 'E-Book', to: '/ebook', icon: 'fa-book' },
